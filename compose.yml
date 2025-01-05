@@ -1,0 +1,46 @@
+version: "3"
+services:
+  store:
+    container_name: store
+    build:
+      context: .
+      args:
+        BRANCH: ${BRANCH}
+        REPOSITORY: ${REPOSITORY}
+      dockerfile: Dockerfile
+    environment:
+      - DATASOURCE_URL=${DATABASE_URL}
+      - DATASOURCE_USER=${DATABASE_USER}
+      - DATASOURCE_PASSWORD=${DATABASE_PASSWORD}
+      - JWT_TOKEN_KEY=${JWT_TOKEN_KEY}
+      - ALLOWED_ORIGINS=*
+      - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
+      - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
+      - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
+      - CLOUDINARY_PRODUCT_IMAGES_FOLDER_NAME=${CLOUDINARY_PRODUCT_IMAGES_FOLDER_NAME}
+    ports:
+      - "8085:8085"
+    networks:
+      - onlinestore
+    restart: on-failure
+    depends_on:
+      - database
+  database:
+    container_name: database_onlinestore
+    image: postgres:14-alpine
+    build:
+      context: ./database-image
+      dockerfile: "Dockerfile"
+    volumes:
+      - ~/apps/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    networks:
+      - onlinestore
+networks:
+    onlinestore:
+

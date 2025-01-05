@@ -1,7 +1,8 @@
 FROM alpine/git as clone
 WORKDIR /app
 ARG BRANCH
-RUN git clone -b $BRANCH https://github.com/lagysha/onlinestore
+ARG REPOSITORY
+RUN git clone -b $BRANCH $REPOSITORY
 
 FROM maven:3.9-amazoncorretto-21 as build
 WORKDIR /app
