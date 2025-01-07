@@ -3,7 +3,7 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <include file="/db/changelog/logs/add-table-categories.xml" relativeToChangelogFile="false" />
     <include file="/db/changelog/logs/add-table-products.xml" relativeToChangelogFile="false" />
     <include file="/db/changelog/logs/add-table-images.xml" relativeToChangelogFile="false" />
@@ -37,13 +37,59 @@
     <include file="/db/changelog/logs/add-table-reviews.xml" relativeToChangelogFile="false"/>
     <include file="/db/changelog/logs/add-index-order-items-on-product-id.xml" relativeToChangelogFile="false"/>
     <include file="/db/changelog/logs/add-index-products-on-quantity.xml" relativeToChangelogFile="false"/>
-
-    <!-- Populate tables   -->
     <include file="/db/changelog/devLogs/insert-brands.sql" relativeToChangelogFile="false"/>
-    <include file="/db/changelog/devLogs/insert-categories.sql" relativeToChangelogFile="false"/>
-    <include file="/db/changelog/devLogs/insert-attributes.sql" relativeToChangelogFile="false"/>
-    <include file="/db/changelog/devLogs/insert-attribute-values.sql" relativeToChangelogFile="false"/>
-    <include file="/db/changelog/devLogs/insert-products.sql" relativeToChangelogFile="false"/>
-    <include file="/db/changelog/devLogs/insert-product-atributes.sql" relativeToChangelogFile="false"/>
+    <changeSet id="1" author="serhii.babanov">
+        <sqlFile
+                encoding="utf8"
+                path="classpath:/db/changelog/devLogs/insert-categories.sql"
+                relativeToChangelogFile="false"
+                splitStatements="true"
+                stripComments="true"/>
+    </changeSet>
+    <changeSet id="2" author="serhii.babanov">
+        <sqlFile
+                encoding="utf8"
+                path="classpath:/db/changelog/devLogs/insert-brands.sql"
+                relativeToChangelogFile="false"
+                splitStatements="true"
+                stripComments="true"/>
+    </changeSet>
+    <changeSet id="3" author="serhii.babanov">
+        <sqlFile
+                encoding="utf8"
+                path="classpath:/db/changelog/devLogs/insert-attributes.sql"
+                relativeToChangelogFile="false"
+                splitStatements="true"
+                stripComments="true"/>
+    </changeSet>
+    <changeSet id="4" author="serhii.babanov">
+        <sqlFile
+                encoding="utf8"
+                path="classpath:/db/changelog/devLogs/insert-attribute-values.sql"
+                relativeToChangelogFile="false"
+                splitStatements="true"
+                stripComments="true"/>
+    </changeSet>
+    <changeSet id="5" author="serhii.babanov">
+        <sqlFile
+                encoding="utf8"
+                path="classpath:/db/changelog/devLogs/insert-products.sql"
+                relativeToChangelogFile="false"
+                splitStatements="true"
+                stripComments="true"/>
+    </changeSet>
+    <changeSet id="6" author="serhii.babanov">
+        <sqlFile
+                encoding="utf8"
+                path="classpath:/db/changelog/devLogs/insert-product-atributes.sql"
+                relativeToChangelogFile="false"
+                splitStatements="true"
+                stripComments="true"/>
+    </changeSet>
+<!--    <include file="./devLogs/insert-categories.sql" relativeToChangelogFile="true"/>-->
+<!--    <include file="/db/changelog/devLogs/insert-attributes.sql" relativeToChangelogFile="false"/>-->
+<!--    <include file="/db/changelog/devLogs/insert-attribute-values.sql" relativeToChangelogFile="false"/>-->
+<!--    <include file="/db/changelog/devLogs/insert-products.sql" relativeToChangelogFile="false"/>-->
+<!--    <include file="/db/changelog/devLogs/insert-product-atributes.sql" relativeToChangelogFile="false"/>-->
 
 </databaseChangeLog>

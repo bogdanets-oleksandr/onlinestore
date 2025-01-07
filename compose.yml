@@ -7,18 +7,18 @@ services:
       args:
         BRANCH: ${BRANCH}
         REPOSITORY: ${REPOSITORY}
-        PROFILE: ${PROFILE}
       dockerfile: Dockerfile
     environment:
-      - DATASOURCE_URL=${DATABASE_URL}
-      - DATASOURCE_USER=${DATABASE_USER}
-      - DATASOURCE_PASSWORD=${DATABASE_PASSWORD}
+      - DATASOURCE_URL=${DATASOURCE_URL}
+      - DATASOURCE_USER=${DATASOURCE_USER}
+      - DATASOURCE_PASSWORD=${DATASOURCE_PASSWORD}
       - JWT_TOKEN_KEY=${JWT_TOKEN_KEY}
-      - ALLOWED_ORIGINS=*
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS}
       - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
       - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
       - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
       - CLOUDINARY_PRODUCT_IMAGES_FOLDER_NAME=${CLOUDINARY_PRODUCT_IMAGES_FOLDER_NAME}
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
     ports:
       - "8085:8085"
     networks:
@@ -32,8 +32,6 @@ services:
     build:
       context: ./database-image
       dockerfile: "Dockerfile"
-    volumes:
-      - ~/apps/postgres:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}

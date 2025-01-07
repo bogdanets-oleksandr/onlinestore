@@ -30,6 +30,9 @@ values
     (23, 4, '6.1 inches'),      --S23
     (24, 4, '6.12 inches'),     --15 Pro, 15
     (25, 4, '6.06 inches'),     --13
+    (62, 4, '11 inches'),
+    (63, 4, '14 inches'),
+    (64, 4, '15.6 inches'),
     -- Screen resolution
     (26, 5, '2796 x 1290 pixels'),  --15 Pro Max
     (27, 5, '1080 x 2340 pixels'),  --A24
@@ -37,10 +40,18 @@ values
     (29, 5, '1080 x 2350 pixels'),  --S23
     (30, 5, '2556 x 1179 pixels'),  --15 Pro, 15
     (31, 5, '2532 x 1170 pixels'),  --13
+    (65, 5, '2388 x 1668 pixels'),
+    (66, 5, '2560 x 1600 pixels'),
+    (67, 5, '1920 x 1080 pixels'),
+    (79, 5, '2880 x 1864 pixels'),
     -- Screen type
     (32, 6, 'Super Retina XDR OLED'),    --15 Pro Max, --15 Pro, 15
     (33, 6, 'Super AMOLED'),             --A24
     (34, 6, 'Dynamic AMOLED 2X'),   --S24 Ultra, S23
+    (68, 6, 'IPS'),
+    (69, 6, 'TFT'),
+    (70, 6, 'AMOLED'),
+    (80, 6, 'Liquid Retina'),
     -- Screen refresh rate
     (35, 7, '120 Hz'),  --15 Pro Max, S24 Ultra, s23
     (36, 7, '60 Hz'),   --15, 13
@@ -62,15 +73,25 @@ values
     -- Operating system
     (48, 12, 'iOS'),     --15 Pro Max, 15, 13
     (49, 12, 'Android'), --A24, S24 Ultra, S23
+    (74, 12, 'Windows'),
+    (83, 12, 'Linux'),
+    (84, 12, 'MacOS'),
     -- Processor frequency
     (50, 13, '3.0 GHz'),
     (51, 13, '2.3 GHz'),
+    (72, 13, '2.1 GHz'),
+    (78, 13, '4.2 GHz'),
+    (82, 13, '3.6 GHz'),
     -- Number of processor cores
     (52, 14, 'Octa-core'),
     (53, 14, 'Quad-core'),
+    (73, 14, 'Hexa-core'),
     -- Processor model
     (54, 15, 'A14 Bionic'),    --15 Pro Max, 15, 13
     (55, 15, 'Snapdragon 888'),    --A24, S24 Ultra, S23
+    (71, 15, 'AMD Ryzen 5 5500U'),
+    (77, 15, 'Intel Core i5-1135G7'),
+    (81, 15, 'Apple M3'),
     -- Flesh card
     (56, 16, 'Supports microSD'),  --A24, S24 Ultra, S23
     (57, 16, 'No microSD support'), --15 Pro Max, 15, 13
@@ -79,4 +100,7 @@ values
     (59, 17, '12 MP'),     --15 Pro Max, 15, 13, A24, S23
     -- Video card
     (60, 18, 'AMD Radeon RX 6700 XT'),
-    (61, 18, 'NVIDIA RTX 3060');
+    (61, 18, 'NVIDIA RTX 3060'),
+    (75, 18, 'Intel UHD Graphics 620'),
+    (76, 18, 'Integrated');
+

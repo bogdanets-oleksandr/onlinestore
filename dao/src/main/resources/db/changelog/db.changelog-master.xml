@@ -4,15 +4,15 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-    <include file="db/changelog/logs/add-table-categories.xml" relativeToChangelogFile="false" />
-    <include file="db/changelog/logs/add-table-products.xml" relativeToChangelogFile="false" />
-    <include file="db/changelog/logs/add-table-images.xml" relativeToChangelogFile="false" />
-    <include file="db/changelog/logs/add-table-users.xml" relativeToChangelogFile="false" />
-    <include file="db/changelog/logs/add-table-countries.xml" relativeToChangelogFile="false" />
-    <include file="db/changelog/logs/insert_into_countries.xml" relativeToChangelogFile="false" />
-    <include file="db/changelog/logs/add-table-addresses.xml" relativeToChangelogFile="false" />
-    <include file="db/changelog/logs/add-table-orders.xml" relativeToChangelogFile="false" />
-    <include file="db/changelog/logs/add-table-order_items.xml" relativeToChangelogFile="false" />
+    <include file="/db/changelog/logs/add-table-categories.xml" relativeToChangelogFile="false" />
+    <include file="/db/changelog/logs/add-table-products.xml" relativeToChangelogFile="false" />
+    <include file="/db/changelog/logs/add-table-images.xml" relativeToChangelogFile="false" />
+    <include file="/db/changelog/logs/add-table-users.xml" relativeToChangelogFile="false" />
+    <include file="/db/changelog/logs/add-table-countries.xml" relativeToChangelogFile="false" />
+    <include file="/db/changelog/logs/insert_into_countries.xml" relativeToChangelogFile="false" />
+    <include file="/db/changelog/logs/add-table-addresses.xml" relativeToChangelogFile="false" />
+    <include file="/db/changelog/logs/add-table-orders.xml" relativeToChangelogFile="false" />
+    <include file="/db/changelog/logs/add-table-order_items.xml" relativeToChangelogFile="false" />
     <include file="/db/changelog/logs/add-table-cart_items.xml" relativeToChangelogFile="false" />
     <include file="/db/changelog/logs/add-column-refresh-token-key-for-users-table.xml" relativeToChangelogFile="false" />
     <include file="/db/changelog/logs/add-table-attributes.xml" relativeToChangelogFile="false" />

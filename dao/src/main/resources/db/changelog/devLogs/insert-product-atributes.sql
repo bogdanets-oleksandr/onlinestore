@@ -149,4 +149,61 @@ values
     (131, 8, 52),  -- Number of processor cores: Octa-core
     (132, 8, 54),  -- Processor model: A14 Bionic
     (133, 8, 57),  -- Flesh card: No microSD support
-    (134, 8, 59);  -- Sensor resolution: 12 MP
+    (134, 8, 59),  -- Sensor resolution: 12 MP
+
+    -- Lenovo IdeaPad 1 15ALC7
+    (135, 9, 2),    -- Memory ROM: 256 Gb
+    (136, 9, 6),    -- Memory RAM: 8 Gb
+    (137, 9, 8),   -- Color: Gray
+    (138, 9, 61),   -- Display diagonal: 15.6 inches
+    (139, 9, 67),   -- Screen resolution: 1920 x 1080 pixels
+    (140, 9, 68),   -- Screen type: IPS
+    (141, 9, 35),   -- Screen refresh rate: 60 Hz
+    (142, 9, 71),   -- Processor model: AMD Ryzen 5 5500U
+    (143, 9, 72),   -- Processor frequency: 2.1 GHz
+    (144, 9, 73),   -- Number of processor cores: Hexa-core
+    (145, 9, 74),   -- Operating system: Windows 11
+    (146, 9, 76),   -- Video card: Integrated
+
+    -- Asus TUF Gaming A15
+    (147, 10, 3),    -- Memory ROM: 512 Gb
+    (148, 10, 7),    -- Memory RAM: 8 Gb
+    (149, 10, 15),   -- Color: Gold
+    (150, 10, 64),   -- Display diagonal: 15.6 inches
+    (151, 10, 66),   -- Screen resolution: 2560 x 1600 pixels
+    (152, 10, 70),   -- Screen type: AMOLED
+    (153, 10, 37),   -- Screen refresh rate: 90 Hz
+    (154, 10, 77),   -- Processor model: AMD Ryzen 5 5500U
+    (155, 10, 78),   -- Processor frequency: 2.1 GHz
+    (156, 10, 73),   -- Number of processor cores: Hexa-core
+    (157, 10, 74),   -- Operating system: Windows 11
+    (158, 10, 61),   -- Video card: Integrated
+
+    -- Apple MacBook Air 15.3 M3 8GB 256GB
+    (161, 11, 2),   -- Memory ROM: 256 Gb
+    (162, 11, 6),   -- Memory RAM: 8 Gb
+    (163, 11, 14),  -- Color: Medium Gray
+    (164, 11, 62),  -- Display diagonal: 11 inches
+    (165, 11, 79),  -- Screen resolution: 2880 x 1864 pixels
+    (166, 11, 80),  -- Screen type: Liquid Retina
+    (167, 11, 35),  -- Screen refresh rate: 120 Hz
+    (168, 11, 81),  -- Processor model: Apple M3
+    (169, 11, 82),  -- Processor frequency: 3.6 GHz
+    (170, 11, 52),  -- Number of processor cores: Octa-core
+    (171, 11, 84),  -- Operating system: MacOS
+    (172, 11, 76),  -- Video card: Integrated
+
+    -- Nikon Coolpix P950 Black
+    (173, 12, 59),  -- Sensor resolution: 12 MP
+    (174, 12, 8),   -- Color: Gray
+    (175, 12, 56),  -- Supports microSD
+
+    -- Fujifilm Instax Mini 12 Lilac/Violet
+    (176, 13, 59),  -- Sensor resolution: 12 MP
+    (177, 13, 13),   -- Color: Powder Pink
+    (178, 13, 56),  -- Supports microSD
+
+    -- Nikon Coolpix P950 Black
+    (179, 14, 59),  -- Sensor resolution: 12 MP
+    (180, 14, 10),   -- Color: Dark Gray
+    (181, 14, 56);  -- Supports microSD

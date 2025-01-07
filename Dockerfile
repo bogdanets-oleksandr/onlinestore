@@ -12,7 +12,6 @@ RUN mvn package -DskipTests
 
 FROM openjdk:22-ea-21-jdk-slim
 WORKDIR /app
-ARG PROFILE
 COPY --from=build /app/core/target/*.jar /app
 ENTRYPOINT ["sh", "-c"]
-CMD ["java -jar $PROFILE *.jar"]
+CMD ["java -jar *.jar"]
