@@ -30,7 +30,6 @@ public class OrderRequestDto {
     @NotBlank
     private String firstName;
 
-    @NotBlank
     private String lastName;
 
     @NotBlank
