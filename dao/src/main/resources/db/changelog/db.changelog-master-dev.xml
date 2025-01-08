@@ -86,10 +86,13 @@
                 splitStatements="true"
                 stripComments="true"/>
     </changeSet>
-<!--    <include file="./devLogs/insert-categories.sql" relativeToChangelogFile="true"/>-->
-<!--    <include file="/db/changelog/devLogs/insert-attributes.sql" relativeToChangelogFile="false"/>-->
-<!--    <include file="/db/changelog/devLogs/insert-attribute-values.sql" relativeToChangelogFile="false"/>-->
-<!--    <include file="/db/changelog/devLogs/insert-products.sql" relativeToChangelogFile="false"/>-->
-<!--    <include file="/db/changelog/devLogs/insert-product-atributes.sql" relativeToChangelogFile="false"/>-->
+    <changeSet id="7" author="serhii.babanov">
+        <sqlFile
+                encoding="utf8"
+                path="classpath:/db/changelog/devLogs/insert-images.sql"
+                relativeToChangelogFile="false"
+                splitStatements="true"
+                stripComments="true"/>
+    </changeSet>
 
 </databaseChangeLog>
