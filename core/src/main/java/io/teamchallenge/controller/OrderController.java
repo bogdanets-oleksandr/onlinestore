@@ -46,7 +46,8 @@ public class OrderController {
      * @return a {@link ResponseEntity} containing the ID of the newly created order and  HTTP status {@code CREATED}.
      */
     @PostMapping
-    public ResponseEntity<Long> create(@RequestBody @ValidOrderRequest OrderRequestDto orderRequestDto,
+    public ResponseEntity<Long> create(@RequestBody //@ValidOrderRequest
+                                           OrderRequestDto orderRequestDto,
                                        Principal userPrincipal) {
         return ResponseEntity.status(HttpStatus.CREATED).body(orderService.create(orderRequestDto, userPrincipal));
     }
