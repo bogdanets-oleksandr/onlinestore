@@ -27,10 +27,12 @@ public class OrderRequestDto {
     @Email(message = "Please, insert valid email address")
     private String email;
 
-    @NotBlank
+    //for delete
     private String firstName;
-
     private String lastName;
+
+    private String fullName;
+    private String comment;
 
     @NotBlank
     private String phoneNumber;
@@ -39,8 +41,10 @@ public class OrderRequestDto {
     private List<CartItemRequestDto> cartItems;
 
     private DeliveryMethod deliveryMethod;
+    //need constant for payment method
+    private String paymentMethod;
 
     private AddressDto address;
-
+    //for delete
     private PostAddressDto postAddress;
 }

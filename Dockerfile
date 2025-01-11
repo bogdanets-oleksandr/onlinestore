@@ -2,7 +2,7 @@ FROM alpine/git as clone
 WORKDIR /app
 ARG BRANCH
 ARG REPOSITORY
-ARG CACHE_DATE=2024-01-07-1
+ARG CACHE_DATE=2024-01-09
 RUN git clone -b $BRANCH $REPOSITORY
 
 FROM maven:3.9-amazoncorretto-21 as build

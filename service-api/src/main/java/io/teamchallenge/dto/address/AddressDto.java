@@ -17,12 +17,15 @@ import lombok.ToString;
 @EqualsAndHashCode
 @Builder
 public class AddressDto {
-    @NotBlank
+
     private String addressLine;
+    private String postalCode;
+    private String countryName;
+
     @NotBlank
     private String city;
-    @NotBlank
-    private String postalCode;
-    @NotBlank
-    private String countryName;
+    private String street;
+    private String houseNumber;
+    private String flat;
+
 }
