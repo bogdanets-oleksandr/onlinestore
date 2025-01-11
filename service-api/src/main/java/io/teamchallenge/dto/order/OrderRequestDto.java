@@ -1,5 +1,7 @@
 package io.teamchallenge.dto.order;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.teamchallenge.dto.PostAddressDto;
 import io.teamchallenge.dto.address.AddressDto;
 import io.teamchallenge.dto.cart.CartItemRequestDto;
@@ -23,28 +25,37 @@ import lombok.ToString;
 @Builder
 @ToString
 @EqualsAndHashCode
+
 public class OrderRequestDto {
-    @Email(message = "Please, insert valid email address")
+//    @Email(message = "Please, insert valid email address")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String email;
 
     //for delete
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String firstName;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String lastName;
-
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String fullName;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String comment;
 
-    @NotBlank
+//    @NotBlank
+@JsonInclude(JsonInclude.Include.NON_NULL)
     private String phoneNumber;
 
-    @Size(min = 1, message = "You need minimum one product")
+//    @Size(min = 1, message = "You need minimum one product")
+@JsonInclude(JsonInclude.Include.NON_NULL)
     private List<CartItemRequestDto> cartItems;
-
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private DeliveryMethod deliveryMethod;
     //need constant for payment method
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String paymentMethod;
-
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private AddressDto address;
     //for delete
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private PostAddressDto postAddress;
 }
