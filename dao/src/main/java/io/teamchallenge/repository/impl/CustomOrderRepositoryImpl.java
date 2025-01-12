@@ -29,7 +29,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class CustomOrderRepositoryImpl implements CustomOrderRepository {
     public static final String ORDER_ITEMS = "orderItems";
-    public static final String POST_ADDRESS = "postAddress";
     public static final String ADDRESS = "address";
     public static final String PRICE = "price";
     public static final String QUANTITY = "quantity";
