@@ -29,8 +29,6 @@ public class OrderResponseDtoMapperTest {
     @Mock
     private AddressDtoMapper addressDtoMapper;
 
-    @Mock
-    private PostAddressDtoMapper postAddressDtoMapper;
 
     @InjectMocks
     private OrderResponseDtoMapper orderResponseDtoMapper;
@@ -44,8 +42,7 @@ public class OrderResponseDtoMapperTest {
         OrderResponseDto orderResponseDto = OrderResponseDto.builder()
             .id(source.getId())
             .email(source.getContactInfo().getEmail())
-            .firstName(source.getContactInfo().getFirstName())
-            .lastName(source.getContactInfo().getLastName())
+            .fullName(source.getContactInfo().getFullName())
             .phoneNumber(source.getContactInfo().getPhoneNumber())
             .deliveryMethod(source.getDeliveryMethod())
             .deliveryStatus(source.getDeliveryStatus())
