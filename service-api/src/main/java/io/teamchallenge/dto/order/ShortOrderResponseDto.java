@@ -24,13 +24,11 @@ import lombok.ToString;
 public class ShortOrderResponseDto {
     private Long id;
     private String email;
-    private String firstName;
-    private String lastName;
+    private String fullName;
     private String phoneNumber;
     private DeliveryMethod deliveryMethod;
     private DeliveryStatus deliveryStatus;
     private AddressDto address;
-    private PostAddressDto postAddress;
     private Boolean isPaid;
     private LocalDateTime createdAt;
     private BigDecimal total;

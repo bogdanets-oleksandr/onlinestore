@@ -269,13 +269,11 @@ public class Utils {
         return ShortOrderResponseDto.builder()
             .id(1L)
             .email("example@example.com")
-            .firstName("John")
-            .lastName("Doe")
+            .fullName("John")
             .phoneNumber("1234567890")
             .deliveryMethod(DeliveryMethod.COURIER)
             .deliveryStatus(DeliveryStatus.CANCELED)
             .address(getAddressDto())
-            .postAddress(getPostAddressDto())
             .isPaid(true)
             .createdAt(LocalDateTime.of(1, 1, 1, 1, 1))
             .total(new BigDecimal("99.99"))
@@ -286,13 +284,11 @@ public class Utils {
         return OrderResponseDto.builder()
             .id(1L)
             .email("example@example.com")
-            .firstName("John")
-            .lastName("Doe")
+            .fullName("John")
             .phoneNumber("1234567890")
             .deliveryMethod(DeliveryMethod.COURIER)
             .deliveryStatus(DeliveryStatus.CANCELED)
             .address(getAddressDto())
-            .postAddress(getPostAddressDto())
             .isPaid(true)
             .createdAt(LocalDateTime.of(1, 1, 1, 1, 1))
             .total(new BigDecimal("99.99"))
@@ -305,19 +301,10 @@ public class Utils {
             .shortProductResponseDto(getShortProductResponseDto()).build();
     }
 
-    public static PostAddressDto getPostAddressDto() {
-        return PostAddressDto.builder()
-            .city("Anytown")
-            .department("1")
-            .build();
-    }
-
     public static AddressDto getAddressDto() {
         return AddressDto.builder()
             .city("Anytown")
-            .addressLine("some address")
-            .countryName("Ukraine")
-            .postalCode("1234")
+            .addressLine("Anytown")
             .build();
     }
 
@@ -359,13 +346,10 @@ public class Utils {
 
     public static OrderRequestDto getOrderRequestDtoCourier() {
         return OrderRequestDto.builder()
-            .firstName("FirstName")
-            .lastName("LastName")
+            .fullName("FirstName")
             .address(AddressDto.builder()
                 .addressLine("address line")
                 .city("Kyiv")
-                .postalCode("12322")
-                .countryName("Ukraine")
                 .build())
             .deliveryMethod(DeliveryMethod.COURIER)
             .phoneNumber("1234567890")

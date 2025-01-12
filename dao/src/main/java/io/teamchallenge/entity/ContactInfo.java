@@ -24,11 +24,8 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public class ContactInfo {
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
-
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
+    @Column(name = "full_name", nullable = false)
+    private String fullName;
 
     @Column(nullable = false)
     private String email;

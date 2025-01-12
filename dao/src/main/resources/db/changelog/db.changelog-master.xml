@@ -37,5 +37,6 @@
     <include file="/db/changelog/logs/add-table-reviews.xml" relativeToChangelogFile="false"/>
     <include file="/db/changelog/logs/add-index-order-items-on-product-id.xml" relativeToChangelogFile="false"/>
     <include file="/db/changelog/logs/add-index-products-on-quantity.xml" relativeToChangelogFile="false"/>
+    <include file="db/changelog/logs/12-01-changelog.xml"/>
 
 </databaseChangeLog>

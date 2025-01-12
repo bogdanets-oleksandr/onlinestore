@@ -14,8 +14,8 @@ public interface OrderRepository extends JpaRepository<Order, Long>, CustomOrder
      * @return an {@link Optional} containing the order if found, otherwise empty.
      */
     @Query("SELECT o FROM Order o LEFT JOIN FETCH o.address a "
-           + "LEFT JOIN FETCH o.postAddress LEFT JOIN FETCH o.orderItems oi "
-           + "LEFT JOIN FETCH a.country LEFT JOIN FETCH oi.product "
+           + "LEFT JOIN FETCH o.orderItems oi "
+           + "LEFT JOIN FETCH oi.product "
            + "WHERE o.id = :orderId")
     Optional<Order> findByIdFetchData(Long orderId);
 }

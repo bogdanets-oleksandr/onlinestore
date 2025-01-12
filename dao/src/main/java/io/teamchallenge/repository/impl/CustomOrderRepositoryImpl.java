@@ -98,9 +98,7 @@ public class CustomOrderRepositoryImpl implements CustomOrderRepository {
         var root = query.from(Order.class);
 
         root.fetch(ORDER_ITEMS, JoinType.LEFT);
-        root.fetch(POST_ADDRESS, JoinType.LEFT);
         Fetch<Order, Address> af = root.fetch(ADDRESS, JoinType.LEFT);
-        af.fetch("country", JoinType.LEFT);
 
         query.where(root.get("id").in(ids.toArray()));
 

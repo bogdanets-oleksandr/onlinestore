@@ -13,15 +13,13 @@ import org.springframework.stereotype.Component;
 public class OrderResponseDtoMapper extends AbstractConverter<Order, OrderResponseDto> {
     private final ShortProductResponseDtoMapper shortProductResponseDtoMapper;
     private final AddressDtoMapper addressDtoMapper;
-    private final PostAddressDtoMapper postAddressDtoMapper;
 
     @Override
     protected OrderResponseDto convert(Order source) {
         OrderResponseDto orderResponseDto = OrderResponseDto.builder()
             .id(source.getId())
             .email(source.getContactInfo().getEmail())
-            .firstName(source.getContactInfo().getFirstName())
-            .lastName(source.getContactInfo().getLastName())
+            .fullName(source.getContactInfo().getFullName())
             .phoneNumber(source.getContactInfo().getPhoneNumber())
             .deliveryMethod(source.getDeliveryMethod())
             .deliveryStatus(source.getDeliveryStatus())
@@ -39,9 +37,6 @@ public class OrderResponseDtoMapper extends AbstractConverter<Order, OrderRespon
             .build();
         if (source.getAddress() != null) {
             orderResponseDto.setAddress(addressDtoMapper.convert(source.getAddress()));
-        }
-        if (source.getPostAddress() != null) {
-            orderResponseDto.setPostAddress(postAddressDtoMapper.convert(source.getPostAddress()));
         }
         return orderResponseDto;
     }

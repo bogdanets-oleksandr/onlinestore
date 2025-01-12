@@ -8,6 +8,7 @@ import io.teamchallenge.dto.cart.CartItemRequestDto;
 import io.teamchallenge.enumerated.DeliveryMethod;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -27,35 +28,26 @@ import lombok.ToString;
 @EqualsAndHashCode
 
 public class OrderRequestDto {
-//    @Email(message = "Please, insert valid email address")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @Email(message = "Please, insert valid email address")
     private String email;
 
-    //for delete
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String firstName;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String lastName;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @NotBlank
     private String fullName;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+
     private String comment;
 
-//    @NotBlank
-@JsonInclude(JsonInclude.Include.NON_NULL)
+    @NotBlank
     private String phoneNumber;
 
-//    @Size(min = 1, message = "You need minimum one product")
-@JsonInclude(JsonInclude.Include.NON_NULL)
+    @Size(min = 1, message = "You need minimum one product")
     private List<CartItemRequestDto> cartItems;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+
+    @NotNull
     private DeliveryMethod deliveryMethod;
-    //need constant for payment method
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+
+    //TODO: add constraints for payment method
     private String paymentMethod;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+
+    @NotNull
     private AddressDto address;
-    //for delete
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private PostAddressDto postAddress;
 }
