@@ -2,12 +2,7 @@ version: "3"
 services:
   store:
     container_name: store
-    build:
-      context: .
-      args:
-        BRANCH: ${BRANCH}
-        REPOSITORY: ${REPOSITORY}
-      dockerfile: Dockerfile
+    image: serhiibabanov/onlinestore-backend:1.1
     environment:
       - DATASOURCE_URL=${DATASOURCE_URL}
       - DATASOURCE_USER=${DATASOURCE_USER}
@@ -37,7 +32,7 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=${POSTGRES_DB}
     ports:
-      - "5432:5432"
+      - "5433:5432"
     networks:
       - onlinestore
 networks:
