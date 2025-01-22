@@ -39,6 +39,7 @@
     <include file="/db/changelog/logs/add-index-products-on-quantity.xml" relativeToChangelogFile="false"/>
     <include file="/db/changelog/devLogs/insert-brands.sql" relativeToChangelogFile="false"/>
     <include file="db/changelog/logs/12-01-changelog.xml"/>
+    <include file="db/changelog/logs/change-orderId-start-value.xml"/>
     <changeSet id="1" author="serhii.babanov">
         <sqlFile
                 encoding="utf8"
