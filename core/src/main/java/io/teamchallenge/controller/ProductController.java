@@ -45,7 +45,8 @@ public class ProductController {
      * @param minPrice          The minimum price to filter by.
      * @param maxPrice          The maximum price to filter by.
      * @param pageable          Pageable object for pagination and sorting information.
-     *                          Allowed sort fields: "price".
+     *                          Parameters: page, size, sort.
+     *                          Allowed sort fields: "price", "popularity", "rating".
      *                          Default sort: "price" in descending order.
      * @return ResponseEntity containing a pageable list of short product responses.
      */
