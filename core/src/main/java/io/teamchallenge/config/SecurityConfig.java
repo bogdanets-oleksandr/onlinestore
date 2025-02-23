@@ -118,7 +118,8 @@ public class SecurityConfig {
                 .permitAll()
                 .requestMatchers(HttpMethod.GET,
                     API_V1 + "/cart-items",
-                    API_V1 + "/orders/{order_id}"
+                    API_V1 + "/orders/{order_id}",
+                        API_V1 + "/users/profile"
                 )
                 .hasAnyRole(USER,ADMIN)
                 .requestMatchers(HttpMethod.POST,
