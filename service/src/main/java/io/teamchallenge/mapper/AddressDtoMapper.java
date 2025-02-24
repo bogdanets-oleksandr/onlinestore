@@ -20,6 +20,7 @@ public class AddressDtoMapper extends AbstractConverter<Address, AddressDto> {
     @Override
     protected AddressDto convert(Address source) {
         return AddressDto.builder()
+            .city(source.getCity())
             .addressLine(source.getAddressLine())
             .build();
     }

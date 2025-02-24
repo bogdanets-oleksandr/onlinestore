@@ -1,6 +1,6 @@
 package io.teamchallenge.service.impl;
 
-import io.teamchallenge.dto.user.UserVO;
+import io.teamchallenge.dto.user.UserProfile;
 import io.teamchallenge.enumerated.Role;
 import io.teamchallenge.exception.NotFoundException;
 import io.teamchallenge.repository.UserRepository;
@@ -35,21 +35,19 @@ class UserServiceTest {
         String email = "test@example.com";
         User user = new User();
         user.setId(1L);
-        user.setFirstName("John");
-        user.setLastName("Doe");
+        user.setFullName("John");
         user.setEmail(email);
         user.setRole(Role.valueOf("ROLE_USER"));
 
         when(userRepository.findUserByEmail(email)).thenReturn(Optional.of(user));
 
         // Act
-        UserVO result = userService.getUserProfile(email);
+        UserProfile result = userService.getUserProfile(email);
 
         // Assert
         assertNotNull(result);
         assertEquals(user.getId(), result.getId());
-        assertEquals(user.getFirstName(), result.getFirstName());
-        assertEquals(user.getLastName(), result.getLastName());
+        assertEquals(user.getFullName(), result.getFullName());
         assertEquals(user.getEmail(), result.getEmail());
         assertEquals(user.getRole(), result.getRole());
     }

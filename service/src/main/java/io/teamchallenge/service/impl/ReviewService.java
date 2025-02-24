@@ -11,7 +11,6 @@ import io.teamchallenge.entity.reviews.ReviewId;
 import io.teamchallenge.exception.AlreadyExistsException;
 import io.teamchallenge.exception.ForbiddenException;
 import io.teamchallenge.exception.NotFoundException;
-import io.teamchallenge.repository.OrderRepository;
 import io.teamchallenge.repository.ProductRepository;
 import io.teamchallenge.repository.ReviewRepository;
 import io.teamchallenge.repository.UserRepository;

@@ -122,6 +122,9 @@ public class SecurityConfig {
                         API_V1 + "/users/profile"
                 )
                 .hasAnyRole(USER,ADMIN)
+                .requestMatchers(HttpMethod.PUT,
+                    API_V1 + "/users/profile"
+                ).hasAnyRole(USER,ADMIN)
                 .requestMatchers(HttpMethod.POST,
                     API_V1 + "/cart-items/{product_id}",
                     API_V1 + "/reviews/{productId}"
