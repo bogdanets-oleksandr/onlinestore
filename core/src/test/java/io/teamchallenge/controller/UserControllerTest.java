@@ -1,6 +1,6 @@
 package io.teamchallenge.controller;
 
-import io.teamchallenge.dto.user.UserVO;
+import io.teamchallenge.dto.user.UserProfile;
 import io.teamchallenge.enumerated.Role;
 import io.teamchallenge.exception.NotFoundException;
 import io.teamchallenge.service.impl.UserService;
@@ -15,7 +15,7 @@ import java.security.Principal;
 
 import static io.teamchallenge.constant.ExceptionMessage.USER_NOT_FOUND_BY_EMAIL;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 class UserControllerTest {
 
@@ -37,23 +37,22 @@ class UserControllerTest {
     void getUserProfile_UserExists_ReturnsUserVO() {
         // Arrange
         String email = "test@example.com";
-        UserVO userVO = new UserVO();
-        userVO.setId(1L);
-        userVO.setFirstName("John");
-        userVO.setLastName("Doe");
-        userVO.setEmail(email);
-        userVO.setRole(Role.valueOf("ROLE_USER"));
+        UserProfile userProfile = new UserProfile();
+        userProfile.setId(1L);
+        userProfile.setFullName("John");
+        userProfile.setEmail(email);
+        userProfile.setRole(Role.valueOf("ROLE_USER"));
 
         when(principal.getName()).thenReturn(email);
-        when(userService.getUserProfile(email)).thenReturn(userVO);
+        when(userService.getUserProfile(email)).thenReturn(userProfile);
 
         // Act
-        ResponseEntity<UserVO> response = userController.getUserProfile(principal);
+        ResponseEntity<UserProfile> response = userController.getUserProfile(principal);
 
         // Assert
         assertNotNull(response);
         assertEquals(200, response.getStatusCodeValue());
-        assertEquals(userVO, response.getBody());
+        assertEquals(userProfile, response.getBody());
     }
 
     @Test

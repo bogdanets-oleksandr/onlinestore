@@ -7,16 +7,12 @@
         <createTable tableName="addresses">
             <column name="user_id" type="bigint"/>
             <column name="address_line" type="varchar(255)">
-                <constraints nullable="false"/>
             </column>
             <column name="city" type="varchar(100)">
-                <constraints nullable="false"/>
             </column>
             <column name="postal_code" type="varchar(15)">
-                <constraints nullable="false"/>
             </column>
             <column name="country_id" type="bigint">
-                <constraints nullable="false"/>
             </column>
         </createTable>
 

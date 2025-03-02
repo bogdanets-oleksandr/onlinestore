@@ -20,8 +20,7 @@ public class UserToSignUpResponseDtoMapper extends AbstractConverter<User, SignU
         return SignUpResponseDto.builder()
             .id(source.getId())
             .email(source.getEmail())
-            .firstName(source.getFirstName())
-            .lastName(source.getLastName())
+            .fullName(source.getFullName())
             .build();
     }
 }

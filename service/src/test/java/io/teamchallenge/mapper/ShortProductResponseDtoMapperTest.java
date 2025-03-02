@@ -2,10 +2,8 @@ package io.teamchallenge.mapper;
 
 import io.teamchallenge.dto.ImageDto;
 import io.teamchallenge.dto.product.ShortProductResponseDto;
-import io.teamchallenge.entity.Image;
 import io.teamchallenge.entity.reviews.Review;
-import io.teamchallenge.util.Utils;
-import java.util.List;
+
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -2,6 +2,7 @@ package io.teamchallenge.entity;
 
 import io.teamchallenge.entity.cartitem.CartItem;
 import io.teamchallenge.enumerated.Role;
+import io.teamchallenge.enumerated.Sex;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,10 +18,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -51,14 +50,21 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
-
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
+    @Column(name = "full_name", nullable = false)
+    private String fullName;
 
     @Column(name = "phone_number", nullable = false, unique = true)
     private String phoneNumber;
+
+    @Column(name = "secondary_phone_number")
+    private String secondaryPhoneNumber;
+
+    @Column(name = "birthdate")
+    private Date birthdate;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "sex")
+    private Sex sex;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id")

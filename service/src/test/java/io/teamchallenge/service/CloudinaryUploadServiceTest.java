@@ -17,8 +17,6 @@ import org.mockito.Mock;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static io.teamchallenge.constant.ExceptionMessage.IMAGE_DELETION_EXCEPTION_MESSAGE;
-import static io.teamchallenge.constant.ExceptionMessage.IMAGE_PERSISTENCE_EXCEPTION_MESSAGE;
 import static io.teamchallenge.util.Utils.PRODUCT_IMAGES_FOLDER_NAME;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyMap;

@@ -115,7 +115,7 @@ public class ProductService {
 
         return AdvancedPageableDto.<ShortProductResponseDto>builder()
             .page(content)
-            .totalElements(retrievedProducts.getNumberOfElements())
+            .totalElements(retrievedProducts.getNumberOfElements()) //TODO: need to correct
             .currentPage(retrievedProducts.getPageable().getPageNumber())
             .totalPages(retrievedProducts.getTotalPages())
             .minPrice(productMinMaxPriceDto.getMin())
