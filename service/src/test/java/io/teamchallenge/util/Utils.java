@@ -332,8 +332,7 @@ public class Utils {
                 .id(1L)
                 .email("test@mail.com")
                 .role(Role.ROLE_USER)
-                .firstName("firstName")
-                .lastName("lastName")
+                .fullName("fullName")
                 .build();
     }
 
@@ -343,8 +342,7 @@ public class Utils {
                 .email(user.getEmail())
                 .password(user.getPassword())
                 .phoneNumber(user.getPhoneNumber())
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
+                .fullName(user.getFullName())
                 .role(user.getRole())
                 .build();
     }
@@ -355,8 +353,8 @@ public class Utils {
                 .email(newUser.getEmail())
                 .password("Password1234!")
                 .phoneNumber(newUser.getPhoneNumber())
-                .firstName(newUser.getFirstName())
-                .lastName(newUser.getLastName())
+                .firstName("FirstName")
+                .lastName("LastName")
                 .build();
     }
 
@@ -373,8 +371,7 @@ public class Utils {
         return SignUpResponseDto.builder()
                 .id(newUser.getId())
                 .email(newUser.getEmail())
-                .firstName(newUser.getFirstName())
-                .lastName(newUser.getLastName())
+                .fullName(newUser.getFullName())
                 .build();
     }
 
@@ -531,8 +528,7 @@ public class Utils {
                 .rate(review.getRate())
                 .createdAt(review.getCreatedAt())
                 .user(ReviewerDto.builder()
-                        .firstName(review.getUser().getFirstName())
-                        .lastName(review.getUser().getLastName())
+                        .fullName(review.getUser().getFullName())
                         .build())
                 .build();
     }
