@@ -12,14 +12,6 @@ import org.springframework.data.jpa.repository.Query;
  * @author Niktia Malov
  */
 public interface UserRepository extends JpaRepository<User, Long> {
-    /**
-     * Retrieves an {@link Optional} of {@link UserVO} by the user's email.
-     *
-     * @param email the email of the user.
-     * @return an Optional containing the UserVO object, if found.
-     */
-    @Query("select u from User u where u.email=:email")
-    Optional<UserVO> findUserVOByEmail(String email);
 
     /**
      * Retrieves an {@link Optional} of {@link User} by the user's email.

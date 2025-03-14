@@ -214,8 +214,7 @@ public class Utils {
         return SignUpResponseDto.builder()
                 .id(1L)
                 .email("test@mail.com")
-                .firstName("John")
-                .lastName("Doe")
+                .fullName("John")
                 .build();
     }
 
@@ -423,8 +422,7 @@ public class Utils {
 
     public static ReviewerDto getReviewerDto() {
         return ReviewerDto.builder()
-                .firstName("test name")
-                .lastName("test surname")
+                .fullName("test name")
                 .build();
     }
 

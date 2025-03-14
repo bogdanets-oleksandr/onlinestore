@@ -48,7 +48,6 @@ public class UserService {
         }
         user.getAddress().setCity(userProfile.getAddress().getCity());
         user.getAddress().setAddressLine(userProfile.getAddress().getAddressLine());
-        user.setRole(userProfile.getRole());
         user.setSex(userProfile.getSex());
         userRepository.save(user);
         return getUserProfile(user.getEmail());
