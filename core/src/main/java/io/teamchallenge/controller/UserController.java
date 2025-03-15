@@ -1,6 +1,7 @@
 package io.teamchallenge.controller;
 
 import io.teamchallenge.dto.user.UserProfile;
+import io.teamchallenge.dto.user.UserProfilePOST;
 import io.teamchallenge.service.impl.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,11 @@ public class UserController {
         return ResponseEntity.ok(userService.updateUserProfile(email, userProfile));
     }
 
+    @PostMapping("/users/profile")
+    public ResponseEntity<UserProfile> createUserProfile(Principal principal, @RequestBody UserProfilePOST userProfile) {
+        String email = getUserEmailFromPrincipal(principal);
+        return ResponseEntity.ok(userService.createUserProfile(email, userProfile));
+    }
     private String getUserEmailFromPrincipal(Principal principal) {
         return principal.getName();
     }

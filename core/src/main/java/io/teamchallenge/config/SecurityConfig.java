@@ -143,7 +143,8 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST,
                     API_V1 + "/brands",
                     API_V1 + "/categories",
-                    API_V1 + "/attributes")
+                    API_V1 + "/attributes",
+                    API_V1 + "/users/profile")
                 .hasRole(ADMIN)
                 .requestMatchers(HttpMethod.DELETE,
                     API_V1 + "/reviews/{productId}/{userId}"
