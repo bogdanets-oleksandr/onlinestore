@@ -1,20 +1,17 @@
 package io.teamchallenge.controller;
 
-import io.teamchallenge.dto.security.SignInRequestDto;
-import io.teamchallenge.dto.security.SignInResponseDto;
-import io.teamchallenge.dto.security.SignUpRequestDto;
-import io.teamchallenge.dto.security.SignUpResponseDto;
+import io.teamchallenge.dto.security.*;
+import io.teamchallenge.entity.User;
 import io.teamchallenge.service.impl.SecurityService;
+import io.teamchallenge.service.impl.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
@@ -29,6 +26,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RequiredArgsConstructor
 public class SecurityController {
     private final SecurityService securityService;
+    private final UserService userService;
 
     /**
      * Endpoint for user sign-up.
@@ -61,5 +59,21 @@ public class SecurityController {
     @PostMapping("/updateAccessToken")
     public ResponseEntity<SignInResponseDto> updateAccessToken(@RequestParam @NotBlank String refreshToken) {
         return ResponseEntity.ok().body(securityService.updateAccessToken(refreshToken));
+    }
+
+    @PostMapping("/resetPassword")
+    public ResponseEntity<?> sendLinkForPasswordReset(@RequestParam("email") String email) {
+        Optional<User> user = userService.getUser(email);
+        if (user.isEmpty()) {
+            return ResponseEntity.badRequest().body("Unknown user");
+        } else {
+            userService.sendPasswordResetEmail(user.get());
+            return ResponseEntity.accepted().body("Email with restoring link was sent");
+        }
+    }
+
+    @PostMapping("/changePassword")
+    public void setPasswordWithRestoringToken(@RequestBody @Valid ResetPasswordDto dto) {
+        userService.resetPassword(dto);
     }
 }

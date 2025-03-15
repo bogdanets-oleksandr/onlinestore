@@ -45,6 +45,7 @@
     <include file="db/changelog/logs/drop-users-first-last-name.xml" relativeToChangelogFile="false" />
     <include file="db/changelog/logs/products-add-column-code.xml" relativeToChangelogFile="false" />
     <include file="db/changelog/logs/create-table-wishlist.xml" relativeToChangelogFile="false" />
+    <include file="db/changelog/logs/add_reset_password_token_column_for_users.xml" relativeToChangelogFile="false" />
     <changeSet id="1" author="serhii.babanov">
         <sqlFile
                 encoding="utf8"

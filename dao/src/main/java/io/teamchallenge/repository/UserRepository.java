@@ -73,4 +73,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
            + "left join u.orders o "
            + "where u.id = :userId and o.id = :orderId")
     boolean userHasOrderWithId(Long userId, Long orderId);
+
+    Optional<User> findByResetPasswordToken(String token);
 }

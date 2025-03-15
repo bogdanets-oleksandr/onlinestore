@@ -90,6 +90,9 @@ public class User {
     @Column(name = "refresh_token_key", nullable = false)
     private String refreshTokenKey;
 
+    @Column(name = "reset_password_token")
+    private String resetPasswordToken;
+
     /**
      * Adds a cart item to the user's list of cart items.
      * Also sets the user for the added cart item.

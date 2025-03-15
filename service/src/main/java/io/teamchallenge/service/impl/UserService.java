@@ -1,10 +1,12 @@
 package io.teamchallenge.service.impl;
 
 import io.teamchallenge.dto.address.AddressDto;
+import io.teamchallenge.dto.security.ResetPasswordDto;
 import io.teamchallenge.dto.user.UserProfile;
 import io.teamchallenge.dto.user.UserProfilePOST;
 import io.teamchallenge.entity.Address;
 import io.teamchallenge.entity.User;
+import io.teamchallenge.exception.BadCredentialsException;
 import io.teamchallenge.exception.ConflictException;
 import io.teamchallenge.exception.NotFoundException;
 import io.teamchallenge.repository.ProductRepository;
@@ -29,6 +31,7 @@ public class UserService {
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    private final MailService mailService;
 
     @Transactional(readOnly = true)
     public UserProfile getUserProfile(String email) {
@@ -92,6 +95,27 @@ public class UserService {
                 .orElseThrow(() -> new ConflictException("User with email " + name + " not found"));
         user.getWishlists().remove(productRepository.findById(productId)
                 .orElseThrow(() -> new ConflictException("Product with id " + productId + " not found")));
+        userRepository.save(user);
+    }
+
+    public void sendPasswordResetEmail(User user) {
+        User savedUser = userRepository.findById(user.getId())
+                .orElseThrow(() -> new NotFoundException("User not found"));
+        savedUser.setResetPasswordToken(jwtService.generateTokenKey());
+        userRepository.save(savedUser);
+        mailService.sendResetPasswordEmail(savedUser.getEmail(), savedUser.getResetPasswordToken());
+    }
+
+    @Transactional
+    public void resetPassword(ResetPasswordDto dto) {
+        if (!dto.getPassword().equals(dto.getConfirmPassword())) {
+            throw new BadCredentialsException("Passwords do not match");
+        }
+        User user = userRepository.findByResetPasswordToken(dto.getToken())
+                .orElseThrow(() -> new NotFoundException("Token not found"));
+
+        String encodedPassword = passwordEncoder.encode(dto.getPassword());
+        user.setPassword(encodedPassword);
         userRepository.save(user);
     }
 }

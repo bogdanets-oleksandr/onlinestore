@@ -116,6 +116,11 @@ public class SecurityConfig {
                     API_V1 + "/reviews/{productId}"
                 )
                 .permitAll()
+                .requestMatchers(HttpMethod.POST,
+                        API_V1 + "/resetPassword",
+                        API_V1 + "/changePassword"
+                )
+                .permitAll()
                 .requestMatchers(HttpMethod.GET,
                     API_V1 + "/cart-items",
                     API_V1 + "/orders/{order_id}",
