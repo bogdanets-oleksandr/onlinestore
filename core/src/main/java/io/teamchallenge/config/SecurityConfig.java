@@ -119,7 +119,8 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET,
                     API_V1 + "/cart-items",
                     API_V1 + "/orders/{order_id}",
-                        API_V1 + "/users/profile"
+                    API_V1 + "/users/profile",
+                    API_V1 + "/favorite-products"
                 )
                 .hasAnyRole(USER,ADMIN)
                 .requestMatchers(HttpMethod.PUT,
@@ -127,7 +128,8 @@ public class SecurityConfig {
                 ).hasAnyRole(USER,ADMIN)
                 .requestMatchers(HttpMethod.POST,
                     API_V1 + "/cart-items/{product_id}",
-                    API_V1 + "/reviews/{productId}"
+                    API_V1 + "/reviews/{productId}",
+                    API_V1 + "/favorite-products/{productId}"
                 )
                 .hasAnyRole(USER,ADMIN)
                 .requestMatchers(HttpMethod.PATCH,
@@ -137,7 +139,8 @@ public class SecurityConfig {
                 .hasAnyRole(USER,ADMIN)
                 .requestMatchers(HttpMethod.DELETE,
                     API_V1 + "/cart-items/{product_id}",
-                    API_V1 + "/reviews/{productId}"
+                    API_V1 + "/reviews/{productId}",
+                    API_V1 + "/favorite-products/{productId}"
                 )
                 .hasAnyRole(USER,ADMIN)
                 .requestMatchers(HttpMethod.POST,

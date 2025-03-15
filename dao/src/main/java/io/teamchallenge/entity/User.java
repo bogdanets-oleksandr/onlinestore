@@ -3,20 +3,8 @@ package io.teamchallenge.entity;
 import io.teamchallenge.entity.cartitem.CartItem;
 import io.teamchallenge.enumerated.Role;
 import io.teamchallenge.enumerated.Sex;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -80,6 +68,15 @@ public class User {
     @Setter(AccessLevel.PRIVATE)
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<CartItem> cartItems = new ArrayList<>();
+
+    @Setter(AccessLevel.PRIVATE)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "wishlists",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private Set<Product> wishlists = new HashSet<>();
+
 
     @Setter(AccessLevel.PRIVATE)
     @Column(name = "created_at", nullable = false, updatable = false)

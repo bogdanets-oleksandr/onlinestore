@@ -7,6 +7,7 @@ import io.teamchallenge.entity.Address;
 import io.teamchallenge.entity.User;
 import io.teamchallenge.exception.ConflictException;
 import io.teamchallenge.exception.NotFoundException;
+import io.teamchallenge.repository.ProductRepository;
 import io.teamchallenge.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +16,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 import static io.teamchallenge.constant.ExceptionMessage.USER_NOT_FOUND_BY_EMAIL;
 
 @Service
@@ -22,6 +25,7 @@ import static io.teamchallenge.constant.ExceptionMessage.USER_NOT_FOUND_BY_EMAIL
 @Slf4j
 public class UserService {
     private final UserRepository userRepository;
+    private final ProductRepository productRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
@@ -69,5 +73,25 @@ public class UserService {
         user.setRefreshTokenKey(jwtService.generateTokenKey());
         userRepository.save(user);
         return getUserProfile(user.getEmail());
+    }
+
+    public Optional<User> getUser(String name) {
+        return userRepository.findUserByEmail(name);
+    }
+    @Transactional
+    public void addProductToWishlist(String name, Long productId) {
+        User user = userRepository.findUserByEmail(name)
+                .orElseThrow(() -> new ConflictException("User with email " + name + " not found"));
+        user.getWishlists().add(productRepository.findById(productId)
+                .orElseThrow(() -> new ConflictException("Product with id " + productId + " not found")));
+        userRepository.save(user);
+    }
+    @Transactional
+    public void removeProductFromWishlist(String name, Long productId) {
+        User user = userRepository.findUserByEmail(name)
+                .orElseThrow(() -> new ConflictException("User with email " + name + " not found"));
+        user.getWishlists().remove(productRepository.findById(productId)
+                .orElseThrow(() -> new ConflictException("Product with id " + productId + " not found")));
+        userRepository.save(user);
     }
 }
