@@ -29,6 +29,7 @@ public class ProductResponseDto {
     private String brand;
     private String name;
     private String description;
+    private String code;
     private BigDecimal price;
     private Integer quantity;
     private Double rating;

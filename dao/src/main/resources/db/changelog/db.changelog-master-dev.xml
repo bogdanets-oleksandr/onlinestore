@@ -40,6 +40,10 @@
     <include file="/db/changelog/devLogs/insert-brands.sql" relativeToChangelogFile="false"/>
     <include file="db/changelog/logs/12-01-changelog.xml"/>
     <include file="db/changelog/logs/change-orderId-start-value.xml"/>
+    <include file="db/changelog/logs/add-columns-user.xml" relativeToChangelogFile="false" />
+    <include file="db/changelog/logs/add-column-fullname-for-user.xml" relativeToChangelogFile="false" />
+    <include file="db/changelog/logs/drop-users-first-last-name.xml" relativeToChangelogFile="false" />
+    <include file="db/changelog/logs/products-add-column-code.xml" relativeToChangelogFile="false" />
     <changeSet id="1" author="serhii.babanov">
         <sqlFile
                 encoding="utf8"
@@ -96,7 +100,4 @@
                 splitStatements="true"
                 stripComments="true"/>
     </changeSet>
-    <include file="db/changelog/logs/add-columns-user.xml" relativeToChangelogFile="false" />
-    <include file="db/changelog/logs/add-column-fullname-for-user.xml" relativeToChangelogFile="false" />
-    <include file="db/changelog/logs/drop-users-first-last-name.xml" relativeToChangelogFile="false" />
 </databaseChangeLog>
