@@ -208,8 +208,7 @@ public class Utils {
     public static SignUpRequestDto getSignUpRequestDto() {
         return SignUpRequestDto.builder()
             .email("test@mail.com")
-            .firstName("John")
-            .lastName("Doe")
+            .fullName("John Doe")
             .phoneNumber("0123456789")
             .password("Password1234!")
             .build();
@@ -219,8 +218,7 @@ public class Utils {
         return SignUpResponseDto.builder()
             .id(1L)
             .email("test@mail.com")
-            .firstName("John")
-            .lastName("Doe")
+            .fullName("John Doe")
             .build();
     }
 
@@ -269,8 +267,7 @@ public class Utils {
         return ShortOrderResponseDto.builder()
             .id(1L)
             .email("example@example.com")
-            .firstName("John")
-            .lastName("Doe")
+            .fullName("John Doe")
             .phoneNumber("1234567890")
             .deliveryMethod(DeliveryMethod.COURIER)
             .deliveryStatus(DeliveryStatus.CANCELED)
@@ -286,8 +283,7 @@ public class Utils {
         return OrderResponseDto.builder()
             .id(1L)
             .email("example@example.com")
-            .firstName("John")
-            .lastName("Doe")
+            .fullName("John Doe")
             .phoneNumber("1234567890")
             .deliveryMethod(DeliveryMethod.COURIER)
             .deliveryStatus(DeliveryStatus.CANCELED)
@@ -359,8 +355,7 @@ public class Utils {
 
     public static OrderRequestDto getOrderRequestDtoCourier() {
         return OrderRequestDto.builder()
-            .firstName("FirstName")
-            .lastName("LastName")
+            .fullName("FirstName LastName")
             .address(AddressDto.builder()
                 .addressLine("address line")
                 .city("Kyiv")
@@ -444,8 +439,7 @@ public class Utils {
 
     public static ReviewerDto getReviewerDto() {
         return ReviewerDto.builder()
-            .firstName("test name")
-            .lastName("test surname")
+            .fullName("testFirst testLast")
             .build();
     }
 

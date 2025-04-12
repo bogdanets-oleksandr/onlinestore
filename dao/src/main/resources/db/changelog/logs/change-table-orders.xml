@@ -6,10 +6,7 @@
 
     <changeSet id="change-table-orders" author="Denys Liubchenko">
         <addColumn tableName="orders">
-            <column name="first_name" type="varchar(100)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="last_name" type="varchar(100)">
+            <column name="full_name" type="varchar(100)">
                 <constraints nullable="false"/>
             </column>
             <column name="email" type="varchar(100)">

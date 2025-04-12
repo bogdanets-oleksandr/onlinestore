@@ -2,9 +2,10 @@ package io.teamchallenge.repository;
 
 import io.teamchallenge.dto.user.UserVO;
 import io.teamchallenge.entity.User;
-import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import java.util.Optional;
 
 /**
  * Repository interface for managing {@link User} entities.
@@ -18,7 +19,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @param email the email of the user.
      * @return an Optional containing the UserVO object, if found.
      */
-    @Query("select new io.teamchallenge.dto.user.UserVO(u.id, u.firstName, u.lastName, u.email, u.role) "
+    @Query("select new io.teamchallenge.dto.user.UserVO(u.id, u.fullName, u.email, u.role) "
            + "from User u where u.email=:email")
     Optional<UserVO> findUserVOByEmail(String email);
 
@@ -66,7 +67,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @param orderId the ID of the order associated with the user.
      * @return an {@link Optional} containing the {@link UserVO} if a user is found, otherwise empty.
      */
-    @Query("select new io.teamchallenge.dto.user.UserVO(u.id, u.firstName, u.lastName, u.email, u.role) "
+    @Query("select new io.teamchallenge.dto.user.UserVO(u.id, u.fullName, u.email, u.role) "
            + "from User u left join u.orders o where o.id = :orderId")
     Optional<UserVO> findVOByOrdersId(Long orderId);
 

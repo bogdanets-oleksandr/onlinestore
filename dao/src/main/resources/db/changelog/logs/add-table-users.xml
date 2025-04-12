@@ -12,10 +12,7 @@
             <column name="password" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="first_name" type="varchar(100)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="last_name" type="varchar(100)">
+            <column name="full_name" type="varchar(100)">
                 <constraints nullable="false"/>
             </column>
             <column name="phone_number" type="varchar(15)">

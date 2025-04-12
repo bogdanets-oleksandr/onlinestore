@@ -59,8 +59,7 @@ public class ReviewServiceTest {
             .rate(review.getRate())
             .createdAt(review.getCreatedAt())
             .user(ReviewerDto.builder()
-                .firstName(review.getUser().getFirstName())
-                .lastName(review.getUser().getLastName())
+                .fullName(review.getUser().getFullName())
                 .build())
             .build();
         var expected = new PageableDto<>(

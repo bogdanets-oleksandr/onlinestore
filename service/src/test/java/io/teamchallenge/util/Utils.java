@@ -304,8 +304,7 @@ public class Utils {
         return ShortOrderResponseDto.builder()
             .id(1L)
             .email("example@example.com")
-            .firstName("John")
-            .lastName("Doe")
+            .fullName("John Doe")
             .phoneNumber("1234567890")
             .deliveryMethod(DeliveryMethod.COURIER)
             .deliveryStatus(DeliveryStatus.CANCELED)
@@ -321,8 +320,7 @@ public class Utils {
         return OrderResponseDto.builder()
             .id(1L)
             .email("example@example.com")
-            .firstName("John")
-            .lastName("Doe")
+            .fullName("John Doe")
             .phoneNumber("1234567890")
             .deliveryMethod(DeliveryMethod.COURIER)
             .deliveryStatus(DeliveryStatus.CANCELED)
@@ -361,8 +359,7 @@ public class Utils {
             .id(1L)
             .email("test@mail.com")
             .role(Role.ROLE_USER)
-            .firstName("firstName")
-            .lastName("lastName")
+            .fullName("firstName lastName")
             .build();
     }
 
@@ -372,8 +369,7 @@ public class Utils {
             .email(user.getEmail())
             .password(user.getPassword())
             .phoneNumber(user.getPhoneNumber())
-            .firstName(user.getFirstName())
-            .lastName(user.getLastName())
+            .fullName(user.getFullName())
             .role(user.getRole())
             .build();
     }
@@ -384,8 +380,7 @@ public class Utils {
             .email(newUser.getEmail())
             .password("Password1234!")
             .phoneNumber(newUser.getPhoneNumber())
-            .firstName(newUser.getFirstName())
-            .lastName(newUser.getLastName())
+            .fullName(newUser.getFullName())
             .build();
     }
 
@@ -402,8 +397,7 @@ public class Utils {
         return SignUpResponseDto.builder()
             .id(newUser.getId())
             .email(newUser.getEmail())
-            .firstName(newUser.getFirstName())
-            .lastName(newUser.getLastName())
+            .fullName(newUser.getFullName())
             .build();
     }
 
@@ -472,8 +466,7 @@ public class Utils {
             .id(1L)
             .createdAt(LocalDateTime.of(1, 1, 1, 1, 1))
             .contactInfo(ContactInfo.builder()
-                .firstName("FirstName")
-                .lastName("LastName")
+                .fullName("FirstName LastName")
                 .phoneNumber("1234567890")
                 .email("test@mail.com")
                 .build())
@@ -487,8 +480,7 @@ public class Utils {
 
     public static OrderRequestDto getOrderRequestDtoCourier() {
         return OrderRequestDto.builder()
-            .firstName("FirstName")
-            .lastName("LastName")
+            .fullName("FirstName LastName")
             .address(AddressDto.builder()
                 .addressLine("address line")
                 .city("Kyiv")
@@ -527,8 +519,7 @@ public class Utils {
         return Order.builder()
             .contactInfo(ContactInfo.builder()
                 .email(orderRequestDto.getEmail())
-                .firstName(orderRequestDto.getFirstName())
-                .lastName(orderRequestDto.getLastName())
+                .fullName(orderRequestDto.getFullName())
                 .phoneNumber(orderRequestDto.getPhoneNumber())
                 .build())
             .address(Utils.getAddress())
@@ -570,8 +561,7 @@ public class Utils {
             .rate(review.getRate())
             .createdAt(review.getCreatedAt())
             .user(ReviewerDto.builder()
-                .firstName(review.getUser().getFirstName())
-                .lastName(review.getUser().getLastName())
+                .fullName(review.getUser().getFullName())
                 .build())
             .build();
     }

@@ -13,8 +13,7 @@ public class ReviewToReviewResponseDtoMapper extends AbstractConverter<Review, R
             .rate(source.getRate())
             .createdAt(source.getCreatedAt())
             .user(ReviewerDto.builder()
-                .firstName(source.getUser().getFirstName())
-                .lastName(source.getUser().getLastName())
+                .fullName(source.getUser().getFullName())
                 .build())
             .build();
     }
