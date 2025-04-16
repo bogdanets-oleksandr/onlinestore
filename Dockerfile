@@ -1,7 +1,7 @@
 FROM alpine/git as clone
 WORKDIR /app
 ARG BRANCH
-RUN git clone -b $BRANCH https://github.com/lagysha/onlinestore
+RUN git clone -b $BRANCH https://github.com/bogdanets-oleksandr/onlinestore/
 
 FROM maven:3.9-amazoncorretto-21 as build
 WORKDIR /app
