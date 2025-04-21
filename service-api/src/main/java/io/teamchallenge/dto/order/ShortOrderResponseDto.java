@@ -1,6 +1,5 @@
 package io.teamchallenge.dto.order;
 
-import io.teamchallenge.dto.PostAddressDto;
 import io.teamchallenge.dto.address.AddressDto;
 import io.teamchallenge.enumerated.DeliveryMethod;
 import io.teamchallenge.enumerated.DeliveryStatus;
@@ -24,7 +23,6 @@ public class ShortOrderResponseDto {
     private DeliveryMethod deliveryMethod;
     private DeliveryStatus deliveryStatus;
     private AddressDto address;
-    private PostAddressDto postAddress;
     private Boolean isPaid;
     private LocalDateTime createdAt;
     private BigDecimal total;

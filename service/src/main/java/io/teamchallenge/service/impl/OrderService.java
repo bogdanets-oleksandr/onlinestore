@@ -7,15 +7,9 @@ import io.teamchallenge.dto.order.OrderResponseDto;
 import io.teamchallenge.dto.order.ShortOrderResponseDto;
 import io.teamchallenge.dto.pageable.PageableDto;
 import io.teamchallenge.dto.user.UserVO;
-import io.teamchallenge.entity.Address;
-import io.teamchallenge.entity.ContactInfo;
-import io.teamchallenge.entity.Order;
-import io.teamchallenge.entity.PostAddress;
-import io.teamchallenge.entity.Product;
-import io.teamchallenge.entity.User;
+import io.teamchallenge.entity.*;
 import io.teamchallenge.entity.orderitem.OrderItem;
 import io.teamchallenge.entity.orderitem.OrderItemId;
-import io.teamchallenge.enumerated.DeliveryMethod;
 import io.teamchallenge.enumerated.DeliveryStatus;
 import io.teamchallenge.exception.ConflictException;
 import io.teamchallenge.exception.ForbiddenException;
@@ -24,23 +18,18 @@ import io.teamchallenge.repository.CartItemRepository;
 import io.teamchallenge.repository.OrderRepository;
 import io.teamchallenge.repository.ProductRepository;
 import io.teamchallenge.repository.UserRepository;
-import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import static io.teamchallenge.constant.ExceptionMessage.ORDER_NOT_FOUND_BY_ID;
-import static io.teamchallenge.constant.ExceptionMessage.PRODUCT_QUANTITY_CONFLICT;
-import static io.teamchallenge.constant.ExceptionMessage.UPDATE_ORDER_EXCEPTION;
-import static io.teamchallenge.constant.ExceptionMessage.USER_HAS_NO_ORDERS_WITH_ID;
-import static io.teamchallenge.constant.ExceptionMessage.USER_NOT_FOUND_BY_EMAIL;
-import static io.teamchallenge.constant.ExceptionMessage.USER_WITH_EMAIL_ALREADY_EXISTS;
-import static io.teamchallenge.constant.ExceptionMessage.USER_WITH_PHONE_NUMBER_ALREADY_EXISTS;
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static io.teamchallenge.constant.ExceptionMessage.*;
 
 @Service
 @Transactional(readOnly = true)
@@ -56,10 +45,10 @@ public class OrderService {
      * Creates a new {@code Order} based on the given {@code OrderRequestDto} and the authenticated user.
      *
      * @param orderRequestDto the DTO containing the order request details.
-     * @param userPrincipal the authenticated user principal, or {@code null} if the order is placed by a guest.
+     * @param userPrincipal   the authenticated user principal, or {@code null} if the order is placed by a guest.
      * @return the ID of the newly created order.
      * @throws ForbiddenException if the email or phone number already exists and is not associated with current user.
-     * @throws NotFoundException if the authenticated user cannot be found in the repository.
+     * @throws NotFoundException  if the authenticated user cannot be found in the repository.
      */
     @Transactional
     public Long create(OrderRequestDto orderRequestDto, Principal userPrincipal) {
@@ -71,34 +60,30 @@ public class OrderService {
             }
             if (userRepository.existsByPhoneNumber(orderRequestDto.getPhoneNumber())) {
                 throw new ForbiddenException(USER_WITH_PHONE_NUMBER_ALREADY_EXISTS.formatted(
-                    orderRequestDto.getPhoneNumber()));
+                        orderRequestDto.getPhoneNumber()));
             }
         } else {
             String email = userPrincipal.getName();
             User user = userRepository.findUserByEmail(email)
-                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND_BY_EMAIL.formatted(email)));
+                    .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND_BY_EMAIL.formatted(email)));
             if (userRepository.existsByEmail(orderRequestDto.getEmail())
-                && !orderRequestDto.getEmail().equals(user.getEmail())) {
+                    && !orderRequestDto.getEmail().equals(user.getEmail())) {
                 throw new ForbiddenException(USER_WITH_EMAIL_ALREADY_EXISTS.formatted(orderRequestDto.getEmail()));
             }
             if (userRepository.existsByPhoneNumber(orderRequestDto.getPhoneNumber())
-                && !orderRequestDto.getPhoneNumber().equals(user.getPhoneNumber())) {
+                    && !orderRequestDto.getPhoneNumber().equals(user.getPhoneNumber())) {
                 throw new ForbiddenException(USER_WITH_PHONE_NUMBER_ALREADY_EXISTS.formatted(
-                    orderRequestDto.getPhoneNumber()));
+                        orderRequestDto.getPhoneNumber()));
             }
             cartItemRepository.deleteByUserId(user.getId());
             user.addOrder(order);
         }
 
-        if (orderRequestDto.getDeliveryMethod() == DeliveryMethod.COURIER) {
-            order.setAddress(modelMapper.map(orderRequestDto.getAddress(), Address.class));
-        } else {
-            order.setPostAddress(modelMapper.map(orderRequestDto.getPostAddress(), PostAddress.class));
-        }
+        order.setAddress(modelMapper.map(orderRequestDto.getAddress(), Address.class));
 
         List<Product> products = productRepository.findAllById(orderRequestDto.getCartItems().stream()
-            .map(CartItemRequestDto::getProductId)
-            .collect(Collectors.toList()));
+                .map(CartItemRequestDto::getProductId)
+                .collect(Collectors.toList()));
 
         Order savedOrder = orderRepository.save(order);
         orderRequestDto.getCartItems().stream().map(cartItem -> {
@@ -118,10 +103,10 @@ public class OrderService {
      */
     public OrderResponseDto getById(Long orderId) {
         Order order = orderRepository.findByIdFetchData(orderId)
-            .orElseThrow(() -> new NotFoundException(ORDER_NOT_FOUND_BY_ID.formatted(orderId)));
+                .orElseThrow(() -> new NotFoundException(ORDER_NOT_FOUND_BY_ID.formatted(orderId)));
         UserVO user = userRepository.findVOByOrdersId(orderId).orElse(null);
         productRepository.findAllByIdWithImages(order.getOrderItems().stream()
-            .map(orderItem -> orderItem.getProduct().getId()).toList());
+                .map(orderItem -> orderItem.getProduct().getId()).toList());
         OrderResponseDto orderResponseDto = modelMapper.map(order, OrderResponseDto.class);
         orderResponseDto.setUser(user);
         return orderResponseDto;
@@ -138,7 +123,7 @@ public class OrderService {
     @Transactional
     public void setDeliveryStatus(Long orderId, DeliveryStatus status) {
         Order order = orderRepository.findById(orderId)
-            .orElseThrow(() -> new NotFoundException(ORDER_NOT_FOUND_BY_ID.formatted(orderId)));
+                .orElseThrow(() -> new NotFoundException(ORDER_NOT_FOUND_BY_ID.formatted(orderId)));
         if (order.getDeliveryStatus().equals(DeliveryStatus.COMPLETED)) {
             throw new ConflictException(UPDATE_ORDER_EXCEPTION);
         }
@@ -170,49 +155,49 @@ public class OrderService {
      */
     public PageableDto<ShortOrderResponseDto> getAllByFilter(OrderFilterDto filterParametersDto, Pageable pageable) {
         var orders = orderRepository
-            .findAllByFilterParameters(filterParametersDto, pageable);
+                .findAllByFilterParameters(filterParametersDto, pageable);
         var content = orders.getContent().stream()
-            .map(order -> modelMapper.map(order, ShortOrderResponseDto.class))
-            .collect(Collectors.toList());
+                .map(order -> modelMapper.map(order, ShortOrderResponseDto.class))
+                .collect(Collectors.toList());
         return PageableDto.<ShortOrderResponseDto>builder()
-            .page(content)
-            .totalElements(orders.getTotalElements())
-            .currentPage(orders.getPageable().getPageNumber())
-            .totalPages(orders.getTotalPages())
-            .build();
+                .page(content)
+                .totalElements(orders.getTotalElements())
+                .currentPage(orders.getPageable().getPageNumber())
+                .totalPages(orders.getTotalPages())
+                .build();
     }
 
     private static OrderItem buildOrderItem(CartItemRequestDto cartItem, Order savedOrder, Product product) {
         return OrderItem.builder()
-            .id(OrderItemId.builder()
-                .orderId(savedOrder.getId())
-                .productId(product.getId())
-                .build())
-            .product(product)
-            .price(product.getPrice())
-            .quantity(cartItem.getQuantity())
-            .order(savedOrder)
-            .build();
+                .id(OrderItemId.builder()
+                        .orderId(savedOrder.getId())
+                        .productId(product.getId())
+                        .build())
+                .product(product)
+                .price(product.getPrice())
+                .quantity(cartItem.getQuantity())
+                .order(savedOrder)
+                .build();
     }
 
     private static Product getProductByCartItem(CartItemRequestDto cartItem, List<Product> products) {
         return products.stream()
-            .filter(p -> p.getId().equals(cartItem.getProductId()) && cartItem.getQuantity() <= p.getQuantity())
-            .findAny()
-            .orElseThrow(() -> new ConflictException(PRODUCT_QUANTITY_CONFLICT.formatted(cartItem.getProductId())));
+                .filter(p -> p.getId().equals(cartItem.getProductId()) && cartItem.getQuantity() <= p.getQuantity())
+                .findAny()
+                .orElseThrow(() -> new ConflictException(PRODUCT_QUANTITY_CONFLICT.formatted(cartItem.getProductId())));
     }
 
     private Order createOrderSample(OrderRequestDto orderRequestDto) {
         return Order.builder()
-            .contactInfo(ContactInfo.builder()
-                .email(orderRequestDto.getEmail())
-                .fullName(orderRequestDto.getFullName())
-                .phoneNumber(orderRequestDto.getPhoneNumber())
-                .build())
-            .deliveryMethod(orderRequestDto.getDeliveryMethod())
-            .deliveryStatus(DeliveryStatus.PROCESSING)
-            .orderItems(new ArrayList<>())
-            .isPaid(false)
-            .build();
+                .contactInfo(ContactInfo.builder()
+                        .email(orderRequestDto.getEmail())
+                        .fullName(orderRequestDto.getFullName())
+                        .phoneNumber(orderRequestDto.getPhoneNumber())
+                        .build())
+                .deliveryMethod(orderRequestDto.getDeliveryMethod())
+                .deliveryStatus(DeliveryStatus.PROCESSING)
+                .orderItems(new ArrayList<>())
+                .isPaid(false)
+                .build();
     }
 }

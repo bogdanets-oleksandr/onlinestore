@@ -29,8 +29,6 @@ public class OrderResponseDtoMapperTest {
     @Mock
     private AddressDtoMapper addressDtoMapper;
 
-    @Mock
-    private PostAddressDtoMapper postAddressDtoMapper;
 
     @InjectMocks
     private OrderResponseDtoMapper orderResponseDtoMapper;
