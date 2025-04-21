@@ -19,9 +19,6 @@ public class AddressDtoMapperTest {
     void convertTest() {
         Address source = getAddress();
         AddressDto expected = AddressDto.builder()
-            .city(source.getCity())
-            .countryName(source.getCountry().getName())
-            .postalCode(source.getPostalCode())
             .addressLine(source.getAddressLine())
             .build();
         AddressDto convert = addressDtoMapper.convert(source);

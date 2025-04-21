@@ -3,11 +3,7 @@ package io.teamchallenge.util;
 import io.teamchallenge.dto.ImageDto;
 import io.teamchallenge.dto.PostAddressDto;
 import io.teamchallenge.dto.address.AddressDto;
-import io.teamchallenge.dto.attributes.AttributeRequestDto;
-import io.teamchallenge.dto.attributes.AttributeRequestUpdateDto;
-import io.teamchallenge.dto.attributes.AttributeResponseDto;
-import io.teamchallenge.dto.attributes.AttributeValuePatchRequestDto;
-import io.teamchallenge.dto.attributes.AttributeValueResponseDto;
+import io.teamchallenge.dto.attributes.*;
 import io.teamchallenge.dto.brand.BrandRequestDto;
 import io.teamchallenge.dto.brand.BrandResponseDto;
 import io.teamchallenge.dto.cart.CartItemPatchRequestDto;
@@ -25,11 +21,7 @@ import io.teamchallenge.dto.order.OrderResponseDto;
 import io.teamchallenge.dto.order.ShortOrderResponseDto;
 import io.teamchallenge.dto.pageable.AdvancedPageableDto;
 import io.teamchallenge.dto.pageable.PageableDto;
-import io.teamchallenge.dto.product.ProductAttributeResponseDto;
-import io.teamchallenge.dto.product.ProductMinMaxPriceDto;
-import io.teamchallenge.dto.product.ProductRequestDto;
-import io.teamchallenge.dto.product.ProductResponseDto;
-import io.teamchallenge.dto.product.ShortProductResponseDto;
+import io.teamchallenge.dto.product.*;
 import io.teamchallenge.dto.review.AddReviewRequestDto;
 import io.teamchallenge.dto.review.ReviewResponseDto;
 import io.teamchallenge.dto.security.SignInRequestDto;
@@ -37,15 +29,7 @@ import io.teamchallenge.dto.security.SignUpRequestDto;
 import io.teamchallenge.dto.security.SignUpResponseDto;
 import io.teamchallenge.dto.user.ReviewerDto;
 import io.teamchallenge.dto.user.UserVO;
-import io.teamchallenge.entity.Address;
-import io.teamchallenge.entity.Brand;
-import io.teamchallenge.entity.Category;
-import io.teamchallenge.entity.ContactInfo;
-import io.teamchallenge.entity.Country;
-import io.teamchallenge.entity.Image;
-import io.teamchallenge.entity.Order;
-import io.teamchallenge.entity.Product;
-import io.teamchallenge.entity.User;
+import io.teamchallenge.entity.*;
 import io.teamchallenge.entity.attributes.Attribute;
 import io.teamchallenge.entity.attributes.AttributeValue;
 import io.teamchallenge.entity.attributes.ProductAttribute;
@@ -58,14 +42,15 @@ import io.teamchallenge.entity.reviews.ReviewId;
 import io.teamchallenge.enumerated.DeliveryMethod;
 import io.teamchallenge.enumerated.DeliveryStatus;
 import io.teamchallenge.enumerated.Role;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.web.multipart.MultipartFile;
 
 public class Utils {
 
@@ -302,35 +287,33 @@ public class Utils {
 
     public static ShortOrderResponseDto getShortOrderResponseDto() {
         return ShortOrderResponseDto.builder()
-            .id(1L)
-            .email("example@example.com")
-            .fullName("John Doe")
-            .phoneNumber("1234567890")
-            .deliveryMethod(DeliveryMethod.COURIER)
-            .deliveryStatus(DeliveryStatus.CANCELED)
-            .address(getAddressDto())
-            .postAddress(getPostAddressDto())
-            .isPaid(true)
-            .createdAt(LocalDateTime.of(1, 1, 1, 1, 1))
-            .total(new BigDecimal("99.99"))
-            .build();
+                .id(1L)
+                .email("example@example.com")
+                .fullName("John Doe")
+                .phoneNumber("1234567890")
+                .deliveryMethod(DeliveryMethod.COURIER)
+                .deliveryStatus(DeliveryStatus.CANCELED)
+                .address(getAddressDto())
+                .isPaid(true)
+                .createdAt(LocalDateTime.of(1, 1, 1, 1, 1))
+                .total(new BigDecimal("99.99"))
+                .build();
     }
 
     public static OrderResponseDto getOrderResponseDto() {
         return OrderResponseDto.builder()
-            .id(1L)
-            .email("example@example.com")
-            .fullName("John Doe")
-            .phoneNumber("1234567890")
-            .deliveryMethod(DeliveryMethod.COURIER)
-            .deliveryStatus(DeliveryStatus.CANCELED)
-            .address(getAddressDto())
-            .postAddress(getPostAddressDto())
-            .isPaid(true)
-            .createdAt(LocalDateTime.of(1, 1, 1, 1, 1))
-            .total(new BigDecimal("99.99"))
-            .orderItems(List.of(getOrderItemResponseDto()))
-            .build();
+                .id(1L)
+                .email("example@example.com")
+                .fullName("John Doe")
+                .phoneNumber("1234567890")
+                .deliveryMethod(DeliveryMethod.COURIER)
+                .deliveryStatus(DeliveryStatus.CANCELED)
+                .address(getAddressDto())
+                .isPaid(true)
+                .createdAt(LocalDateTime.of(1, 1, 1, 1, 1))
+                .total(new BigDecimal("99.99"))
+                .orderItems(List.of(getOrderItemResponseDto()))
+                .build();
     }
 
     public static OrderItemResponseDto getOrderItemResponseDto() {
@@ -349,8 +332,6 @@ public class Utils {
         return AddressDto.builder()
             .city("Anytown")
             .addressLine("some address")
-            .countryName("Ukraine")
-            .postalCode("1234")
             .build();
     }
 
@@ -406,7 +387,7 @@ public class Utils {
     }
 
     public static ProductMinMaxPriceDto getProductMinMaxPriceDto() {
-        return new ProductMinMaxPriceDto(BigDecimal.ONE, BigDecimal.TWO);
+        return new ProductMinMaxPriceDto(BigDecimal.ONE, BigDecimal.TEN);
     }
 
     public static AdvancedPageableDto<ShortProductResponseDto> getAdvancedPageableDto() {
@@ -480,18 +461,16 @@ public class Utils {
 
     public static OrderRequestDto getOrderRequestDtoCourier() {
         return OrderRequestDto.builder()
-            .fullName("FirstName LastName")
-            .address(AddressDto.builder()
-                .addressLine("address line")
-                .city("Kyiv")
-                .postalCode("12322")
-                .countryName("Ukraine")
-                .build())
-            .deliveryMethod(DeliveryMethod.COURIER)
-            .cartItems(List.of(getCartItemRequestDto()))
-            .phoneNumber("1234567890")
-            .email("test@mail.com")
-            .build();
+                .fullName("FullName")
+                .address(AddressDto.builder()
+                        .addressLine("address line")
+                        .city("Kyiv")
+                        .build())
+                .deliveryMethod(DeliveryMethod.COURIER)
+                .cartItems(List.of(getCartItemRequestDto()))
+                .phoneNumber("1234567890")
+                .email("test@mail.com")
+                .build();
     }
 
     private static CartItemRequestDto getCartItemRequestDto() {
@@ -504,11 +483,6 @@ public class Utils {
     public static Address getAddress() {
         return Address.builder()
             .id(1L)
-            .country(Country.builder()
-                .id(1L)
-                .name("Ukraine")
-                .build())
-            .postalCode("12345")
             .city("Kyiv")
             .addressLine("address line")
             .build();
@@ -517,17 +491,17 @@ public class Utils {
     public static Order getUnsavedOrder() {
         OrderRequestDto orderRequestDto = Utils.getOrderRequestDtoCourier();
         return Order.builder()
-            .contactInfo(ContactInfo.builder()
-                .email(orderRequestDto.getEmail())
-                .fullName(orderRequestDto.getFullName())
-                .phoneNumber(orderRequestDto.getPhoneNumber())
-                .build())
-            .address(Utils.getAddress())
-            .deliveryMethod(orderRequestDto.getDeliveryMethod())
-            .deliveryStatus(DeliveryStatus.PROCESSING)
-            .orderItems(new ArrayList<>())
-            .isPaid(false)
-            .build();
+                .contactInfo(ContactInfo.builder()
+                        .email(orderRequestDto.getEmail())
+                        .fullName(orderRequestDto.getFullName())
+                        .phoneNumber(orderRequestDto.getPhoneNumber())
+                        .build())
+                .address(Utils.getAddress())
+                .deliveryMethod(orderRequestDto.getDeliveryMethod())
+                .deliveryStatus(DeliveryStatus.PROCESSING)
+                .orderItems(new ArrayList<>())
+                .isPaid(false)
+                .build();
     }
 
     public static Review getReview() {

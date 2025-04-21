@@ -36,9 +36,9 @@ import org.hibernate.annotations.CreationTimestamp;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"address","postAddress", "orderItems"})
+@ToString(exclude = {"address", "orderItems"})
 @Builder
-@EqualsAndHashCode(exclude = {"address","postAddress", "orderItems"})
+@EqualsAndHashCode(exclude = {"address", "orderItems"})
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,10 +50,6 @@ public class Order {
     @OneToOne(cascade = CascadeType.ALL, optional = false, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id")
     private Address address;
-
-    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_address_id")
-    private PostAddress postAddress;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Setter(AccessLevel.PRIVATE)

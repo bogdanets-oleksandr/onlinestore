@@ -1,5 +1,6 @@
 package io.teamchallenge.dto.address;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,13 +17,15 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AddressDto {
-    @NotBlank
-    private String addressLine;
+
     @NotBlank
     private String city;
-    @NotBlank
-    private String postalCode;
-    @NotBlank
-    private String countryName;
+    private String street;
+    private String houseNumber;
+    private String flat;
+    private String department;
+    private String addressLine;
+
 }

@@ -29,7 +29,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class CustomOrderRepositoryImpl implements CustomOrderRepository {
     public static final String ORDER_ITEMS = "orderItems";
-    public static final String POST_ADDRESS = "postAddress";
     public static final String ADDRESS = "address";
     public static final String PRICE = "price";
     public static final String QUANTITY = "quantity";
@@ -98,9 +97,7 @@ public class CustomOrderRepositoryImpl implements CustomOrderRepository {
         var root = query.from(Order.class);
 
         root.fetch(ORDER_ITEMS, JoinType.LEFT);
-        root.fetch(POST_ADDRESS, JoinType.LEFT);
         Fetch<Order, Address> af = root.fetch(ADDRESS, JoinType.LEFT);
-        af.fetch("country", JoinType.LEFT);
 
         query.where(root.get("id").in(ids.toArray()));
 

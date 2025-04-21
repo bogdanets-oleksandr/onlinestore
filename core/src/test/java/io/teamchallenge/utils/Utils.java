@@ -45,6 +45,7 @@ import io.teamchallenge.entity.attributes.ProductAttribute;
 import io.teamchallenge.entity.reviews.ReviewId;
 import io.teamchallenge.enumerated.DeliveryMethod;
 import io.teamchallenge.enumerated.DeliveryStatus;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -265,40 +266,38 @@ public class Utils {
 
     public static ShortOrderResponseDto getShortOrderResponseDto() {
         return ShortOrderResponseDto.builder()
-            .id(1L)
-            .email("example@example.com")
-            .fullName("John Doe")
-            .phoneNumber("1234567890")
-            .deliveryMethod(DeliveryMethod.COURIER)
-            .deliveryStatus(DeliveryStatus.CANCELED)
-            .address(getAddressDto())
-            .postAddress(getPostAddressDto())
-            .isPaid(true)
-            .createdAt(LocalDateTime.of(1, 1, 1, 1, 1))
-            .total(new BigDecimal("99.99"))
-            .build();
+                .id(1L)
+                .email("example@example.com")
+                .fullName("John Doe")
+                .phoneNumber("1234567890")
+                .deliveryMethod(DeliveryMethod.COURIER)
+                .deliveryStatus(DeliveryStatus.CANCELED)
+                .address(getAddressDto())
+                .isPaid(true)
+                .createdAt(LocalDateTime.of(1, 1, 1, 1, 1))
+                .total(new BigDecimal("99.99"))
+                .build();
     }
 
     public static OrderResponseDto getOrderResponseDto() {
         return OrderResponseDto.builder()
-            .id(1L)
-            .email("example@example.com")
-            .fullName("John Doe")
-            .phoneNumber("1234567890")
-            .deliveryMethod(DeliveryMethod.COURIER)
-            .deliveryStatus(DeliveryStatus.CANCELED)
-            .address(getAddressDto())
-            .postAddress(getPostAddressDto())
-            .isPaid(true)
-            .createdAt(LocalDateTime.of(1, 1, 1, 1, 1))
-            .total(new BigDecimal("99.99"))
-            .orderItems(List.of(getOrderItemResponseDto()))
-            .build();
+                .id(1L)
+                .email("example@example.com")
+                .fullName("John Doe")
+                .phoneNumber("1234567890")
+                .deliveryMethod(DeliveryMethod.COURIER)
+                .deliveryStatus(DeliveryStatus.CANCELED)
+                .address(getAddressDto())
+                .isPaid(true)
+                .createdAt(LocalDateTime.of(1, 1, 1, 1, 1))
+                .total(new BigDecimal("99.99"))
+                .orderItems(List.of(getOrderItemResponseDto()))
+                .build();
     }
 
     public static OrderItemResponseDto getOrderItemResponseDto() {
         return OrderItemResponseDto.builder().price(new BigDecimal("99.99")).quantity(1)
-            .shortProductResponseDto(getShortProductResponseDto()).build();
+                .shortProductResponseDto(getShortProductResponseDto()).build();
     }
 
     public static PostAddressDto getPostAddressDto() {
@@ -310,24 +309,22 @@ public class Utils {
 
     public static AddressDto getAddressDto() {
         return AddressDto.builder()
-            .city("Anytown")
-            .addressLine("some address")
-            .countryName("Ukraine")
-            .postalCode("1234")
-            .build();
+                .city("Anytown")
+                .addressLine("Anytown")
+                .build();
     }
 
     public static ProductFilterDto getProductFilterDto() {
         return ProductFilterDto.builder()
-            .name("Sample Product")
-            .price(PriceFilter.builder()
-                .from(100)
-                .to(500)
-                .build())
-            .brandIds(List.of(1L))
-            .categoryId(1L)
-            .attributeValueIds(List.of(2L, 4L))
-            .build();
+                .name("Sample Product")
+                .price(PriceFilter.builder()
+                        .from(100)
+                        .to(500)
+                        .build())
+                .brandIds(List.of(1L))
+                .categoryId(1L)
+                .attributeValueIds(List.of(2L, 4L))
+                .build();
     }
 
     public static AttributeAttributeValueDto getAttributeAttributeValueDto() {
@@ -355,17 +352,15 @@ public class Utils {
 
     public static OrderRequestDto getOrderRequestDtoCourier() {
         return OrderRequestDto.builder()
-            .fullName("FirstName LastName")
-            .address(AddressDto.builder()
-                .addressLine("address line")
-                .city("Kyiv")
-                .postalCode("12322")
-                .countryName("Ukraine")
-                .build())
-            .deliveryMethod(DeliveryMethod.COURIER)
-            .phoneNumber("1234567890")
-            .email("test@mail.com")
-            .build();
+                .fullName("FirstName LastName")
+                .address(AddressDto.builder()
+                        .addressLine("address line")
+                        .city("Kyiv")
+                        .build())
+                .deliveryMethod(DeliveryMethod.COURIER)
+                .phoneNumber("1234567890")
+                .email("test@mail.com")
+                .build();
     }
 
     public static String getRefreshToken() {
