@@ -4,7 +4,6 @@ import io.teamchallenge.dto.ImageDto;
 import io.teamchallenge.dto.category.CategoryResponseDto;
 import io.teamchallenge.dto.product.ProductAttributeResponseDto;
 import io.teamchallenge.dto.product.ProductResponseDto;
-import io.teamchallenge.entity.Image;
 import io.teamchallenge.entity.reviews.Review;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;

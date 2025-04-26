@@ -23,6 +23,7 @@ public class ShortProductResponseDto {
     private String name;
     private BigDecimal price;
     private List<ImageDto> images;
+    private String code;
     private Boolean available;
     private Double rating;
 }

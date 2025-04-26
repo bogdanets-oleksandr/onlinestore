@@ -2,6 +2,7 @@ package io.teamchallenge.controller;
 
 import io.teamchallenge.annotation.AllowedSortFields;
 import io.teamchallenge.annotation.ImageValidation;
+import io.teamchallenge.dto.filter.PriceFilter;
 import io.teamchallenge.dto.filter.ProductFilterDto;
 import io.teamchallenge.dto.pageable.AdvancedPageableDto;
 import io.teamchallenge.dto.product.ProductRequestDto;
@@ -9,7 +10,6 @@ import io.teamchallenge.dto.product.ProductResponseDto;
 import io.teamchallenge.dto.product.ShortProductResponseDto;
 import io.teamchallenge.service.impl.ProductService;
 import jakarta.validation.Valid;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -17,15 +17,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 import static org.springframework.data.domain.Sort.Direction.DESC;
 
@@ -43,17 +38,38 @@ public class ProductController {
     /**
      * Retrieves a paginated list of products based on the provided filter criteria and pagination settings.
      *
-     * @param productFilterDto  DTO containing filter criteria for products.
+     * @param name              The name of the product to filter by.
+     * @param brandIds          List of brand IDs to filter by.
+     * @param categoryId        The category ID to filter by.
+     * @param attributeValueIds List of attribute value IDs to filter by.
+     * @param minPrice          The minimum price to filter by.
+     * @param maxPrice          The maximum price to filter by.
      * @param pageable          Pageable object for pagination and sorting information.
-     *                          Allowed sort fields: "price".
+     *                          Parameters: page, size, sort.
+     *                          Allowed sort fields: "price", "popularity", "rating".
      *                          Default sort: "price" in descending order.
      * @return ResponseEntity containing a pageable list of short product responses.
      */
     @GetMapping
     public ResponseEntity<AdvancedPageableDto<ShortProductResponseDto>> getAll(
-        @Valid ProductFilterDto productFilterDto,
+        @RequestParam(required = false) String name,
+        @RequestParam(required = false) List<Long> brandIds,
+        @RequestParam(required = false) Long categoryId,
+        @RequestParam(required = false) List<Long> attributeValueIds,
+        @RequestParam(required = false) String minPrice,
+        @RequestParam(required = false) String maxPrice,
         @AllowedSortFields(values = {"price","popularity","rating"})
         @PageableDefault(sort = "price", direction = DESC) Pageable pageable) {
+        ProductFilterDto productFilterDto = ProductFilterDto.builder()
+            .name(name)
+            .price(PriceFilter.builder()
+                    .from(minPrice == null ? 0 : Integer.parseInt(minPrice))
+                    .to(maxPrice == null ? 1000000 : Integer.parseInt(maxPrice))
+                    .build())
+            .brandIds(brandIds)
+            .categoryId(categoryId)
+            .attributeValueIds(attributeValueIds)
+            .build();
         return ResponseEntity.ok(productService.getAll(pageable, productFilterDto));
     }
 

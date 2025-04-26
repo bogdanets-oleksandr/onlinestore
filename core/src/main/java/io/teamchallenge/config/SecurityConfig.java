@@ -116,14 +116,25 @@ public class SecurityConfig {
                     API_V1 + "/reviews/{productId}"
                 )
                 .permitAll()
+                .requestMatchers(HttpMethod.POST,
+                        API_V1 + "/resetPassword",
+                        API_V1 + "/changePassword"
+                )
+                .permitAll()
                 .requestMatchers(HttpMethod.GET,
                     API_V1 + "/cart-items",
-                    API_V1 + "/orders/{order_id}"
+                    API_V1 + "/orders/{order_id}",
+                    API_V1 + "/users/profile",
+                    API_V1 + "/favorite-products"
                 )
                 .hasAnyRole(USER,ADMIN)
+                .requestMatchers(HttpMethod.PUT,
+                    API_V1 + "/users/profile"
+                ).hasAnyRole(USER,ADMIN)
                 .requestMatchers(HttpMethod.POST,
                     API_V1 + "/cart-items/{product_id}",
-                    API_V1 + "/reviews/{productId}"
+                    API_V1 + "/reviews/{productId}",
+                    API_V1 + "/favorite-products/{productId}"
                 )
                 .hasAnyRole(USER,ADMIN)
                 .requestMatchers(HttpMethod.PATCH,
@@ -133,13 +144,15 @@ public class SecurityConfig {
                 .hasAnyRole(USER,ADMIN)
                 .requestMatchers(HttpMethod.DELETE,
                     API_V1 + "/cart-items/{product_id}",
-                    API_V1 + "/reviews/{productId}"
+                    API_V1 + "/reviews/{productId}",
+                    API_V1 + "/favorite-products/{productId}"
                 )
                 .hasAnyRole(USER,ADMIN)
                 .requestMatchers(HttpMethod.POST,
                     API_V1 + "/brands",
                     API_V1 + "/categories",
-                    API_V1 + "/attributes")
+                    API_V1 + "/attributes",
+                    API_V1 + "/users/profile")
                 .hasRole(ADMIN)
                 .requestMatchers(HttpMethod.DELETE,
                     API_V1 + "/reviews/{productId}/{userId}"

@@ -1,6 +1,5 @@
 package io.teamchallenge.repository;
 
-import io.teamchallenge.dto.review.ReviewResponseDto;
 import io.teamchallenge.entity.reviews.Review;
 import io.teamchallenge.entity.reviews.ReviewId;
 import org.springframework.data.domain.Page;

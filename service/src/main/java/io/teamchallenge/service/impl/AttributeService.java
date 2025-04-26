@@ -1,9 +1,7 @@
 package io.teamchallenge.service.impl;
 
 import io.teamchallenge.constant.ExceptionMessage;
-import io.teamchallenge.dto.attributes.AttributeRequestDto;
-import io.teamchallenge.dto.attributes.AttributeRequestUpdateDto;
-import io.teamchallenge.dto.attributes.AttributeResponseDto;
+import io.teamchallenge.dto.attributes.*;
 import io.teamchallenge.entity.attributes.Attribute;
 import io.teamchallenge.entity.attributes.CategoryAttribute;
 import io.teamchallenge.exception.DeletionException;
@@ -16,6 +14,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import static io.teamchallenge.constant.ExceptionMessage.ATTRIBUTE_DELETION_EXCEPTION_MESSAGE;
 import static io.teamchallenge.constant.ExceptionMessage.ATTRIBUTE_PERSISTENCE_EXCEPTION;
@@ -116,5 +116,20 @@ public class AttributeService {
             .id(retrievedAttribute.getId())
             .name(retrievedAttribute.getName())
             .build();
+    }
+
+    public List<AttributeResponseDto> getAll() {
+        return attributeRepository.findAll().stream()
+            .map(attribute -> AttributeResponseDto.builder()
+                .id(attribute.getId())
+                .name(attribute.getName())
+                    .attributeValuesList(attribute.getAttributeValues().stream()
+                        .map(attributeValue -> AttributeValueResponseDto.builder()
+                            .id(attributeValue.getId())
+                            .value(attributeValue.getValue())
+                            .build())
+                        .toList())
+                .build())
+            .toList();
     }
 }

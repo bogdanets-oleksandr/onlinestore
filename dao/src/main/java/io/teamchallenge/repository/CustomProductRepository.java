@@ -2,7 +2,6 @@ package io.teamchallenge.repository;
 
 import io.teamchallenge.dto.product.ProductMinMaxPriceDto;
 import io.teamchallenge.entity.Product;
-import io.teamchallenge.entity.cartitem.CartItem;
 import jakarta.annotation.Nullable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

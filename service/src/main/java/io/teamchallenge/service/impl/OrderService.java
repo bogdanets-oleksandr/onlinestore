@@ -78,7 +78,6 @@ public class OrderService {
             cartItemRepository.deleteByUserId(user.getId());
             user.addOrder(order);
         }
-
         order.setAddress(modelMapper.map(orderRequestDto.getAddress(), Address.class));
 
         List<Product> products = productRepository.findAllById(orderRequestDto.getCartItems().stream()

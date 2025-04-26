@@ -35,6 +35,7 @@ public class ShortProductResponseDtoMapper extends AbstractConverter<Product, Sh
                     .build())
                 .collect(Collectors.toList()))
             .available(product.getQuantity() > 0)
+            .code(product.getCode())
             .rating(product.getReviews().stream()
                 .mapToInt(Review::getRate)
                 .average()

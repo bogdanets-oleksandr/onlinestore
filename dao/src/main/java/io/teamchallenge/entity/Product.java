@@ -69,6 +69,9 @@ public class Product {
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
+    @Column(unique = true, nullable = false)
+    private String code;
+
 
     /**
      * Adds an image to the product and sets the product for the image.

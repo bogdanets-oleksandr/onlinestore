@@ -1,5 +1,7 @@
 package io.teamchallenge.controller;
 
+import io.teamchallenge.dto.filter.PriceFilter;
+import io.teamchallenge.dto.filter.ProductFilterDto;
 import io.teamchallenge.service.impl.ProductService;
 import io.teamchallenge.utils.Utils;
 import java.util.List;
@@ -38,10 +40,27 @@ public class ProductControllerTest {
     void getAllTest() {
         var pageable = PageRequest.of(1, 1, Sort.by("price"));
         var response = getAdvancedPageableDto();
+        ProductFilterDto.builder()
+                .name("Sample Product")
+                .price(PriceFilter.builder()
+                        .from(100)
+                        .to(500)
+                        .build())
+                .brandIds(List.of(1L))
+                .categoryId(1L)
+                .attributeValueIds(List.of(2L, 4L))
+                .build();
         var filter = getProductFilterDto();
         when(productService.getAll(pageable, filter)).thenReturn(response);
 
-        var responseEntity = productController.getAll(filter, pageable);
+        var responseEntity = productController.getAll(
+                filter.getName(),
+                filter.getBrandIds(),
+                filter.getCategoryId(),
+                filter.getAttributeValueIds(),
+                filter.getPrice().getFrom().toString(),
+                filter.getPrice().getTo().toString(),
+                pageable);
 
         verify(productService).getAll(eq(pageable), eq(filter));
         assertEquals(OK, responseEntity.getStatusCode());

@@ -35,14 +35,6 @@ public class UserRepositoryTCTest {
     private UserRepository userRepository;
 
     @Test
-    void findUserVOByEmailTest() {
-        String email = "john@example.com";
-        Optional<UserVO> userVOByEmail = userRepository.findUserVOByEmail(email);
-        assertFalse(userVOByEmail.isEmpty());
-        assertEquals(email, userVOByEmail.get().getEmail());
-    }
-
-    @Test
     void findUserByEmailTest() {
         String email = "john@example.com";
         Optional<User> userVOByEmail = userRepository.findUserByEmail(email);

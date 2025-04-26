@@ -17,14 +17,17 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @Builder
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AddressDto {
 
     @NotBlank
     private String city;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String street;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String houseNumber;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String flat;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String department;
     private String addressLine;
 
