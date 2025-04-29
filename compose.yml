@@ -2,7 +2,7 @@ version: "3"
 services:
   store:
     container_name: store
-    image: serhiibabanov/onlinestore-backend:1.8
+    image: bogdanetsoleksandr/onlinestore-backend:1.13
     environment:
       - DATASOURCE_URL=${DATASOURCE_URL}
       - DATASOURCE_USER=${DATASOURCE_USER}
@@ -14,6 +14,11 @@ services:
       - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
       - CLOUDINARY_PRODUCT_IMAGES_FOLDER_NAME=${CLOUDINARY_PRODUCT_IMAGES_FOLDER_NAME}
       - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
+      - FRONTEND_SERVER_URL=${FRONTEND_SERVER_URL}
+      - MAIL_HOST=${MAIL_HOST}
+      - MAIL_PORT=${MAIL_PORT}
+      - MAIL_USERNAME=${MAIL_USERNAME}
+      - MAIL_PASSWORD=${MAIL_PASSWORD}
     ports:
       - "8085:8085"
     networks:
@@ -38,5 +43,5 @@ services:
     volumes:
       - /var/lib/postgresql/data
 networks:
-    onlinestore:
+  onlinestore:
 

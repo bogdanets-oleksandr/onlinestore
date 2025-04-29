@@ -10,6 +10,7 @@ values
     (5, 2, '6 Gb'),     --15 Pro, 15, 13
     (6, 2, '8 Gb'),     --15 Pro Max, S23
     (7, 2, '12 Gb'),    --S24 Ultra
+    (91, 2, '16 Gb'),
     -- Colors
     (8, 3, 'BBB5A9'),   -- Gray
     (9, 3, '354763'),   -- Dark Blue
@@ -23,6 +24,9 @@ values
     (17, 3, 'B484D8'),  -- Dark Purple
     (18, 3, 'FEF2F2'),  -- Creamy
     (19, 3, 'E7CEFD'),  -- Light Purple
+    (85, 3, '191970'), -- Midnight (Dark Blue)
+    (92, 3, '1C1C1C'), -- Carbon Black
+    (96, 3, '4B4B4B'), --Silver
     -- Display diagonal
     (20, 4, '6.69 inches'),     --15 Pro Max
     (21, 4, '6.5 inches'),      --A24
@@ -33,6 +37,8 @@ values
     (62, 4, '11 inches'),
     (63, 4, '14 inches'),
     (64, 4, '15.6 inches'),
+    (86, 4, '13.6 inches'),
+    (103, 4, '17.3 inches'),
     -- Screen resolution
     (26, 5, '2796 x 1290 pixels'),  --15 Pro Max
     (27, 5, '1080 x 2340 pixels'),  --A24
@@ -44,6 +50,7 @@ values
     (66, 5, '2560 x 1600 pixels'),
     (67, 5, '1920 x 1080 pixels'),
     (79, 5, '2880 x 1864 pixels'),
+    (87, 5, '2560 x 1664 pixels'),
     -- Screen type
     (32, 6, 'Super Retina XDR OLED'),    --15 Pro Max, --15 Pro, 15
     (33, 6, 'Super AMOLED'),             --A24
@@ -76,22 +83,31 @@ values
     (74, 12, 'Windows'),
     (83, 12, 'Linux'),
     (84, 12, 'MacOS'),
+    (95, 12, 'FreeDOS'),
     -- Processor frequency
     (50, 13, '3.0 GHz'),
     (51, 13, '2.3 GHz'),
     (72, 13, '2.1 GHz'),
     (78, 13, '4.2 GHz'),
     (82, 13, '3.6 GHz'),
+    (94, 13, '4.4 GHz'),
+    (98, 13, '2.8 GHz'),
+    (101, 13, '4.5 GHz'),
     -- Number of processor cores
     (52, 14, 'Octa-core'),
     (53, 14, 'Quad-core'),
     (73, 14, 'Hexa-core'),
+    (99, 14, 'Dual-core'),
     -- Processor model
     (54, 15, 'A14 Bionic'),    --15 Pro Max, 15, 13
     (55, 15, 'Snapdragon 888'),    --A24, S24 Ultra, S23
     (71, 15, 'AMD Ryzen 5 5500U'),
     (77, 15, 'Intel Core i5-1135G7'),
     (81, 15, 'Apple M3'),
+    (93, 15, 'Intel Core i5-1235U'),
+    (97, 15, 'Intel Celeron N4500'),
+    (102, 15, 'Intel Core i5-12500H'),
+    (104, 15, 'Intel Core i5-12450H'),
     -- Flesh card
     (56, 16, 'Supports microSD'),  --A24, S24 Ultra, S23
     (57, 16, 'No microSD support'), --15 Pro Max, 15, 13
@@ -102,5 +118,16 @@ values
     (60, 18, 'AMD Radeon RX 6700 XT'),
     (61, 18, 'NVIDIA RTX 3060'),
     (75, 18, 'Intel UHD Graphics 620'),
-    (76, 18, 'Integrated');
+    (76, 18, 'Integrated'),
+    (100, 18, 'NVIDIA GeForce RTX 3050'),
+    (105, 18, 'NVIDIA GeForce RTX 2050'),
+
+    --Bluetooth version
+    (88, 19, '5.3'),
+
+    --Weight
+    (89, 20, '200g'),
+
+    --Max play time
+    (90, 21, '76h');
 

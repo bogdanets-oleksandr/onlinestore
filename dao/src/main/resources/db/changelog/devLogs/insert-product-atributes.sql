@@ -206,4 +206,69 @@ values
     -- Nikon Coolpix P950 Black
     (179, 14, 59),  -- Sensor resolution: 12 MP
     (180, 14, 10),   -- Color: Dark Gray
-    (181, 14, 56);  -- Supports microSD
+    (181, 14, 56),  -- Supports microSD
+
+    --Apple MacBook Air 13" M3 256GB/8GB/8GPU
+    (182, 15, 2),   -- Memory ROM: 256 Gb
+    (183, 15, 6),   -- Memory RAM: 8 Gb
+    (184, 15, 85),  -- Color: Midnight
+    (185, 15, 86),  -- Display diagonal: 13.6 inches
+    (186, 15, 87),  -- Screen resolution: 2560 x 1664 pixels
+    (187, 15, 80),  -- Screen type: Liquid Retina
+    (188, 15, 81),  -- Processor model: Apple M3
+    (189, 15, 52),  -- Number of processor cores: Octa-core
+    (190, 15, 84),  -- Operating system: MacOS
+    (191, 15, 76),  -- Video card: Integrated
+
+    --JBL TUNE 720BT Purple
+    (192, 16, 88), -- Bluetooth version 5.3
+    (193, 16, 89), --Weight 200g
+    (194, 16, 90), --Max play time 76h
+
+    --Dell Vostro 3520
+    (195, 17, 3), -- Memory ROM: 512 Gb
+    (196, 17, 91), --Memory RAM: 16 Gb
+    (197, 17, 92), --Color: Carbon Black
+    (198, 17, 64), --Display diagonal: 15.6 inches
+    (199, 17, 67), --Screen resolution: 1920 x 1080 pixels
+    (200, 17, 93), -- Processor model: Intel Core i5-1235U
+    (201, 17, 94), --Processor frequency: 4.4 GHz
+    (202, 17, 52), -- Number of processor cores: Octa-core
+    (203, 17, 83), --Operating system: Linux
+    (204, 17, 76), --Video card: Integrated
+
+    --Asus X515KA
+    (205, 18, 3), -- Memory ROM: 512 Gb
+    (206, 18, 6), --Memory RAM: 8 Gb
+    (207, 18, 96), --Color: Silver
+    (208, 18, 64), --Display diagonal: 15.6 inches
+    (209, 18, 67), --Screen resolution: 1920 x 1080 pixels
+    (210, 18, 97), -- Processor model: Intel Celeron N4500
+    (211, 18, 98), --Processor frequency: 2.8 GHz
+    (212, 18, 99), -- Number of processor cores: Dual-core
+    (213, 18, 95), --Operating system: FreeDOS
+    (214, 18, 76), --Video card: Integrated
+
+    --Asus TUF Gaming F17
+    (215, 19, 3), -- Memory ROM: 512 Gb
+    (216, 19, 91), --Memory RAM: 16 Gb
+    (217, 19, 10), --Color: Dark Grey
+    (218, 19, 103), --Display diagonal: 17.3 inches
+    (219, 19, 67), --Screen resolution: 1920 x 1080 pixels
+    (220, 19, 102), -- Processor model: Intel Core i5-12500H
+    (221, 19, 101), --Processor frequency: 4.5 GHz
+    (222, 19, 52), -- Number of processor cores: Octa-core
+    (223, 19, 95), --Operating system: FreeDOS
+    (224, 19, 100), --Video card: NVIDIA GeForce RTX 3050
+
+    --Lenovo LOQ 15IRH8
+    (225, 20, 3), -- Memory ROM: 512 Gb
+    (226, 20, 6), --Memory RAM: 8 Gb
+    (227, 20, 8), --Color: Grey
+    (228, 20, 64), --Display diagonal: 15.6 inches
+    (229, 20, 67), --Screen resolution: 1920 x 1080 pixels
+    (230, 20, 104), -- Processor model: Intel Core i5-12450H
+    (231, 20, 94), --Processor frequency: 4.4 GHz
+    (232, 20, 52), -- Number of processor cores: Octa-core
+    (233, 20, 95), --Operating system: FreeDOS
+    (234, 20, 105); --Video card: NVIDIA GeForce RTX 2050

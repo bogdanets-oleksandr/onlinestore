@@ -18,4 +18,7 @@ values
     (15, 'Processor model'),
     (16, 'Flesh card'),
     (17, 'Sensor resolution'),
-    (18, 'Video card');
+    (18, 'Video card'),
+    (19, 'Bluetooth version'),
+    (20, 'Weight'),
+    (21, 'Max play time');

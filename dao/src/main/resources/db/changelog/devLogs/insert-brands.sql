@@ -7,4 +7,6 @@ values
     (4, 'Asus'),
     (5, 'Nikon'),
     (6, 'Fujifilm'),
-    (7, 'Canon');
+    (7, 'Canon'),
+    (8, 'JBL'),
+    (9, 'Dell');

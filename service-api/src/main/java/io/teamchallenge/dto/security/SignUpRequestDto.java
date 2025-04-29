@@ -28,9 +28,7 @@ public class SignUpRequestDto {
             + "one uppercase Latin character and one special character")
     private String password;
     @NotBlank
-    private String firstName;
-    @NotBlank
-    private String lastName;
+    private String fullName;
     @NotBlank
     private String phoneNumber;
 }

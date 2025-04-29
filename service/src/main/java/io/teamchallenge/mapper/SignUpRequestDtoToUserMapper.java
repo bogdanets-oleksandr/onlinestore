@@ -30,7 +30,7 @@ public class SignUpRequestDtoToUserMapper extends AbstractConverter<SignUpReques
             .email(signUpRequestDto.getEmail())
             .password(passwordEncoder.encode(signUpRequestDto.getPassword()))
             .phoneNumber(signUpRequestDto.getPhoneNumber())
-            .fullName(signUpRequestDto.getFirstName() + " " + signUpRequestDto.getLastName())
+            .fullName(signUpRequestDto.getFullName())
             .role(Role.ROLE_USER)
             .refreshTokenKey(jwtService.generateTokenKey())
             .build();

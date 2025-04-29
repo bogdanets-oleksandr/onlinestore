@@ -353,8 +353,7 @@ public class Utils {
                 .email(newUser.getEmail())
                 .password("Password1234!")
                 .phoneNumber(newUser.getPhoneNumber())
-                .firstName("FirstName")
-                .lastName("LastName")
+                .fullName("First Last")
                 .build();
     }
 

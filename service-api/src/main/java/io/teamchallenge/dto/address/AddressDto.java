@@ -1,5 +1,6 @@
 package io.teamchallenge.dto.address;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,7 @@ public class AddressDto {
     @NotBlank
     private String city;
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonAlias("departmentNumber")
     private String street;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String houseNumber;

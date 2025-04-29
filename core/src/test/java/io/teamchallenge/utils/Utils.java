@@ -203,8 +203,7 @@ public class Utils {
     public static SignUpRequestDto getSignUpRequestDto() {
         return SignUpRequestDto.builder()
                 .email("test@mail.com")
-                .firstName("John")
-                .lastName("Doe")
+                .fullName("John")
                 .phoneNumber("0123456789")
                 .password("Password1234!")
                 .build();

@@ -13,4 +13,10 @@ values (1, 'Apple iPhone 15 Pro Max 256Gb', 1, 'Apple iPhone 15 Pro Max 256Gb', 
        (11, 'Apple MacBook Air 15.3 M3 8GB 256GB', 2, 'Apple MacBook Air 15.3 M3 8GB 256GB', 'Apple MacBook Air 15.3 M3 8GB 256GB', 2500, 100, '2021-01-01', 1, '202020'),
        (12, 'Nikon Coolpix P950 Black', 3, 'Nikon Coolpix P950 Black', 'Nikon Coolpix P950 Black', 2500, 100, '2021-01-01', 5, '303030'),
        (13, 'Fujifilm Instax Mini 12 Lilac/Violet', 3, 'Fujifilm Instax Mini 12 Lilac/Violet', 'Fujifilm Instax Mini 12 Lilac/Violet', 2500, 100, '2021-01-01', 6, '404040'),
-       (14, 'Canon EOS 6D Mark II', 3, 'Canon EOS 6D Mark II', 'Canon EOS 6D Mark II', 2500, 100, '2021-01-01', 7, '456334');
+       (14, 'Canon EOS 6D Mark II', 3, 'Canon EOS 6D Mark II', 'Canon EOS 6D Mark II', 2500, 100, '2021-01-01', 7, '505050'),
+       (15, 'Apple MacBook Air 13" M3 256GB/8GB/8GPU Midnight', 2, 'Apple MacBook Air 13" M3 256GB/8GB/8GPU Midnight', 'Apple MacBook Air 13" M3 256GB/8GB/8GPU Midnight', 2700, 100, '2022-01-01', 1, '606060'),
+       (16, 'JBL TUNE 720BT Purple', 4, 'JBL TUNE 720BT Purple', 'JBL TUNE 720BT Purple', 700, 50, '2022-01-02', 8, '707070'),
+       (17, 'Dell Vostro 3520', 2, 'Dell Vostro 3520', 'Dell Vostro 3520', 2200, 10, '2020-01-01', 9, '808080'),
+       (18, 'Asus X515KA', 2, 'Asus X515KA', 'Asus X515KA', 1900, 100, '2022-01-01', 4, '909090'),
+       (19, 'Asus TUF Gaming F17', 2, 'Asus TUF Gaming F17', 'Asus TUF Gaming F17', 2700, 2, '2023-01-01', 4, '010101'),
+       (20, 'Lenovo LOQ 15IRH8', 2, 'Lenovo LOQ 15IRH8', 'Lenovo LOQ 15IRH8', 2400, 100, '2023-01-01', 3, '020202');
