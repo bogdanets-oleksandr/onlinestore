@@ -4,9 +4,10 @@ import io.teamchallenge.dto.ImageDto;
 import io.teamchallenge.dto.product.ShortProductResponseDto;
 import io.teamchallenge.entity.Product;
 import io.teamchallenge.entity.reviews.Review;
-import java.util.stream.Collectors;
 import org.modelmapper.AbstractConverter;
 import org.springframework.stereotype.Component;
+
+import java.util.stream.Collectors;
 
 /**
  * Mapper for {@link Product}.
@@ -36,10 +37,15 @@ public class ShortProductResponseDtoMapper extends AbstractConverter<Product, Sh
                 .collect(Collectors.toList()))
             .available(product.getQuantity() > 0)
             .code(product.getCode())
-            .rating(product.getReviews().stream()
+            .rating(roundedRating(
+                    product.getReviews().stream()
                 .mapToInt(Review::getRate)
                 .average()
-                .orElse(0))
+                .orElse(3.0)))
             .build();
+    }
+
+    private double roundedRating(double rating) {
+        return (rating == 0) ? 0.0 : Math.round(rating * 2) / 2.0;
     }
 }

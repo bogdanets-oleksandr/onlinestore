@@ -5,11 +5,12 @@ import io.teamchallenge.dto.category.CategoryResponseDto;
 import io.teamchallenge.dto.product.ProductAttributeResponseDto;
 import io.teamchallenge.dto.product.ProductResponseDto;
 import io.teamchallenge.entity.reviews.Review;
-import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.stream.Collectors;
 
 import static io.teamchallenge.util.Utils.getProduct;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -54,7 +55,7 @@ public class ProductResponseDtoMapperTest {
             .rating(product.getReviews().stream()
                 .mapToInt(Review::getRate)
                 .average()
-                .orElse(0))
+                .orElse(3.0))
             .build();
 
         assertEquals(expected, productResponseDtoMapper.convert(product));

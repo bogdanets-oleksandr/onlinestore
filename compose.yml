@@ -2,7 +2,7 @@ version: "3"
 services:
   store:
     container_name: store
-    image: bogdanetsoleksandr/onlinestore-backend:1.13
+    image: bogdanetsoleksandr/onlinestore-backend:1.14
     environment:
       - DATASOURCE_URL=${DATASOURCE_URL}
       - DATASOURCE_USER=${DATASOURCE_USER}

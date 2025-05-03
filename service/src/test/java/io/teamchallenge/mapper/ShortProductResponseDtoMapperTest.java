@@ -3,12 +3,12 @@ package io.teamchallenge.mapper;
 import io.teamchallenge.dto.ImageDto;
 import io.teamchallenge.dto.product.ShortProductResponseDto;
 import io.teamchallenge.entity.reviews.Review;
-
-import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.stream.Collectors;
 
 import static io.teamchallenge.util.Utils.getProduct;
 import static io.teamchallenge.util.Utils.getReview;
@@ -41,7 +41,7 @@ public class ShortProductResponseDtoMapperTest {
             .rating(product.getReviews().stream()
                 .mapToInt(Review::getRate)
                 .average()
-                .orElse(0))
+                .orElse(3.0))
             .build();
 
         assertEquals(expected, shortProductResponseDtoMapper.convert(product));
