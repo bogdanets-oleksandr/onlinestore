@@ -1,5 +1,6 @@
 package io.teamchallenge.controller;
 
+import io.teamchallenge.dto.filter.CameraFilter;
 import io.teamchallenge.dto.filter.PriceFilter;
 import io.teamchallenge.dto.filter.ProductFilterDto;
 import io.teamchallenge.service.impl.ProductService;
@@ -49,6 +50,10 @@ public class ProductControllerTest {
                 .brandIds(List.of(1L))
                 .categoryId(1L)
                 .attributeValueIds(List.of(2L, 4L))
+                .cameraFilter(CameraFilter.builder()
+                        .from(0)
+                        .to(100000)
+                        .build())
                 .build();
         var filter = getProductFilterDto();
         when(productService.getAll(pageable, filter)).thenReturn(response);
@@ -60,6 +65,8 @@ public class ProductControllerTest {
                 filter.getAttributeValueIds(),
                 filter.getPrice().getFrom().toString(),
                 filter.getPrice().getTo().toString(),
+                filter.getCameraFilter().getFrom().toString(),
+                filter.getCameraFilter().getTo().toString(),
                 pageable);
 
         verify(productService).getAll(eq(pageable), eq(filter));

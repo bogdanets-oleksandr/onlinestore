@@ -19,4 +19,6 @@ values (1, 'Apple iPhone 15 Pro Max 256Gb', 1, 'Apple iPhone 15 Pro Max 256Gb', 
        (17, 'Dell Vostro 3520', 2, 'Dell Vostro 3520', 'Dell Vostro 3520', 2200, 10, '2020-01-01', 9, '808080'),
        (18, 'Asus X515KA', 2, 'Asus X515KA', 'Asus X515KA', 1900, 100, '2022-01-01', 4, '909090'),
        (19, 'Asus TUF Gaming F17', 2, 'Asus TUF Gaming F17', 'Asus TUF Gaming F17', 2700, 2, '2023-01-01', 4, '010101'),
-       (20, 'Lenovo LOQ 15IRH8', 2, 'Lenovo LOQ 15IRH8', 'Lenovo LOQ 15IRH8', 2400, 100, '2023-01-01', 3, '020202');
+       (20, 'Lenovo LOQ 15IRH8', 2, 'Lenovo LOQ 15IRH8', 'Lenovo LOQ 15IRH8', 2400, 100, '2023-01-01', 3, '020202'),
+       (21, 'Apple iPhone 15 256Gb', 1, 'Apple iPhone 15 256Gb', 'Apple iPhone 15 256Gb', 750, 100, '2021-01-01', 1, '030303'),
+       (22, 'Apple iPhone 15 Pro 256Gb', 1, 'Apple iPhone 15 Pro 256Gb', 'Apple iPhone 15 Pro 256Gb', 900, 0, '2021-01-01', 1, '040404');

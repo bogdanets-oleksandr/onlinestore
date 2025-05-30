@@ -2,13 +2,18 @@ package io.teamchallenge.mapper;
 
 import io.teamchallenge.dto.ImageDto;
 import io.teamchallenge.dto.category.CategoryResponseDto;
+import io.teamchallenge.dto.product.AlternativeProductDto;
 import io.teamchallenge.dto.product.ProductAttributeResponseDto;
 import io.teamchallenge.dto.product.ProductResponseDto;
+import io.teamchallenge.entity.AlternativeProduct;
 import io.teamchallenge.entity.Product;
 import io.teamchallenge.entity.reviews.Review;
 import org.modelmapper.AbstractConverter;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -53,11 +58,15 @@ public class ProductResponseDtoMapper extends AbstractConverter<Product, Product
                 .collect(Collectors.toList()))
             .brand(product.getBrand().getName())
             .name(product.getName())
+            .href(product.getName().toLowerCase()
+                    .replaceAll("[^a-z0-9]+", "-")
+                    .replaceAll("^-+|-+$", ""))
             .description(product.getDescription())
             .code(product.getCode())
             .price(product.getPrice())
             .quantity(product.getQuantity())
             .createdAt(product.getCreatedAt())
+            .alternativeProducts(getAlternativeProducts(product))
             .rating(roundedRating(
                     product.getReviews().stream()
                 .mapToInt(Review::getRate)
@@ -70,4 +79,23 @@ public class ProductResponseDtoMapper extends AbstractConverter<Product, Product
         return (rating == 0) ? 0.0 : Math.round(rating * 2) / 2.0;
     }
 
+    private HashMap<String, List<AlternativeProductDto>> getAlternativeProducts(Product product) {
+
+        HashMap<String, List<AlternativeProductDto>> alternativeProducts = new HashMap<>();
+
+        for (AlternativeProduct alternativeProduct : product.getAlternativeProducts()) {
+            String attribute = alternativeProduct.getAttributeValue().getAttribute().getName();
+
+            AlternativeProductDto alternativeProductDto = AlternativeProductDto.builder()
+                    .id(alternativeProduct.getAlternativeProduct().getId())
+                    .value(alternativeProduct.getAttributeValue().getValue())
+                    .isAvailable(alternativeProduct.getAlternativeProduct().getQuantity() > 0)
+                    .build();
+
+            alternativeProducts.computeIfAbsent(attribute, o -> new ArrayList<>());
+            alternativeProducts.get(attribute).add(alternativeProductDto);
+        }
+
+        return alternativeProducts;
+    }
 }

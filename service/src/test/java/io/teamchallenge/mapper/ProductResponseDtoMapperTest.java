@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.HashMap;
 import java.util.stream.Collectors;
 
 import static io.teamchallenge.util.Utils.getProduct;
@@ -48,6 +49,7 @@ public class ProductResponseDtoMapperTest {
                 .collect(Collectors.toList()))
             .brand(product.getBrand().getName())
             .name(product.getName())
+                .href(product.getName().toLowerCase().replaceAll(" ", "-"))
             .description(product.getDescription())
             .price(product.getPrice())
             .quantity(product.getQuantity())
@@ -56,6 +58,7 @@ public class ProductResponseDtoMapperTest {
                 .mapToInt(Review::getRate)
                 .average()
                 .orElse(3.0))
+                .alternativeProducts(new HashMap<>())
             .build();
 
         assertEquals(expected, productResponseDtoMapper.convert(product));

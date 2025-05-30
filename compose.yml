@@ -2,7 +2,10 @@ version: "3"
 services:
   store:
     container_name: store
-    image: bogdanetsoleksandr/onlinestore-backend:1.14
+    image: bogdanetsoleksandr/onlinestore-backend:1.17
+    platform: linux/amd64
+    env_file:
+      - .env
     environment:
       - DATASOURCE_URL=${DATASOURCE_URL}
       - DATASOURCE_USER=${DATASOURCE_USER}
@@ -29,6 +32,7 @@ services:
   database:
     container_name: database_onlinestore
     image: postgres:14-alpine
+    platform: linux/amd64
     build:
       context: ./database-image
       dockerfile: "Dockerfile"

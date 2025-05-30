@@ -25,8 +25,7 @@ public class OrderRequestValidator implements ConstraintValidator<ValidOrderRequ
         return  value.getAddress() != null &&
                 value.getAddress().getCity() != null && !value.getAddress().getCity().isBlank() &&
                 value.getAddress().getStreet() != null && !value.getAddress().getStreet().isBlank() &&
-                value.getAddress().getHouseNumber() != null && !value.getAddress().getHouseNumber().isBlank() &&
-                value.getAddress().getFlat() != null && !value.getAddress().getFlat().isBlank();
+                value.getAddress().getHouseNumber() != null && !value.getAddress().getHouseNumber().isBlank();
     }
 
     private boolean isAddressForPostValid(OrderRequestDto value) {

@@ -72,7 +72,15 @@ values
     (68, 20, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1745930772/Product_Image_dttqvf.png', 1),
     (69, 20, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1745930773/Product_Image_1_cuqoo1.png', 2),
     (70, 20, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1745930775/Product_Image_2_qlhnp2.png', 3),
-    (71, 20, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1745930777/Product_Image_3_boyuuw.png', 4);
+    (71, 20, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1745930777/Product_Image_3_boyuuw.png', 4),
+
+    --additional photos to product 1 for testing
+
+    (73, 1, 'https://www.apple.com/ca/iphone/home/images/overview/welcome/us/welcome__n6xy87ib1gyu_medium_2x.jpg', 5),
+    (74, 1, 'https://www.apple.com/newsroom/images/2023/09/apple-unveils-iphone-15-pro-and-iphone-15-pro-max/article/Apple-iPhone-15-Pro-lineup-hero-230912_Full-Bleed-Image.jpg.large_2x.jpg', 6),
+    (75, 1, 'https://i.ebayimg.com/images/g/d60AAOSwFjlleez-/s-l1200.jpg', 7),
+    (76, 1, 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istudiosg.com%2Fproducts%2Fiphone-16-pro-mywy3zp-a&psig=AOvVaw3GfRSUYLXNnKCLXRj50Xzx&ust=1748595931780000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMDLg82pyI0DFQAAAAAdAAAAABAe', 8),
+    (77, 1, 'https://content.rozetka.com.ua/goods/images/big/364834229.jpg', 9);
 
 
 

@@ -46,6 +46,7 @@
     <include file="db/changelog/logs/products-add-column-code.xml" relativeToChangelogFile="false" />
     <include file="db/changelog/logs/create-table-wishlist.xml" relativeToChangelogFile="false" />
     <include file="db/changelog/logs/add_reset_password_token_column_for_users.xml" relativeToChangelogFile="false" />
+    <include file="db/changelog/logs/add-table-alternative-products.xml" relativeToChangelogFile="false" />
 
     <changeSet id="1" author="serhii.babanov">
         <sqlFile
@@ -99,6 +100,30 @@
         <sqlFile
                 encoding="utf8"
                 path="classpath:/db/changelog/devLogs/insert-images.sql"
+                relativeToChangelogFile="false"
+                splitStatements="true"
+                stripComments="true"/>
+    </changeSet>
+    <changeSet id="8" author="oleksandr.bogdanets">
+        <sqlFile
+                encoding="utf8"
+                path="classpath:/db/changelog/devLogs/insert-users.sql"
+                relativeToChangelogFile="false"
+                splitStatements="true"
+                stripComments="true"/>
+    </changeSet>
+    <changeSet id="9" author="oleksandr.bogdanets">
+        <sqlFile
+                encoding="utf8"
+                path="classpath:/db/changelog/devLogs/insert-reviews.sql"
+                relativeToChangelogFile="false"
+                splitStatements="true"
+                stripComments="true"/>
+    </changeSet>
+    <changeSet id="10" author="oleksandr.bogdanets">
+        <sqlFile
+                encoding="utf8"
+                path="classpath:/db/changelog/devLogs/insert-alternative-products.sql"
                 relativeToChangelogFile="false"
                 splitStatements="true"
                 stripComments="true"/>

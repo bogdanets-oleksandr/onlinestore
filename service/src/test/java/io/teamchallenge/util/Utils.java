@@ -12,6 +12,7 @@ import io.teamchallenge.dto.cart.CartResponseDto;
 import io.teamchallenge.dto.category.CategoryAttributeAttributeValueVO;
 import io.teamchallenge.dto.category.CategoryRequestDto;
 import io.teamchallenge.dto.category.CategoryResponseDto;
+import io.teamchallenge.dto.filter.CameraFilter;
 import io.teamchallenge.dto.filter.PriceFilter;
 import io.teamchallenge.dto.filter.ProductFilterDto;
 import io.teamchallenge.dto.order.OrderItemResponseDto;
@@ -94,6 +95,10 @@ public class Utils {
                 .brandIds(List.of(1L))
                 .categoryId(1L)
                 .attributeValueIds(List.of(2L, 4L))
+                .cameraFilter(CameraFilter.builder()
+                        .from(0)
+                        .to(100000)
+                        .build())
                 .build();
     }
 
@@ -141,6 +146,7 @@ public class Utils {
                 .brand(getBrand())
                 .description("desc")
                 .quantity(1)
+                .alternativeProducts(List.of())
                 .build();
     }
 
@@ -156,6 +162,8 @@ public class Utils {
                 .name(product.getName())
                 .price(product.getPrice())
                 .available(product.getQuantity() > 0)
+                .categoryId(product.getCategory().getId())
+                .href(product.getName().toLowerCase().replaceAll(" ", "-"))
                 .rating(product.getReviews().stream()
                         .mapToInt(Review::getRate)
                         .average()
@@ -196,6 +204,7 @@ public class Utils {
                         .collect(Collectors.toList()))
                 .brand(product.getBrand().getName())
                 .name(product.getName())
+                .href(product.getName().toLowerCase().replaceAll(" ", "-"))
                 .description(product.getDescription())
                 .price(product.getPrice())
                 .quantity(product.getQuantity())

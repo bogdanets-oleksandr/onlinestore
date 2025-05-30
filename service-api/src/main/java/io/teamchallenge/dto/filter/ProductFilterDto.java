@@ -21,4 +21,5 @@ public class ProductFilterDto {
     private Long categoryId;
     @Size(min = 1)
     private List<Long> attributeValueIds;
+    private CameraFilter cameraFilter;
 }

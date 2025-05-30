@@ -10,6 +10,7 @@ import io.teamchallenge.dto.cart.CartItemResponseDto;
 import io.teamchallenge.dto.cart.CartResponseDto;
 import io.teamchallenge.dto.category.CategoryRequestDto;
 import io.teamchallenge.dto.category.CategoryResponseDto;
+import io.teamchallenge.dto.filter.CameraFilter;
 import io.teamchallenge.dto.filter.PriceFilter;
 import io.teamchallenge.dto.filter.ProductFilterDto;
 import io.teamchallenge.dto.order.OrderItemResponseDto;
@@ -111,6 +112,7 @@ public class Utils {
                 .id(product.getId())
                 .name(product.getName())
                 .price(product.getPrice())
+                .categoryId(product.getCategory().getId())
                 .images(product.getImages()
                         .stream()
                         .map(img -> ImageDto.builder()
@@ -311,6 +313,10 @@ public class Utils {
                 .brandIds(List.of(1L))
                 .categoryId(1L)
                 .attributeValueIds(List.of(2L, 4L))
+                .cameraFilter(CameraFilter.builder()
+                        .from(0)
+                        .to(100000)
+                        .build())
                 .build();
     }
 

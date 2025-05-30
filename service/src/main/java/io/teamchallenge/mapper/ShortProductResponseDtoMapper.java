@@ -27,6 +27,9 @@ public class ShortProductResponseDtoMapper extends AbstractConverter<Product, Sh
         return ShortProductResponseDto.builder()
             .id(product.getId())
             .name(product.getName())
+            .href(product.getName().toLowerCase()
+                    .replaceAll("[^a-z0-9]+", "-")
+                    .replaceAll("^-+|-+$", ""))
             .price(product.getPrice())
             .images(product.getImages()
                 .stream()
@@ -37,6 +40,7 @@ public class ShortProductResponseDtoMapper extends AbstractConverter<Product, Sh
                 .collect(Collectors.toList()))
             .available(product.getQuantity() > 0)
             .code(product.getCode())
+            .categoryId(product.getCategory().getId())
             .rating(roundedRating(
                     product.getReviews().stream()
                 .mapToInt(Review::getRate)

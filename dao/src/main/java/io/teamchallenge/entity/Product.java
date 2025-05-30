@@ -73,6 +73,10 @@ public class Product {
     @Column(unique = true, nullable = false)
     private String code;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Setter(AccessLevel.PRIVATE)
+    private List<AlternativeProduct> alternativeProducts;
+
 
     /**
      * Adds an image to the product and sets the product for the image.

@@ -129,5 +129,8 @@ values
     (89, 20, '200g'),
 
     --Max play time
-    (90, 21, '76h');
+    (90, 21, '76h'),
 
+    --Models
+    (106, 22, 'Apple iPhone 15 Pro'),
+    (107, 22, 'Apple iPhone 15 Pro Max');

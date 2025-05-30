@@ -46,11 +46,7 @@ import static io.teamchallenge.constant.ExceptionMessage.BRAND_NOT_FOUND_BY_ID;
 import static io.teamchallenge.constant.ExceptionMessage.CATEGORY_NOT_FOUND_BY_ID;
 import static io.teamchallenge.constant.ExceptionMessage.PRODUCT_PERSISTENCE_EXCEPTION;
 import static io.teamchallenge.constant.ExceptionMessage.PRODUCT_WITH_NAME_ALREADY_EXISTS;
-import static io.teamchallenge.repository.ProductRepository.Specs.byAttributeValuesIds;
-import static io.teamchallenge.repository.ProductRepository.Specs.byBrandIds;
-import static io.teamchallenge.repository.ProductRepository.Specs.byCategoryId;
-import static io.teamchallenge.repository.ProductRepository.Specs.byName;
-import static io.teamchallenge.repository.ProductRepository.Specs.byPriceRange;
+import static io.teamchallenge.repository.ProductRepository.Specs.*;
 
 /**
  * Service class for managing products.
@@ -179,6 +175,7 @@ public class ProductService {
             .reviews(new ArrayList<>())
             .images(new ArrayList<>())
             .productAttributes(new ArrayList<>())
+                .alternativeProducts(new ArrayList<>())
             .build();
         insertExistingAttributes(productRequestDto, product);
         insertNewAttributes(productRequestDto, product);
@@ -324,6 +321,10 @@ public class ProductService {
         var attributeValueIds = productFilterDto.getAttributeValueIds();
         if (!Objects.isNull(attributeValueIds)) {
             specifications.add(byAttributeValuesIds(attributeValueIds));
+        }
+        var cameraFilter = productFilterDto.getCameraFilter();
+        if (!Objects.isNull(cameraFilter.getFrom()) && !Objects.isNull(cameraFilter.getTo())) {
+            specifications.add(byCameraFilter(cameraFilter));
         }
         return Specification.allOf(specifications);
     }

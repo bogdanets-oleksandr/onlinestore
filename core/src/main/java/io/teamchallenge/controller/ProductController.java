@@ -2,6 +2,7 @@ package io.teamchallenge.controller;
 
 import io.teamchallenge.annotation.AllowedSortFields;
 import io.teamchallenge.annotation.ImageValidation;
+import io.teamchallenge.dto.filter.CameraFilter;
 import io.teamchallenge.dto.filter.PriceFilter;
 import io.teamchallenge.dto.filter.ProductFilterDto;
 import io.teamchallenge.dto.pageable.AdvancedPageableDto;
@@ -58,6 +59,8 @@ public class ProductController {
         @RequestParam(required = false) List<Long> attributeValueIds,
         @RequestParam(required = false) String minPrice,
         @RequestParam(required = false) String maxPrice,
+        @RequestParam(required = false) String minMP,
+        @RequestParam(required = false) String maxMP,
         @AllowedSortFields(values = {"price","popularity","rating"})
         @PageableDefault(sort = "price", direction = DESC) Pageable pageable) {
         ProductFilterDto productFilterDto = ProductFilterDto.builder()
@@ -69,6 +72,10 @@ public class ProductController {
             .brandIds(brandIds)
             .categoryId(categoryId)
             .attributeValueIds(attributeValueIds)
+                .cameraFilter(CameraFilter.builder()
+                        .from(minMP == null ? null : Integer.parseInt(minMP))
+                        .to(maxMP == null ? null : Integer.parseInt(maxMP))
+                        .build())
             .build();
         return ResponseEntity.ok(productService.getAll(pageable, productFilterDto));
     }

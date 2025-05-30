@@ -21,4 +21,6 @@ values
     (18, 'Video card'),
     (19, 'Bluetooth version'),
     (20, 'Weight'),
-    (21, 'Max play time');
+    (21, 'Max play time'),
+    (22, 'Model'),
+    (23, 'Camera MP');

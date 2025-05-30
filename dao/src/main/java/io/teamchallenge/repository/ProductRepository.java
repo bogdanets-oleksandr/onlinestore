@@ -1,12 +1,17 @@
 package io.teamchallenge.repository;
 
+import io.teamchallenge.dto.filter.CameraFilter;
 import io.teamchallenge.entity.Product;
 import io.teamchallenge.entity.Product_;
+import io.teamchallenge.entity.attributes.AttributeValue;
+import io.teamchallenge.entity.attributes.ProductAttribute;
 import io.teamchallenge.entity.attributes.ProductAttribute_;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
+import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -178,6 +183,18 @@ public interface ProductRepository
             return (root, query, builder) ->
                 root.get(Product_.PRODUCT_ATTRIBUTES).get(ProductAttribute_.ATTRIBUTE_VALUE)
                     .get("id").in(attributeValuesIds);
+        }
+
+        static Specification<Product> byCameraFilter(CameraFilter cameraFilter) {
+            return (root, query, builder) -> {
+                Join<Product, ProductAttribute> productAttributeJoin = root.join("productAttributes");
+                Join<ProductAttribute, AttributeValue> attributeValueJoin = productAttributeJoin.join("attributeValue");
+
+                Predicate idPredicate = builder.equal(attributeValueJoin.get("id"), 23L);
+                Predicate rangePredicate = builder.between(attributeValueJoin.get("value"), cameraFilter.getFrom(), cameraFilter.getTo());
+
+                return builder.and(idPredicate, rangePredicate);
+            };
         }
     }
 }

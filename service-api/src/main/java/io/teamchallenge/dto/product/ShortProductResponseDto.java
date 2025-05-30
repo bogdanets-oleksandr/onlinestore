@@ -21,9 +21,11 @@ import lombok.ToString;
 public class ShortProductResponseDto {
     private Long id;
     private String name;
+    private String href;
     private BigDecimal price;
     private List<ImageDto> images;
     private String code;
+    private Long categoryId;
     private Boolean available;
     private Double rating;
 }
