@@ -19,6 +19,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -66,6 +67,9 @@ public class Order {
     @Column(name = "delivery_method", nullable = false)
     private DeliveryMethod deliveryMethod;
 
+    @Column
+    private String comment;
+
     @Setter(AccessLevel.PRIVATE)
     @Column(name = "created_at", updatable = false)
     @CreationTimestamp
@@ -90,4 +94,10 @@ public class Order {
         orderItems.remove(orderItem);
         orderItem.setOrder(null);
     }
+
+    public void removeAllOrderItems() {
+        orderItems.forEach(orderItem -> orderItem.setOrder(null));
+        orderItems.clear();
+    }
+
 }

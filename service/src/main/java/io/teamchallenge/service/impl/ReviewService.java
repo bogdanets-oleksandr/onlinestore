@@ -61,9 +61,6 @@ public class ReviewService {
      */
     @Transactional
     public ReviewResponseDto create(ReviewId reviewId, AddReviewRequestDto addReviewRequestDto) {
-        if (!userRepository.existsByIdAndCompletedOrderWithProductId(reviewId.getUserId(), reviewId.getProductId())) {
-            throw new ForbiddenException(USER_HAS_NO_COMPLETED_ORDERS_WITH_PRODUCT.formatted(reviewId.getProductId()));
-        }
 
         if (reviewRepository.existsById(reviewId)) {
             throw new AlreadyExistsException(REVIEW_ALREADY_EXISTS);

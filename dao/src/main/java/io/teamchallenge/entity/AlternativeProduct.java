@@ -22,10 +22,14 @@ public class AlternativeProduct {
     private Product product;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "attribute_value_id", nullable = false)
+    private AttributeValue attributeValue;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "alternative_product_id")
     private Product alternativeProduct;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "attribute_value_id", nullable = false)
-    private AttributeValue attributeValue;
+    @JoinColumn(name = "alternative_attribute_value_id", nullable = false)
+    private AttributeValue alternativeAttributeValue;
 }

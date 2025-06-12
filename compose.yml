@@ -2,7 +2,7 @@ version: "3"
 services:
   store:
     container_name: store
-    image: bogdanetsoleksandr/onlinestore-backend:1.17
+    image: bogdanetsoleksandr/onlinestore-backend:latest
     platform: linux/amd64
     env_file:
       - .env

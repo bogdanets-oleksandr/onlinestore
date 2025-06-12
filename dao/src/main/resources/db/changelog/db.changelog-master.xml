@@ -46,4 +46,6 @@
     <include file="db/changelog/logs/create-table-wishlist.xml" relativeToChangelogFile="false" />
     <include file="db/changelog/logs/add_reset_password_token_column_for_users.xml" relativeToChangelogFile="false" />
     <include file="db/changelog/logs/add-table-alternative-products.xml" relativeToChangelogFile="false" />
+    <include file="db/changelog/logs/add-column-alternative-attribute-value-to-alternative-product.xml" relativeToChangelogFile="false" />
+    <include file="db/changelog/logs/add-column-comment-to-order.xml" relativeToChangelogFile="false" />
 </databaseChangeLog>

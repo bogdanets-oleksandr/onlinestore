@@ -80,7 +80,18 @@ values
     (74, 1, 'https://www.apple.com/newsroom/images/2023/09/apple-unveils-iphone-15-pro-and-iphone-15-pro-max/article/Apple-iPhone-15-Pro-lineup-hero-230912_Full-Bleed-Image.jpg.large_2x.jpg', 6),
     (75, 1, 'https://i.ebayimg.com/images/g/d60AAOSwFjlleez-/s-l1200.jpg', 7),
     (76, 1, 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istudiosg.com%2Fproducts%2Fiphone-16-pro-mywy3zp-a&psig=AOvVaw3GfRSUYLXNnKCLXRj50Xzx&ust=1748595931780000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMDLg82pyI0DFQAAAAAdAAAAABAe', 8),
-    (77, 1, 'https://content.rozetka.com.ua/goods/images/big/364834229.jpg', 9);
+    (77, 1, 'https://content.rozetka.com.ua/goods/images/big/364834229.jpg', 9),
+
+    --
+    (78, 21, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1748968993/51-dI0OmzyL_ahbadz.jpg', 1),
+    (79, 21, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1748968993/312VbheIhGL_uguc0k.jpg', 2),
+    (80, 21, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1748968994/Apple-iPhone-15-256GB-Blue-3_onwv7r.png', 3),
+    (81, 22, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1748969164/616mZZm8-7L._AC_UF894_1000_QL80__eybjhr.jpg', 1),
+    (82, 22, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1748969164/41HuQPBFjOL_lq34ll.jpg', 2),
+    (83, 22, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1748969173/65305880-4_xhyfjm.jpg', 3),
+    (84, 23, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1748969164/616mZZm8-7L._AC_UF894_1000_QL80__eybjhr.jpg', 1),
+    (85, 23, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1748969164/41HuQPBFjOL_lq34ll.jpg', 2),
+    (86, 23, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1748969173/65305880-4_xhyfjm.jpg', 3);
 
 
 

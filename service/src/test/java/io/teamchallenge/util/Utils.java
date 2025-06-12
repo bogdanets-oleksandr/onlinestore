@@ -150,6 +150,29 @@ public class Utils {
                 .build();
     }
 
+    public static Product getOtherProduct() {
+        List<ProductAttribute> productAttributes = new ArrayList<>();
+        productAttributes.add(getProductAttribute());
+        List<Image> images = new ArrayList<>();
+        images.add(getImage());
+        return Product
+                .builder()
+                .id(2L)
+                .shortDesc("shortDesc")
+                .name("name")
+                .category(getCategory())
+                .productAttributes(productAttributes)
+                .price(BigDecimal.ONE)
+                .images(images)
+                .reviews(new ArrayList<>())
+                .brand(getBrand())
+                .description("desc")
+                .quantity(1)
+                .alternativeProducts(List.of())
+                .build();
+    }
+
+
     public static Image getImage() {
         return Image.builder()
                 .link("https://image.jpg").build();
@@ -437,10 +460,16 @@ public class Utils {
                         .productId(1L)
                         .orderId(1L)
                         .build())
-                .quantity(2)
+                .quantity(1)
                 .price(BigDecimal.TEN)
                 .product(getProduct())
                 .build();
+    }
+
+    public static List<OrderItem> getOrderItems() {
+        List<OrderItem> items = new ArrayList<>();
+        items.add(getOrderItem());
+        return items;
     }
 
     public static Order getOrder() {
@@ -455,7 +484,8 @@ public class Utils {
                 .address(Utils.getAddress())
                 .deliveryMethod(DeliveryMethod.COURIER)
                 .deliveryStatus(DeliveryStatus.PROCESSING)
-                .orderItems(List.of(getOrderItem()))
+                .orderItems(getOrderItems())
+                .comment("comment")
                 .isPaid(false)
                 .build();
     }
@@ -471,6 +501,37 @@ public class Utils {
                 .cartItems(List.of(getCartItemRequestDto()))
                 .phoneNumber("1234567890")
                 .email("test@mail.com")
+                .comment("comment")
+                .build();
+    }
+
+    public static OrderRequestDto getOrderRequestDtoNova() {
+        return OrderRequestDto.builder()
+                .fullName("FirstName")
+                .address(AddressDto.builder()
+                        .addressLine("address line")
+                        .city("Kyiv")
+                        .build())
+                .deliveryMethod(DeliveryMethod.NOVA)
+                .cartItems(List.of(getCartItemRequestDto()))
+                .phoneNumber("1234567890")
+                .email("test@mail.com")
+                .comment("comment")
+                .build();
+    }
+
+    public static OrderRequestDto getOrderRequestDtoCourierAlternativeProduct() {
+        return OrderRequestDto.builder()
+                .fullName("FirstName")
+                .address(AddressDto.builder()
+                        .addressLine("address line")
+                        .city("Kyiv")
+                        .build())
+                .deliveryMethod(DeliveryMethod.COURIER)
+                .cartItems(List.of(getAlternativeCartItemRequestDto()))
+                .phoneNumber("1234567890")
+                .email("test@mail.com")
+                .comment("comment")
                 .build();
     }
 
@@ -480,6 +541,14 @@ public class Utils {
                 .quantity(1)
                 .build();
     }
+
+    private static CartItemRequestDto getAlternativeCartItemRequestDto() {
+        return CartItemRequestDto.builder()
+                .productId(2L)
+                .quantity(1)
+                .build();
+    }
+
 
     public static Address getAddress() {
         return Address.builder()
@@ -502,6 +571,7 @@ public class Utils {
                 .deliveryStatus(DeliveryStatus.PROCESSING)
                 .orderItems(new ArrayList<>())
                 .isPaid(false)
+                .comment("comment")
                 .build();
     }
 

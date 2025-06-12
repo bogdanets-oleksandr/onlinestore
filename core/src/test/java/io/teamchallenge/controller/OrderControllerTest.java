@@ -18,8 +18,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 
-import static io.teamchallenge.utils.Utils.getOrderResponseDto;
-import static io.teamchallenge.utils.Utils.getShortOrderResponseDtoPageableDto;
+import static io.teamchallenge.utils.Utils.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -59,6 +58,18 @@ public class OrderControllerTest {
         assertEquals(orderResponseDto, responseEntity.getBody());
         verify(orderService).getById(orderId);
     }
+
+    @Test
+    void changeOrderDetailsTest() {
+        Long orderId = 1L;
+        OrderRequestDto orderRequestDto = getOrderRequestDtoNova();
+
+        var responseEntity = orderController.changeOrderDetails(orderId, orderRequestDto);
+
+        assertEquals(HttpStatus.NO_CONTENT, responseEntity.getStatusCode());
+        verify(orderService).changeOrderDetails(orderId, orderRequestDto);
+    }
+
 
     @Test
     void setOrderStatusTest() {

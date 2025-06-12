@@ -271,4 +271,64 @@ values
     (231, 20, 94), --Processor frequency: 4.4 GHz
     (232, 20, 52), -- Number of processor cores: Octa-core
     (233, 20, 95), --Operating system: FreeDOS
-    (234, 20, 105); --Video card: NVIDIA GeForce RTX 2050
+    (234, 20, 105), --Video card: NVIDIA GeForce RTX 2050
+
+    --Apple iPhone 15 256Gb Blue
+
+    (235, 21, 2),   -- Memory ROM: 256 Gb
+    (236, 21, 5),   -- Memory RAM: 6 Gb
+    (237, 21, 12),  -- Color: Light Blue
+    (238, 21, 24),  -- Display diagonal: 6.12 inches
+    (239, 21, 30),  -- Screen resolution: 2556 x 1179 pixels
+    (240, 21, 32),  -- Screen type: Super Retina XDR OLED
+    (241, 21, 36),  -- Screen refresh rate: 60 Hz
+    (242, 21, 40),  -- Glass protection technology: Gorilla Glass 5
+    (243, 21, 43),  -- Communication standards: 4G LTE
+    (244, 21, 45),  -- Number of SIM cards: 1
+    (245, 21, 46),  -- SIM card size: Nano-SIM
+    (246, 21, 48),  -- Operating system: iOS
+    (247, 21, 50),  -- Processor frequency: 3.0 GHz
+    (248, 21, 52),  -- Number of processor cores: Octa-core
+    (249, 21, 54),  -- Processor model: A14 Bionic
+    (250, 21, 57),  -- Flesh card: No microSD support
+    (251, 21, 59), -- Sensor resolution: 12 MP
+
+    --Apple iPhone 15 Pro 256Gb Natural Titanium
+
+    (252, 22, 2),   -- Memory ROM: 256 Gb
+    (253, 22, 6),   -- Memory RAM: 8 Gb
+    (254, 22, 8),   -- Color: Gray
+    (255, 22, 24),  -- Display diagonal: 6.12 inches
+    (256, 22, 30),  -- Screen resolution: 2556 x 1179 pixels
+    (257, 22, 32),  -- Screen type: Super Retina XDR OLED
+    (258, 22, 36),  -- Screen refresh rate: 60 Hz
+    (259, 22, 40),  -- Glass protection technology: Gorilla Glass 5
+    (260, 22, 43),  -- Communication standards: 4G LTE
+    (261, 22, 45),  -- Number of SIM cards: 1
+    (262, 22, 46),  -- SIM card size: Nano-SIM
+    (263, 22, 48),  -- Operating system: iOS
+    (264, 22, 50),  -- Processor frequency: 3.0 GHz
+    (265, 22, 52),  -- Number of processor cores: Octa-core
+    (266, 22, 54),  -- Processor model: A14 Bionic
+    (267, 22, 57),  -- Flesh card: No microSD support
+    (268, 22, 59), -- Sensor resolution: 12 MP
+
+    --Apple iPhone 15 Pro 512Gb Natural Titanium
+
+    (269, 23, 3),   -- Memory ROM: 512 Gb
+    (270, 23, 6),   -- Memory RAM: 8 Gb
+    (271, 23, 8),   -- Color: Gray
+    (272, 23, 24),  -- Display diagonal: 6.12 inches
+    (273, 23, 30),  -- Screen resolution: 2556 x 1179 pixels
+    (274, 23, 32),  -- Screen type: Super Retina XDR OLED
+    (275, 23, 36),  -- Screen refresh rate: 60 Hz
+    (276, 23, 40),  -- Glass protection technology: Gorilla Glass 5
+    (277, 23, 43),  -- Communication standards: 4G LTE
+    (278, 23, 45),  -- Number of SIM cards: 1
+    (279, 23, 46),  -- SIM card size: Nano-SIM
+    (280, 23, 48),  -- Operating system: iOS
+    (281, 23, 50),  -- Processor frequency: 3.0 GHz
+    (282, 23, 52),  -- Number of processor cores: Octa-core
+    (283, 23, 54),  -- Processor model: A14 Bionic
+    (284, 23, 57),  -- Flesh card: No microSD support
+    (285, 23, 59); -- Sensor resolution: 12 MP

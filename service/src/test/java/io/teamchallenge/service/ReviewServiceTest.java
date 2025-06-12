@@ -96,8 +96,6 @@ public class ReviewServiceTest {
 
         when(reviewRepository.save(review)).thenReturn(review);
         when(modelMapper.map(review, ReviewResponseDto.class)).thenReturn(expected);
-        when(userRepository.existsByIdAndCompletedOrderWithProductId(reviewId.getUserId(), reviewId.getProductId()))
-            .thenReturn(true);
         when(userRepository.getReferenceById(reviewId.getUserId())).thenReturn(user);
         when(productRepository.getReferenceById(reviewId.getProductId())).thenReturn(product);
         when(reviewRepository.existsById(reviewId)).thenReturn(false);
@@ -112,29 +110,15 @@ public class ReviewServiceTest {
         verify(reviewRepository).existsById(reviewId);
     }
 
-    @Test
-    void createThrowsForbiddenExceptionWhenUserHasNoCompletedOrdersWithProductTest() {
-        ReviewId reviewId = Utils.getReviewId();
-        AddReviewRequestDto requestDto = Utils.getAddReviewRequestDto();
-
-        when(userRepository.existsByIdAndCompletedOrderWithProductId(reviewId.getUserId(), reviewId.getProductId()))
-            .thenReturn(false);
-
-        assertThrows(ForbiddenException.class, ()->reviewService.create(reviewId, requestDto));
-        verify(userRepository).existsByIdAndCompletedOrderWithProductId(reviewId.getUserId(), reviewId.getProductId());
-    }
 
     @Test
     void createThrowsAlreadyExistsExceptionWhenUserHasReviewOnProductTest() {
         ReviewId reviewId = Utils.getReviewId();
         AddReviewRequestDto requestDto = Utils.getAddReviewRequestDto();
 
-        when(userRepository.existsByIdAndCompletedOrderWithProductId(reviewId.getUserId(), reviewId.getProductId()))
-            .thenReturn(true);
         when(reviewRepository.existsById(reviewId)).thenReturn(true);
 
         assertThrows(AlreadyExistsException.class, ()->reviewService.create(reviewId, requestDto));
-        verify(userRepository).existsByIdAndCompletedOrderWithProductId(reviewId.getUserId(), reviewId.getProductId());
         verify(reviewRepository).existsById(reviewId);
     }
 

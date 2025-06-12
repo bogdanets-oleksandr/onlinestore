@@ -13,6 +13,7 @@ import io.teamchallenge.entity.User;
 import io.teamchallenge.enumerated.DeliveryStatus;
 import io.teamchallenge.exception.ConflictException;
 import io.teamchallenge.exception.ForbiddenException;
+import io.teamchallenge.exception.NotFoundException;
 import io.teamchallenge.repository.CartItemRepository;
 import io.teamchallenge.repository.OrderRepository;
 import io.teamchallenge.repository.ProductRepository;
@@ -34,17 +35,11 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import static io.teamchallenge.util.Utils.getOrder;
-import static io.teamchallenge.util.Utils.getOrderResponseDto;
-import static io.teamchallenge.util.Utils.getShortOrderResponseDto;
-import static io.teamchallenge.util.Utils.getShortOrderResponseDtoPageableDto;
-import static io.teamchallenge.util.Utils.getUserVO;
+import static io.teamchallenge.util.Utils.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class OrderServiceTest {
@@ -197,6 +192,53 @@ class OrderServiceTest {
         verify(productRepository).findAllByIdWithImages(anyList());
         verify(modelMapper).map(order, OrderResponseDto.class);
     }
+
+    @Test
+    void changeOrderThrowsNotFoundException() {
+        Long orderId = 1L;
+        when(orderRepository.findById(orderId)).thenReturn(Optional.empty());
+        assertThrows(NotFoundException.class, () -> orderService.changeOrderDetails(orderId, getOrderRequestDtoCourier()));
+
+        verify(orderRepository).findById(orderId);
+        verify(orderRepository, never()).save(any());
+    }
+
+    @Test
+    void changeDeliveryMethodInOrderDetails() {
+        Long orderId = 1L;
+        Order existingOrder = getOrder();
+        OrderRequestDto orderRequestDto = getOrderRequestDtoNova();
+        Long productId = 1L;
+        when(orderRepository.findById(orderId)).thenReturn(Optional.of(existingOrder));
+        when(productRepository.findById(productId)).thenReturn(Optional.of(getProduct()));
+
+        orderService.changeOrderDetails(orderId, orderRequestDto);
+        verify(orderRepository).save(existingOrder);
+    }
+
+    @Test
+    void changeOrderItemsInOrder(){
+        Long orderId = 1L;
+        Order existingOrder = getOrder();
+        OrderRequestDto orderRequestDto = getOrderRequestDtoCourierAlternativeProduct();
+        Long oldProductId = 1L;
+        Long newProductId = 2L;
+        when(orderRepository.findById(orderId)).thenReturn(Optional.of(existingOrder));
+        when(productRepository.findById(oldProductId)).thenReturn(Optional.of(getProduct()));
+        when(productRepository.findById(newProductId)).thenReturn(Optional.of(getOtherProduct()));
+
+        orderService.changeOrderDetails(orderId, orderRequestDto);
+
+        verify(orderRepository).save(existingOrder);
+
+        int oldProductAmount = productRepository.findById(oldProductId).orElseThrow().getQuantity();
+        assertEquals(2, oldProductAmount);
+
+        int newProductAmount = productRepository.findById(newProductId).orElseThrow().getQuantity();
+        assertEquals(0, newProductAmount);
+
+    }
+
 
     @Test
     void setDeliveryStatusTest() {

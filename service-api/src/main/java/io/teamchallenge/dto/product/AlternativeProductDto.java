@@ -10,7 +10,10 @@ import lombok.*;
 @Builder
 @EqualsAndHashCode
 public class AlternativeProductDto {
-    private Long id;
-    private String value;
+
+    private Long productId;
+    private String attributeValue;
+    private String href;
+    private Long categoryId;
     private boolean isAvailable;
 }

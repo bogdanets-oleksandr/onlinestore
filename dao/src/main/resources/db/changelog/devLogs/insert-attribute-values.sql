@@ -133,4 +133,5 @@ values
 
     --Models
     (106, 22, 'Apple iPhone 15 Pro'),
-    (107, 22, 'Apple iPhone 15 Pro Max');
+    (107, 22, 'Apple iPhone 15 Pro Max'),
+    (108, 22, 'Apple iPhone 15');

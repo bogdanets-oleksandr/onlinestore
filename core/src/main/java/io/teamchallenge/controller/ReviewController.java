@@ -42,7 +42,7 @@ public class ReviewController {
     public ResponseEntity<PageableDto<ReviewResponseDto>> getAllByProductId(
         @PathVariable Long productId,
         @AllowedSortFields(values = {"rate", "createdAt"})
-        @PageableDefault(sort = "rate", direction = DESC) Pageable pageable) {
+        @PageableDefault(size = 8, sort = "rate", direction = DESC) Pageable pageable) {
         return ResponseEntity.ok(reviewService.getAllByProductId(productId, pageable));
     }
 

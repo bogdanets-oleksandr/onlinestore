@@ -1,12 +1,12 @@
 -- liquibase formatted sql
 insert into products (id, short_desc, category_id, name, description, price, quantity, created_at, brand_id, code)
-values (1, 'Apple iPhone 15 Pro Max 256Gb', 1, 'Apple iPhone 15 Pro Max 256Gb', 'Apple iPhone 15 Pro Max 256Gb', 1000, 100, '2021-01-01', 1, '111111'),
+values (1, 'Apple iPhone 15 Pro Max 256Gb Natural Titanium', 1, 'Apple iPhone 15 Pro Max 256Gb Natural Titanium', 'Apple iPhone 15 Pro Max 256Gb Natural Titanium', 1000, 100, '2021-01-01', 1, '111111'),
        (2, 'Samsung Galaxy A24 6/128Gb Black', 1, 'Samsung Galaxy A24 6/128Gb Black', 'Samsung Galaxy A24 6/128Gb Black', 1100, 100, '2021-01-01', 2, '222222'),
        (3, 'Samsung Galaxy S24 Ultra 12/512Gb', 1, 'Samsung Galaxy S24 Ultra 12/512Gb', 'Samsung Galaxy S24 Ultra 12/512Gb', 1400, 100, '2021-01-01', 2, '333333'),
        (4, 'Apple iPhone 15 Pro 128 Gb Blue Titanium', 1, 'Apple iPhone 15 Pro 128 Gb Blue Titanium', 'Apple iPhone 15 Pro 128 Gb Blue Titanium', 900, 100, '2021-01-01', 1, '444444'),
        (5, 'Samsung Galaxy S23 FE 5G 256Gb Mint Global', 1, 'Samsung Galaxy S23 FE 5G 256Gb Mint Global', 'Samsung Galaxy S23 FE 5G 256Gb Mint Global', 2000, 100, '2021-01-01', 2, '555555'),
        (6, 'Apple iPhone 15 128GB Green', 1, 'Apple iPhone 15 128GB Green', 'Apple iPhone 15 128GB Green', 1500, 100, '2021-01-01', 1, '666666'),
-       (7, 'Apple iPhone 15 128GB Pink', 1, 'Apple iPhone 15 128GB Pink', 'Apple iPhone 15 128GB Pink', 2000, 100, '2021-01-01', 1, '777777'),
+       (7, 'Apple iPhone 15 128GB Pink', 1, 'Apple iPhone 15 128GB Pink', 'Apple iPhone 15 128GB Pink', 2000, 0, '2021-01-01', 1, '777777'),
        (8, 'Apple iPhone 13 128Gb Starlight', 1, 'Apple iPhone 13 128Gb Starlight', 'Apple iPhone 13 128Gb Starlight', 2500, 100, '2021-01-01', 1, '888888'),
        (9, 'Lenovo IdeaPad 1 15ALC7', 2, 'Lenovo IdeaPad 1 15ALC7', 'Lenovo IdeaPad 1 15ALC7', 2500, 100, '2021-01-01', 3, '999999'),
        (10, 'Asus TUF Gaming A15', 2, 'Asus TUF Gaming A15', 'Asus TUF Gaming A15', 2500, 100, '2021-01-01', 4, '101010'),
@@ -20,5 +20,6 @@ values (1, 'Apple iPhone 15 Pro Max 256Gb', 1, 'Apple iPhone 15 Pro Max 256Gb', 
        (18, 'Asus X515KA', 2, 'Asus X515KA', 'Asus X515KA', 1900, 100, '2022-01-01', 4, '909090'),
        (19, 'Asus TUF Gaming F17', 2, 'Asus TUF Gaming F17', 'Asus TUF Gaming F17', 2700, 2, '2023-01-01', 4, '010101'),
        (20, 'Lenovo LOQ 15IRH8', 2, 'Lenovo LOQ 15IRH8', 'Lenovo LOQ 15IRH8', 2400, 100, '2023-01-01', 3, '020202'),
-       (21, 'Apple iPhone 15 256Gb', 1, 'Apple iPhone 15 256Gb', 'Apple iPhone 15 256Gb', 750, 100, '2021-01-01', 1, '030303'),
-       (22, 'Apple iPhone 15 Pro 256Gb', 1, 'Apple iPhone 15 Pro 256Gb', 'Apple iPhone 15 Pro 256Gb', 900, 0, '2021-01-01', 1, '040404');
+       (21, 'Apple iPhone 15 256Gb Blue', 1, 'Apple iPhone 15 256Gb Blue', 'Apple iPhone 15 256Gb Blue', 750, 100, '2021-01-01', 1, '030303'),
+       (22, 'Apple iPhone 15 Pro 256Gb Natural Titanium', 1, 'Apple iPhone 15 Pro 256Gb Natural Titanium', 'Apple iPhone 15 Pro 256Gb Natural Titanium', 900, 0, '2021-01-01', 1, '040404'),
+       (23, 'Apple iPhone 15 Pro 512Gb Natural Titanium', 1, 'Apple iPhone 15 Pro 512Gb Natural Titanium', 'Apple iPhone 15 Pro 512Gb Natural Titanium', 1100, 10, '2021-01-01', 1, '050505');

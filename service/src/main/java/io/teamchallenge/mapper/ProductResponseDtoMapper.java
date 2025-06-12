@@ -7,6 +7,7 @@ import io.teamchallenge.dto.product.ProductAttributeResponseDto;
 import io.teamchallenge.dto.product.ProductResponseDto;
 import io.teamchallenge.entity.AlternativeProduct;
 import io.teamchallenge.entity.Product;
+import io.teamchallenge.entity.attributes.AttributeValue;
 import io.teamchallenge.entity.reviews.Review;
 import org.modelmapper.AbstractConverter;
 import org.springframework.stereotype.Component;
@@ -84,15 +85,35 @@ public class ProductResponseDtoMapper extends AbstractConverter<Product, Product
         HashMap<String, List<AlternativeProductDto>> alternativeProducts = new HashMap<>();
 
         for (AlternativeProduct alternativeProduct : product.getAlternativeProducts()) {
+
             String attribute = alternativeProduct.getAttributeValue().getAttribute().getName();
+            attribute = attribute.replaceAll(" ", "")
+                    .replaceFirst(String.valueOf(attribute.charAt(0)), String.valueOf(attribute.charAt(0)).toLowerCase());
 
             AlternativeProductDto alternativeProductDto = AlternativeProductDto.builder()
-                    .id(alternativeProduct.getAlternativeProduct().getId())
-                    .value(alternativeProduct.getAttributeValue().getValue())
+                    .productId(alternativeProduct.getAlternativeProduct().getId())
+                    .attributeValue(alternativeProduct.getAlternativeAttributeValue().getValue()
+                            .replaceAll(" ", ""))
                     .isAvailable(alternativeProduct.getAlternativeProduct().getQuantity() > 0)
+                    .categoryId(alternativeProduct.getAlternativeProduct().getCategory().getId())
+                    .href(alternativeProduct.getAlternativeProduct().getName().toLowerCase()
+                            .replaceAll("[^a-z0-9]+", "-")
+                            .replaceAll("^-+|-+$", ""))
                     .build();
 
-            alternativeProducts.computeIfAbsent(attribute, o -> new ArrayList<>());
+            alternativeProducts.computeIfAbsent(attribute, o -> {
+                List<AlternativeProductDto> list = new ArrayList<>();
+                list.add(AlternativeProductDto.builder()
+                        .productId(product.getId())
+                        .categoryId(product.getCategory().getId())
+                        .isAvailable(product.getQuantity() > 0)
+                        .attributeValue(alternativeProduct.getAttributeValue().getValue().replaceAll(" ", ""))
+                        .href(product.getName().toLowerCase()
+                                .replaceAll("[^a-z0-9]+", "-")
+                                .replaceAll("^-+|-+$", ""))
+                        .build());
+                return list;
+            });
             alternativeProducts.get(attribute).add(alternativeProductDto);
         }
 

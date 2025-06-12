@@ -30,10 +30,7 @@ import io.teamchallenge.dto.security.SignInResponseDto;
 import io.teamchallenge.dto.security.SignUpRequestDto;
 import io.teamchallenge.dto.security.SignUpResponseDto;
 import io.teamchallenge.dto.user.ReviewerDto;
-import io.teamchallenge.entity.Brand;
-import io.teamchallenge.entity.Category;
-import io.teamchallenge.entity.Image;
-import io.teamchallenge.entity.Product;
+import io.teamchallenge.entity.*;
 import io.teamchallenge.entity.attributes.Attribute;
 import io.teamchallenge.entity.attributes.AttributeValue;
 import io.teamchallenge.entity.attributes.ProductAttribute;
@@ -351,6 +348,19 @@ public class Utils {
                         .city("Kyiv")
                         .build())
                 .deliveryMethod(DeliveryMethod.COURIER)
+                .phoneNumber("1234567890")
+                .email("test@mail.com")
+                .build();
+    }
+
+    public static OrderRequestDto getOrderRequestDtoNova() {
+        return OrderRequestDto.builder()
+                .fullName("FirstName")
+                .address(AddressDto.builder()
+                        .addressLine("address line")
+                        .city("Kyiv")
+                        .build())
+                .deliveryMethod(DeliveryMethod.NOVA)
                 .phoneNumber("1234567890")
                 .email("test@mail.com")
                 .build();

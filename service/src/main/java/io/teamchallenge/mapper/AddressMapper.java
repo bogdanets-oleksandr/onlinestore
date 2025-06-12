@@ -38,8 +38,8 @@ public class AddressMapper extends AbstractConverter<AddressDto, Address> {
         if (addressDto.getCity() != null) {
             addressLine.append(", ").append(addressDto.getCity());
         }
-        if (addressDto.getDepartment() != null) {
-            addressLine.append(", ").append(addressDto.getDepartment());
+        if (addressDto.getDepartmentNumber() != null) {
+            addressLine.append(", ").append(addressDto.getDepartmentNumber());
         }
         if (addressLine.length() == 0) {
             addressLine.append("Unknown address");

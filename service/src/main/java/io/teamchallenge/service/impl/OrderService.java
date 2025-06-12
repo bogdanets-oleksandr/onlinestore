@@ -112,6 +112,42 @@ public class OrderService {
     }
 
     /**
+     * Changes an {@link Order} by its unique identifier.
+     *
+     * @param orderId The unique identifier of the order.
+     * @throws NotFoundException If no order is found with the provided ID.
+     */
+    @Transactional
+    public void changeOrderDetails(Long orderId, OrderRequestDto orderRequestDto) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new NotFoundException(ORDER_NOT_FOUND_BY_ID.formatted(orderId)));
+        order.setContactInfo(ContactInfo.builder()
+                .email(orderRequestDto.getEmail())
+                .phoneNumber(orderRequestDto.getPhoneNumber())
+                .fullName(orderRequestDto.getFullName())
+                .build());
+        order.setAddress(modelMapper.map(orderRequestDto.getAddress(), Address.class));
+        order.setDeliveryMethod(orderRequestDto.getDeliveryMethod());
+        order.setComment(orderRequestDto.getComment());
+
+        order.getOrderItems().forEach(orderItem -> {
+            Product product = productRepository.findById(orderItem.getProduct().getId()).orElseThrow();
+            product.setQuantity(product.getQuantity() + orderItem.getQuantity());
+        });
+
+        order.removeAllOrderItems();
+
+        orderRequestDto.getCartItems().stream()
+                .map(n -> {
+                    Product product = productRepository.findById(n.getProductId()).orElseThrow();
+                    product.setQuantity(product.getQuantity() - n.getQuantity());
+                    return buildOrderItem(n, order, product);
+                }).forEach(order::addOrderItem);
+
+        orderRepository.save(order);
+    }
+
+    /**
      * Updates the delivery status of an order.
      *
      * @param orderId The unique identifier of the order.
@@ -197,6 +233,7 @@ public class OrderService {
                 .deliveryStatus(DeliveryStatus.PROCESSING)
                 .orderItems(new ArrayList<>())
                 .isPaid(false)
+                .comment(orderRequestDto.getComment())
                 .build();
     }
 }
