@@ -243,9 +243,9 @@ class OrderServiceTest {
     @Test
     void setDeliveryStatusTest() {
         Long orderId = 1L;
-        DeliveryStatus status = DeliveryStatus.COMPLETED;
+        DeliveryStatus status = DeliveryStatus.PAID;
         Order order = getOrder();
-        order.setDeliveryStatus(DeliveryStatus.PROCESSING);
+        order.setDeliveryStatus(DeliveryStatus.ORDER);
 
         when(orderRepository.findById(orderId)).thenReturn(Optional.of(order));
 
@@ -258,9 +258,9 @@ class OrderServiceTest {
     @Test
     void setDeliveryStatusThrowsConflictExceptionTest() {
         Long orderId = 1L;
-        DeliveryStatus status = DeliveryStatus.COMPLETED;
+        DeliveryStatus status = DeliveryStatus.PAID;
         Order order = getOrder();
-        order.setDeliveryStatus(DeliveryStatus.COMPLETED);
+        order.setDeliveryStatus(DeliveryStatus.PAID);
 
         when(orderRepository.findById(orderId)).thenReturn(Optional.of(order));
 

@@ -24,8 +24,8 @@ INSERT INTO Images (id, product_id, link, image_order)
 VALUES (1, 1, 'https://example.com/image1.jpg', 1),
        (2, 2, 'https://example.com/image2.jpg', 1);
 INSERT INTO Orders (id, created_at, full_name, email, phone_number, is_paid, delivery_status, delivery_method, address_id)
-VALUES (1, '2024-07-04 12:00:00', 'John',  'john.doe@example.com', '1234567890', TRUE, 'COMPLETED', 'NOVA', null),
-       (2, '2024-07-03 12:00:00', 'Johana',  'johana.doe@example.com', '1234567891', FALSE, 'PROCESSING', 'COURIER', 1);
+VALUES (1, '2024-07-04 12:00:00', 'John',  'john.doe@example.com', '1234567890', TRUE, 'PAID', 'NOVA', null),
+       (2, '2024-07-03 12:00:00', 'Johana',  'johana.doe@example.com', '1234567891', FALSE, 'ORDER', 'COURIER', 1);
 INSERT INTO Order_Items (order_id, product_id, quantity, price)
 VALUES (1, 1, 1,40.99),
        (1, 2, 1,40.99),

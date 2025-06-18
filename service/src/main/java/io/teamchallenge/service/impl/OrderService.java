@@ -159,7 +159,7 @@ public class OrderService {
     public void setDeliveryStatus(Long orderId, DeliveryStatus status) {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new NotFoundException(ORDER_NOT_FOUND_BY_ID.formatted(orderId)));
-        if (order.getDeliveryStatus().equals(DeliveryStatus.COMPLETED)) {
+        if (order.getDeliveryStatus().equals(DeliveryStatus.PAID)) {
             throw new ConflictException(UPDATE_ORDER_EXCEPTION);
         }
         order.setDeliveryStatus(status);
@@ -175,7 +175,7 @@ public class OrderService {
     @Transactional
     public void cancelOrder(Long orderId, Long userId) {
         if (userRepository.userHasOrderWithId(userId, orderId)) {
-            setDeliveryStatus(orderId, DeliveryStatus.CANCELED);
+            setDeliveryStatus(orderId, DeliveryStatus.CANCEL);
         } else {
             throw new ForbiddenException(USER_HAS_NO_ORDERS_WITH_ID.formatted(orderId));
         }
@@ -230,7 +230,7 @@ public class OrderService {
                         .phoneNumber(orderRequestDto.getPhoneNumber())
                         .build())
                 .deliveryMethod(orderRequestDto.getDeliveryMethod())
-                .deliveryStatus(DeliveryStatus.PROCESSING)
+                .deliveryStatus(DeliveryStatus.ORDER)
                 .orderItems(new ArrayList<>())
                 .isPaid(false)
                 .comment(orderRequestDto.getComment())

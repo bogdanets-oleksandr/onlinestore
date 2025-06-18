@@ -74,7 +74,7 @@ public class OrderControllerTest {
     @Test
     void setOrderStatusTest() {
         Long orderId = 1L;
-        DeliveryStatus status = DeliveryStatus.COMPLETED;
+        DeliveryStatus status = DeliveryStatus.PAID;
 
         var responseEntity = orderController.setOrderStatus(orderId, status);
 

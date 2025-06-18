@@ -1,10 +1,7 @@
 package io.teamchallenge.service.impl;
 
 import io.teamchallenge.constant.ExceptionMessage;
-import io.teamchallenge.dto.security.SignInRequestDto;
-import io.teamchallenge.dto.security.SignInResponseDto;
-import io.teamchallenge.dto.security.SignUpRequestDto;
-import io.teamchallenge.dto.security.SignUpResponseDto;
+import io.teamchallenge.dto.security.*;
 import io.teamchallenge.entity.User;
 import io.teamchallenge.exception.AlreadyExistsException;
 import io.teamchallenge.exception.BadCredentialsException;
@@ -115,5 +112,20 @@ public class SecurityService {
             .accessToken(accessToken)
             .refreshToken(newRefreshToken)
             .build();
+    }
+
+    @Transactional
+    public NewAdminResponseDto createNewAdmin(NewAdminDto dto) {
+        if (userRepository.existsByEmail(dto.getEmail())) {
+            throw new AlreadyExistsException(ExceptionMessage.USER_WITH_EMAIL_ALREADY_EXISTS.formatted(dto.getEmail()));
+        }
+
+        User admin = User.builder()
+            .email(dto.getEmail())
+            .fullName(dto.getFullName())
+            .password(passwordEncoder.encode(dto.getPassword()))
+            .build();
+
+        return modelMapper.map(userRepository.save(admin), NewAdminResponseDto.class);
     }
 }

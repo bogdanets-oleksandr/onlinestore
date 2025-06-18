@@ -22,6 +22,10 @@ public class AddressDtoMapper extends AbstractConverter<Address, AddressDto> {
         return AddressDto.builder()
             .city(source.getCity())
             .addressLine(source.getAddressLine())
+            .street(source.getStreet())
+            .houseNumber(source.getHouseNumber())
+            .flat(source.getFlatNumber())
+            .departmentNumber(source.getDepartmentNumber())
             .build();
     }
 }

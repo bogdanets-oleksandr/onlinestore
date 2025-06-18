@@ -41,7 +41,7 @@ public class AddressMapper extends AbstractConverter<AddressDto, Address> {
         if (addressDto.getDepartmentNumber() != null) {
             addressLine.append(", ").append(addressDto.getDepartmentNumber());
         }
-        if (addressLine.length() == 0) {
+        if (addressLine.isEmpty()) {
             addressLine.append("Unknown address");
         }
         if (addressLine.charAt(0) == ',') {
@@ -51,6 +51,10 @@ public class AddressMapper extends AbstractConverter<AddressDto, Address> {
         return Address.builder()
                 .addressLine(addressLine.toString().trim())
                 .city(addressDto.getCity())
+                .street(addressDto.getStreet())
+                .houseNumber(addressDto.getHouseNumber())
+                .flatNumber(addressDto.getFlat())
+                .departmentNumber(addressDto.getDepartmentNumber())
                 .build();
     }
 }

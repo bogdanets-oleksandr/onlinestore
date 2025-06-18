@@ -22,7 +22,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
 import static io.teamchallenge.enumerated.DeliveryMethod.NOVA;
-import static io.teamchallenge.enumerated.DeliveryStatus.COMPLETED;
+import static io.teamchallenge.enumerated.DeliveryStatus.PAID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -46,7 +46,7 @@ public class CustomOrderRepositoryTCTest {
             .createdAfter(LocalDateTime.of(2020,1,1,1,1))
             .createdBefore(LocalDateTime.of(2026,1,1,1,1))
             .deliveryMethods(List.of(NOVA))
-            .statuses(List.of(COMPLETED))
+            .statuses(List.of(PAID))
             .totalLess(BigDecimal.valueOf(2000))
             .totalMore(BigDecimal.ZERO)
             .build();

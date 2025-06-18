@@ -48,7 +48,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
            + "from User u "
            + "left join u.orders o "
            + "left join o.orderItems oi "
-           + "where u.id = :userId and o.deliveryStatus = 'COMPLETED' and oi.product.id = :productId")
+           + "where u.id = :userId and o.deliveryStatus = 'PAID' and oi.product.id = :productId")
     boolean existsByIdAndCompletedOrderWithProductId(Long userId, Long productId);
 
     /**

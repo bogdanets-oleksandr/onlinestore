@@ -76,4 +76,9 @@ public class SecurityController {
     public void setPasswordWithRestoringToken(@RequestBody @Valid ResetPasswordDto dto) {
         userService.resetPassword(dto);
     }
+
+    @PostMapping("/create-new-admin")
+    public ResponseEntity<NewAdminResponseDto> createNewAdmin(@RequestBody @Valid NewAdminDto dto) {
+        return ResponseEntity.status(201).body(securityService.createNewAdmin(dto));
+    }
 }

@@ -22,4 +22,15 @@ public class Address {
 
     @Column(nullable = false)
     private String city;
+
+    private String street;
+
+    @Column(name = "house_number")
+    private String houseNumber;
+
+    @Column(name = "flat_number")
+    private String flatNumber;
+
+    @Column(name = "department_number")
+    private String departmentNumber;
 }
