@@ -1,6 +1,7 @@
 package io.teamchallenge.dto.product;
 
 import io.teamchallenge.dto.attributes.AttributeAttributeValueRequestDto;
+import io.teamchallenge.enumerated.Color;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -40,4 +41,5 @@ public class ProductRequestDto {
     private BigDecimal price;
     @Min(value = 1,message = "The quantity of one product must be greater than 0")
     private Integer quantity;
+    private Color color;
 }

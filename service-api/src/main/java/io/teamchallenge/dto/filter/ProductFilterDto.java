@@ -1,5 +1,6 @@
 package io.teamchallenge.dto.filter;
 
+import io.teamchallenge.enumerated.Color;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import java.util.List;
@@ -22,4 +23,5 @@ public class ProductFilterDto {
     @Size(min = 1)
     private List<Long> attributeValueIds;
     private CameraFilter cameraFilter;
+    private List<Color> colors;
 }

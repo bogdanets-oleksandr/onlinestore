@@ -34,6 +34,7 @@ public class OrderResponseDtoMapper extends AbstractConverter<Order, OrderRespon
                 .map(orderItem -> orderItem.getPrice()
                     .multiply(BigDecimal.valueOf(orderItem.getQuantity())))
                 .reduce(BigDecimal.ZERO, BigDecimal::add))
+            .comment(source.getComment())
             .build();
         if (source.getAddress() != null) {
             orderResponseDto.setAddress(addressDtoMapper.convert(source.getAddress()));

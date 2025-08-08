@@ -13,6 +13,7 @@ import org.modelmapper.AbstractConverter;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,8 +23,12 @@ import java.util.stream.Collectors;
  *
  * @author Niktia Malov
  */
+
 @Component
 public class ProductResponseDtoMapper extends AbstractConverter<Product, ProductResponseDto> {
+
+    private final String COLOR = "color";
+
     /**
      * Converts a Product entity to a corresponding ProductResponseDto object.
      *
@@ -117,6 +122,17 @@ public class ProductResponseDtoMapper extends AbstractConverter<Product, Product
             alternativeProducts.get(attribute).add(alternativeProductDto);
         }
 
+        AlternativeProductDto thisProductColor = AlternativeProductDto.builder()
+                .productId(product.getId())
+                    .categoryId(product.getCategory().getId())
+                        .isAvailable(product.getQuantity() > 0)
+                            .attributeValue(product.getColor().getHex())
+            .href(product.getName().toLowerCase()
+                .replaceAll("[^a-z0-9]+", "-")
+                .replaceAll("^-+|-+$", ""))
+            .build();
+
+        alternativeProducts.putIfAbsent(COLOR, List.of(thisProductColor));
         return alternativeProducts;
     }
 }

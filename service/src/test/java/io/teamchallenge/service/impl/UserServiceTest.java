@@ -84,8 +84,9 @@ class UserServiceTest {
     void updateUserProfile_UserExists_UpdatesAndReturnsUserProfile() {
         // Arrange
         String email = "test@example.com";
+        Long id = 1L;
         User user = new User();
-        user.setId(1L);
+        user.setId(id);
         user.setFullName("John Doe");
         user.setEmail(email);
         user.setRole(Role.ROLE_USER);
@@ -96,12 +97,14 @@ class UserServiceTest {
         userProfile.setEmail(email);
         userProfile.setRole(Role.ROLE_USER);
 
-        when(userRepository.findUserByEmail(email)).thenReturn(Optional.of(user));
+        when(userRepository.findById(id)).thenReturn(Optional.of(user));
+        when(userRepository.existsOtherUserWithThisEmail(id, email)).thenReturn(false);
         when(userRepository.save(any(User.class))).thenReturn(user);
         when(modelMapper.map(user, UserProfile.class)).thenReturn(userProfile);
+        when(userRepository.findUserByEmail(email)).thenReturn(Optional.of(user));
 
         // Act
-        UserProfile result = userService.updateUserProfile(email, userProfile);
+        UserProfile result = userService.updateUserProfile(id, userProfile);
 
         // Assert
         assertNotNull(result);
@@ -114,18 +117,17 @@ class UserServiceTest {
     @Test
     void updateUserProfile_UserDoesNotExist_ThrowsNotFoundException() {
         // Arrange
-        String email = "nonexistent@example.com";
+        Long id = 1L;
         UserProfile userProfile = new UserProfile();
-        userProfile.setEmail(email);
 
-        when(userRepository.findUserByEmail(email)).thenReturn(Optional.empty());
+        when(userRepository.findById(id)).thenReturn(Optional.empty());
 
         // Act & Assert
         NotFoundException exception = assertThrows(NotFoundException.class, () -> {
-            userService.updateUserProfile(email, userProfile);
+            userService.updateUserProfile(id, userProfile);
         });
 
-        assertEquals("There is no user with email: " + email, exception.getMessage());
+        assertEquals("There is no user with id: " + id, exception.getMessage());
     }
 
     @Test
@@ -133,8 +135,9 @@ class UserServiceTest {
         // Arrange
         String email = "test@example.com";
         String newEmail = "new@example.com";
+        Long id = 1L;
         User user = new User();
-        user.setId(1L);
+        user.setId(id);
         user.setFullName("John Doe");
         user.setEmail(email);
         user.setRole(Role.ROLE_USER);
@@ -144,13 +147,13 @@ class UserServiceTest {
         userProfile.setEmail(newEmail);
         userProfile.setRole(Role.ROLE_USER);
 
-        when(userRepository.findUserByEmail(email)).thenReturn(Optional.of(user));
-        when(userRepository.existsByEmail(newEmail)).thenReturn(true);
+        when(userRepository.findById(id)).thenReturn(Optional.of(user));
+        when(userRepository.existsOtherUserWithThisEmail(id, newEmail)).thenReturn(true);
         when(modelMapper.map(user, UserProfile.class)).thenReturn(userProfile);
 
         // Act & Assert
         ConflictException exception = assertThrows(ConflictException.class, () -> {
-            userService.updateUserProfile(email, userProfile);
+            userService.updateUserProfile(id, userProfile);
         });
 
         assertEquals("User with email " + newEmail + " already exists", exception.getMessage());

@@ -272,4 +272,23 @@ class ProductRepositoryTCTest {
         assertEquals(1, actual.size());
         assertEquals("Example Smartphone", actual.getFirst().getName());
     }
+
+    @Test
+    void suggestionTest() {
+        String query = "exa";
+
+        var actual = productRepository.getSuggestions(query);
+        assertEquals(2, actual.size());
+        assertEquals("Example Smartphone", actual.getFirst());
+    }
+
+    @Test
+    void searchTest() {
+        String query = "exa";
+        PageRequest pageable = PageRequest.of(0, 5);
+        var actual = productRepository.getSearchResults(query, pageable);
+
+        assertEquals(2, actual.getContent().size());
+        assertEquals("Example Smartphone", actual.getContent().getFirst().getName());
+    }
 }

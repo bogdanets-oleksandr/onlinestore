@@ -42,7 +42,6 @@ public class Review {
     @MapsId("productId")
     private Product product;
 
-    @Column(nullable = false)
     private String text;
 
     @Column(nullable = false)

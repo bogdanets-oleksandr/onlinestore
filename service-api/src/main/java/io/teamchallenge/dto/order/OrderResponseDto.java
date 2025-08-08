@@ -21,7 +21,6 @@ public class OrderResponseDto {
     private Long id;
     private String email;
     private String fullName;
-    private String lastName;
     private String phoneNumber;
     private DeliveryMethod deliveryMethod;
     private DeliveryStatus deliveryStatus;
@@ -31,4 +30,5 @@ public class OrderResponseDto {
     private BigDecimal total;
     private List<OrderItemResponseDto> orderItems;
     private UserVO user;
+    private String comment;
 }

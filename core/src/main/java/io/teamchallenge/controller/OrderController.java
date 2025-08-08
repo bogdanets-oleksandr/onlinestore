@@ -6,6 +6,7 @@ import io.teamchallenge.annotation.ValidOrderRequest;
 import io.teamchallenge.dto.order.OrderRequestDto;
 import io.teamchallenge.dto.order.OrderResponseDto;
 import io.teamchallenge.dto.order.OrderFilterDto;
+import io.teamchallenge.dto.order.OrderUpdateRequestDto;
 import io.teamchallenge.dto.order.ShortOrderResponseDto;
 import io.teamchallenge.dto.pageable.PageableDto;
 import io.teamchallenge.enumerated.DeliveryStatus;
@@ -66,7 +67,7 @@ public class OrderController {
 
     @PutMapping("/{orderId}")
     public ResponseEntity<Void> changeOrderDetails(@PathVariable Long orderId,
-                                            @RequestBody @ValidOrderRequest OrderRequestDto orderRequestDto) {
+                                                   @RequestBody OrderUpdateRequestDto orderRequestDto) {
         orderService.changeOrderDetails(orderId, orderRequestDto);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

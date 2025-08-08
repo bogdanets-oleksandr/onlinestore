@@ -1,9 +1,6 @@
 package io.teamchallenge.controller;
 
-import io.teamchallenge.dto.order.OrderFilterDto;
-import io.teamchallenge.dto.order.OrderRequestDto;
-import io.teamchallenge.dto.order.OrderResponseDto;
-import io.teamchallenge.dto.order.ShortOrderResponseDto;
+import io.teamchallenge.dto.order.*;
 import io.teamchallenge.dto.pageable.PageableDto;
 import io.teamchallenge.enumerated.DeliveryStatus;
 import io.teamchallenge.service.impl.OrderService;
@@ -62,7 +59,7 @@ public class OrderControllerTest {
     @Test
     void changeOrderDetailsTest() {
         Long orderId = 1L;
-        OrderRequestDto orderRequestDto = getOrderRequestDtoNova();
+        OrderUpdateRequestDto orderRequestDto = getOrderUpdateRequestDtoNova();
 
         var responseEntity = orderController.changeOrderDetails(orderId, orderRequestDto);
 

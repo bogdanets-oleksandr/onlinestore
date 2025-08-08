@@ -20,14 +20,10 @@ public class MailService {
     @Value("${frontend.server.url}")
     private String frontendServerUrl;
 
-    public void sendResetPasswordEmail(String email,
-                                       String token) {
-        String resetPasswordUrl = frontendServerUrl + "/changePassword?token=" + token;
-        String message = "To reset your password, follow the link (link is valid only 24 hours)\r\n" + resetPasswordUrl;
-        String subject = "Reset Password";
-        SimpleMailMessage mailMessage = constructEmail(subject, message, email);
-        sendEmail(mailMessage);
+    public void sendResetPasswordEmail(String email, String newPassword) {
+
     }
+
     //TODO: fix async
     @Async
     protected void sendEmail(SimpleMailMessage message) {

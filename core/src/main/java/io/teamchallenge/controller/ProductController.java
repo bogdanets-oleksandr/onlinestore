@@ -6,9 +6,12 @@ import io.teamchallenge.dto.filter.CameraFilter;
 import io.teamchallenge.dto.filter.PriceFilter;
 import io.teamchallenge.dto.filter.ProductFilterDto;
 import io.teamchallenge.dto.pageable.AdvancedPageableDto;
+import io.teamchallenge.dto.pageable.PageableDto;
 import io.teamchallenge.dto.product.ProductRequestDto;
 import io.teamchallenge.dto.product.ProductResponseDto;
 import io.teamchallenge.dto.product.ShortProductResponseDto;
+import io.teamchallenge.entity.Product;
+import io.teamchallenge.enumerated.Color;
 import io.teamchallenge.service.impl.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -61,6 +64,7 @@ public class ProductController {
         @RequestParam(required = false) String maxPrice,
         @RequestParam(required = false) String minMP,
         @RequestParam(required = false) String maxMP,
+        @RequestParam(required = false) List<Color> colors,
         @AllowedSortFields(values = {"price","popularity","rating"})
         @PageableDefault(sort = "price", direction = DESC) Pageable pageable) {
         ProductFilterDto productFilterDto = ProductFilterDto.builder()
@@ -76,6 +80,7 @@ public class ProductController {
                         .from(minMP == null ? null : Integer.parseInt(minMP))
                         .to(maxMP == null ? null : Integer.parseInt(maxMP))
                         .build())
+            .colors(colors)
             .build();
         return ResponseEntity.ok(productService.getAll(pageable, productFilterDto));
     }
@@ -138,5 +143,16 @@ public class ProductController {
     public ResponseEntity<?> delete(@PathVariable Long id) {
         productService.deleteById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @GetMapping("/suggestions")
+    public ResponseEntity<List<String>> getSuggestions(@RequestParam String query) {
+        return ResponseEntity.ok(productService.getSuggestions(query));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<PageableDto<ShortProductResponseDto>> getSearchResults(@RequestParam String query,
+                                                                                 @PageableDefault(sort = "price", direction = DESC) Pageable pageable) {
+        return ResponseEntity.ok(productService.getSearchResults(query, pageable));
     }
 }

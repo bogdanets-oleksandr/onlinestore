@@ -58,6 +58,7 @@ public class OrderResponseDtoMapperTest {
                     .multiply(BigDecimal.valueOf(orderItem.getQuantity())))
                 .reduce(BigDecimal.ZERO, BigDecimal::add))
             .address(addressDto)
+            .comment(source.getComment())
             .build();
 
         when(shortProductResponseDtoMapper.convert(any(Product.class))).thenReturn(shortProductResponseDto);

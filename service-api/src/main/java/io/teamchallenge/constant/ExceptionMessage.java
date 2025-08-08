@@ -2,6 +2,7 @@ package io.teamchallenge.constant;
 
 public final class ExceptionMessage {
     public static final String USER_NOT_FOUND_BY_EMAIL = "There is no user with email: %s";
+    public static final String USER_NOT_FOUND_BY_ID = "There is no user with id: %d";
     public static final String COUNTRY_NOT_FOUND_BY_NAME = "There is no country with name: %s";
     public static final String PASSWORD_DOES_NOT_MATCH = "Password does not match";
     public static final String USER_WITH_EMAIL_ALREADY_EXISTS =

@@ -51,6 +51,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
            + "where u.id = :userId and o.deliveryStatus = 'PAID' and oi.product.id = :productId")
     boolean existsByIdAndCompletedOrderWithProductId(Long userId, Long productId);
 
+    @Query("SELECT COUNT(u) > 0 FROM User u WHERE u.email = :email AND u.id <> :userId")
+    boolean existsOtherUserWithThisEmail(Long userId, String email);
+
     /**
      * Finds a user view object (UserVO) by the given order ID.
      *

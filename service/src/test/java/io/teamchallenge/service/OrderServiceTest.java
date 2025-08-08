@@ -1,9 +1,6 @@
 package io.teamchallenge.service;
 
-import io.teamchallenge.dto.order.OrderFilterDto;
-import io.teamchallenge.dto.order.OrderRequestDto;
-import io.teamchallenge.dto.order.OrderResponseDto;
-import io.teamchallenge.dto.order.ShortOrderResponseDto;
+import io.teamchallenge.dto.order.*;
 import io.teamchallenge.dto.pageable.PageableDto;
 import io.teamchallenge.dto.user.UserVO;
 import io.teamchallenge.entity.Address;
@@ -14,10 +11,7 @@ import io.teamchallenge.enumerated.DeliveryStatus;
 import io.teamchallenge.exception.ConflictException;
 import io.teamchallenge.exception.ForbiddenException;
 import io.teamchallenge.exception.NotFoundException;
-import io.teamchallenge.repository.CartItemRepository;
-import io.teamchallenge.repository.OrderRepository;
-import io.teamchallenge.repository.ProductRepository;
-import io.teamchallenge.repository.UserRepository;
+import io.teamchallenge.repository.*;
 import io.teamchallenge.service.impl.OrderService;
 import io.teamchallenge.util.Utils;
 import java.security.Principal;
@@ -51,6 +45,8 @@ class OrderServiceTest {
     private OrderRepository orderRepository;
     @Mock
     private UserRepository userRepository;
+    @Mock
+    private OrderItemRepository orderItemRepository;
     @Mock
     private ModelMapper modelMapper;
     @InjectMocks
@@ -197,7 +193,7 @@ class OrderServiceTest {
     void changeOrderThrowsNotFoundException() {
         Long orderId = 1L;
         when(orderRepository.findById(orderId)).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class, () -> orderService.changeOrderDetails(orderId, getOrderRequestDtoCourier()));
+        assertThrows(NotFoundException.class, () -> orderService.changeOrderDetails(orderId, getOrderUpdateRequestDtoCourier()));
 
         verify(orderRepository).findById(orderId);
         verify(orderRepository, never()).save(any());
@@ -207,7 +203,7 @@ class OrderServiceTest {
     void changeDeliveryMethodInOrderDetails() {
         Long orderId = 1L;
         Order existingOrder = getOrder();
-        OrderRequestDto orderRequestDto = getOrderRequestDtoNova();
+        OrderUpdateRequestDto orderRequestDto = getOrderUpdateRequestDtoNova();
         Long productId = 1L;
         when(orderRepository.findById(orderId)).thenReturn(Optional.of(existingOrder));
         when(productRepository.findById(productId)).thenReturn(Optional.of(getProduct()));
@@ -220,14 +216,14 @@ class OrderServiceTest {
     void changeOrderItemsInOrder(){
         Long orderId = 1L;
         Order existingOrder = getOrder();
-        OrderRequestDto orderRequestDto = getOrderRequestDtoCourierAlternativeProduct();
+        OrderUpdateRequestDto orderUpdateRequestDto = getOrderRequestDtoCourierAlternativeProduct();
         Long oldProductId = 1L;
         Long newProductId = 2L;
         when(orderRepository.findById(orderId)).thenReturn(Optional.of(existingOrder));
         when(productRepository.findById(oldProductId)).thenReturn(Optional.of(getProduct()));
         when(productRepository.findById(newProductId)).thenReturn(Optional.of(getOtherProduct()));
 
-        orderService.changeOrderDetails(orderId, orderRequestDto);
+        orderService.changeOrderDetails(orderId, orderUpdateRequestDto);
 
         verify(orderRepository).save(existingOrder);
 
@@ -252,19 +248,6 @@ class OrderServiceTest {
         orderService.setDeliveryStatus(orderId, status);
 
         assertEquals(status, order.getDeliveryStatus());
-        verify(orderRepository).findById(orderId);
-    }
-
-    @Test
-    void setDeliveryStatusThrowsConflictExceptionTest() {
-        Long orderId = 1L;
-        DeliveryStatus status = DeliveryStatus.PAID;
-        Order order = getOrder();
-        order.setDeliveryStatus(DeliveryStatus.PAID);
-
-        when(orderRepository.findById(orderId)).thenReturn(Optional.of(order));
-
-        assertThrows(ConflictException.class, () -> orderService.setDeliveryStatus(orderId, status));
         verify(orderRepository).findById(orderId);
     }
 

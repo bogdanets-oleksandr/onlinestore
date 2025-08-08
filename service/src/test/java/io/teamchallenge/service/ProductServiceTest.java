@@ -150,7 +150,7 @@ class ProductServiceTest {
         var productMinMaxDto = getProductMinMaxPriceDto();
 
 
-        when(productRepository.findAllProductIds(null, pageable))
+        when(productRepository.findAllProductIds(any(), eq(pageable)))
             .thenReturn(retrievedIds);
         when(productRepository.findProductMinMaxPrice(null))
             .thenReturn(productMinMaxDto);
@@ -161,7 +161,7 @@ class ProductServiceTest {
 
         var actual = productService.getAll(pageable, filter);
 
-        verify(productRepository).findAllProductIds(eq(null), eq(pageable));
+        verify(productRepository).findAllProductIds(any(), eq(pageable));
         verify(productRepository).findProductMinMaxPrice(eq(null));
         verify(productRepository).findByIdsWithCollections(eq(productIds));
         verify(modelMapper).map(eq(product), eq(ShortProductResponseDto.class));
@@ -524,6 +524,36 @@ class ProductServiceTest {
         verify(productRepository).findByNameAndIdNot(eq(productRequestDto.getName()), eq(1L));
         verify(modelMapper).map(eq(product), eq(ProductResponseDto.class));
         assertEquals(productResponseDto, actual);
+    }
+
+    @Test
+    void getSuggestionsTest() {
+        String query = "IPhone";
+
+        when(productRepository.getSuggestions(query.toLowerCase()))
+            .thenReturn(List.of("iPhone 15", "iPhone 16 Pro Max"));
+
+        var actual = productService.getSuggestions(query);
+
+        verify(productRepository).getSuggestions("iphone");
+        assertEquals(2, actual.size());
+        assertEquals("iPhone 15", actual.getFirst());
+    }
+
+    @Test
+    void getSearchResultsTest() {
+        String query = "name";
+        PageRequest pageable = PageRequest.of(0, 1);
+
+        PageImpl<Product> products = new PageImpl<>(List.of(getProduct()), pageable, 1);
+
+        when(productRepository.getSearchResults(query, pageable))
+            .thenReturn(products);
+
+        var actual = productService.getSearchResults(query, pageable);
+
+        verify(productRepository).getSearchResults("name", pageable);
+        assertEquals(1, actual.getPage().size());
     }
 
     @Test

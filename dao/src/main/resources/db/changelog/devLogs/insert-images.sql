@@ -1,10 +1,10 @@
 -- liquibase formatted sql
 insert into images (id, product_id, link, image_order)
 values
-    (1, 1, 'https://res.cloudinary.com/dpnzbwijt/image/upload/v1736303497/onlinestore/gfe1hm2b0to2zr0ksjtv.avif', 4),
-    (2, 1, 'https://res.cloudinary.com/dpnzbwijt/image/upload/v1736303497/onlinestore/suodhm3fll3uafiutwqb.avif', 1),
-    (3, 1, 'https://res.cloudinary.com/dpnzbwijt/image/upload/v1736303497/onlinestore/xlzic1et5k2dcswp511k.avif', 3),
-    (4, 1, 'https://res.cloudinary.com/dpnzbwijt/image/upload/v1736303496/onlinestore/aalgi4a27q7p1ozp1x5o.avif', 2),
+    (1, 1, 'https://res.cloudinary.com/dpnzbwijt/image/upload/v1736303497/onlinestore/gfe1hm2b0to2zr0ksjtv.avif', 3),
+    (2, 1, 'https://res.cloudinary.com/dpnzbwijt/image/upload/v1736303497/onlinestore/suodhm3fll3uafiutwqb.avif', 4),
+    (3, 1, 'https://res.cloudinary.com/dpnzbwijt/image/upload/v1736303497/onlinestore/xlzic1et5k2dcswp511k.avif', 2),
+    (4, 1, 'https://res.cloudinary.com/dpnzbwijt/image/upload/v1736303496/onlinestore/aalgi4a27q7p1ozp1x5o.avif', 1),
     (5, 2, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1745928383/1_j2dnun.png', 1),
     (6, 2, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1745928382/2_cygppk.png', 2),
     (7, 2, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1745928382/3_zucpio.png', 3),
@@ -49,7 +49,7 @@ values
     (46, 13, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1745929852/1_qyuu42.png', 1),
     (47, 13, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1745929853/2_fvzfgl.png', 2),
     (48, 13, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1745929854/3_otyaij.png', 3),
-    (72, 14, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1746189152/Canon_Mark_szfj67.png', 1),
+    (81, 14, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1754141940/Canon_Mark_szfj67_1_ebtded.png', 1),
     (49, 15, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1745930200/1_bqi8mk.png', 1),
     (50, 15, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1745930198/3_r2cv25.png', 2),
     (51, 15, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1745930195/2_kzyuvx.png', 3),
@@ -73,25 +73,18 @@ values
     (69, 20, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1745930773/Product_Image_1_cuqoo1.png', 2),
     (70, 20, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1745930775/Product_Image_2_qlhnp2.png', 3),
     (71, 20, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1745930777/Product_Image_3_boyuuw.png', 4),
-
-    --additional photos to product 1 for testing
-
-    (73, 1, 'https://www.apple.com/ca/iphone/home/images/overview/welcome/us/welcome__n6xy87ib1gyu_medium_2x.jpg', 5),
-    (74, 1, 'https://www.apple.com/newsroom/images/2023/09/apple-unveils-iphone-15-pro-and-iphone-15-pro-max/article/Apple-iPhone-15-Pro-lineup-hero-230912_Full-Bleed-Image.jpg.large_2x.jpg', 6),
-    (75, 1, 'https://i.ebayimg.com/images/g/d60AAOSwFjlleez-/s-l1200.jpg', 7),
-    (76, 1, 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istudiosg.com%2Fproducts%2Fiphone-16-pro-mywy3zp-a&psig=AOvVaw3GfRSUYLXNnKCLXRj50Xzx&ust=1748595931780000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMDLg82pyI0DFQAAAAAdAAAAABAe', 8),
-    (77, 1, 'https://content.rozetka.com.ua/goods/images/big/364834229.jpg', 9),
-
     --
-    (78, 21, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1748968993/51-dI0OmzyL_ahbadz.jpg', 1),
-    (79, 21, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1748968993/312VbheIhGL_uguc0k.jpg', 2),
-    (80, 21, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1748968994/Apple-iPhone-15-256GB-Blue-3_onwv7r.png', 3),
-    (81, 22, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1748969164/616mZZm8-7L._AC_UF894_1000_QL80__eybjhr.jpg', 1),
-    (82, 22, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1748969164/41HuQPBFjOL_lq34ll.jpg', 2),
-    (83, 22, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1748969173/65305880-4_xhyfjm.jpg', 3),
-    (84, 23, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1748969164/616mZZm8-7L._AC_UF894_1000_QL80__eybjhr.jpg', 1),
-    (85, 23, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1748969164/41HuQPBFjOL_lq34ll.jpg', 2),
-    (86, 23, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1748969173/65305880-4_xhyfjm.jpg', 3);
+    (72, 21, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1754142174/51-dI0OmzyL_ahbadz_jugwrz.jpg', 1),
+    (73, 21, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1754142175/312VbheIhGL_uguc0k_d2inhr.jpg', 2),
+    (74, 21, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1754142176/Apple-iPhone-15-256GB-Blue-3_onwv7r_zeb0i9.png', 3),
+    (75, 22, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1754142458/616mZZm8-7L._AC_UF894_1000_QL80__eybjhr_2_ehgvw5.jpg', 1),
+    (76, 22, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1754142469/41HuQPBFjOL_lq34ll_uqjxu7.jpg', 2),
+    (77, 22, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1754142471/65305880-4_xhyfjm_x8zot8.jpg', 3),
+    (78, 23, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1754142458/616mZZm8-7L._AC_UF894_1000_QL80__eybjhr_2_ehgvw5.jpg', 1),
+    (79, 23, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1754142469/41HuQPBFjOL_lq34ll_uqjxu7.jpg', 2),
+    (80, 23, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1754142471/65305880-4_xhyfjm_x8zot8.jpg', 3);
+
+    --Last is 81
 
 
 

@@ -1,5 +1,6 @@
 package io.teamchallenge.controller;
 
+import io.teamchallenge.annotation.CurrentUserId;
 import io.teamchallenge.dto.user.UserProfile;
 import io.teamchallenge.dto.user.UserProfilePOST;
 import io.teamchallenge.service.impl.UserService;
@@ -22,9 +23,8 @@ public class UserController {
     }
 
     @PutMapping("/users/profile")
-    public ResponseEntity<UserProfile> updateUserProfile(Principal principal, @RequestBody UserProfile userProfile) {
-        String email = getUserEmailFromPrincipal(principal);
-        return ResponseEntity.ok(userService.updateUserProfile(email, userProfile));
+    public ResponseEntity<UserProfile> updateUserProfile(@CurrentUserId Long id, @RequestBody UserProfile userProfile) {
+        return ResponseEntity.ok(userService.updateUserProfile(id, userProfile));
     }
 
     @PostMapping("/users/profile")

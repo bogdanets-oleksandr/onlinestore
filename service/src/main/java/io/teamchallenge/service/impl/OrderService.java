@@ -1,10 +1,7 @@
 package io.teamchallenge.service.impl;
 
 import io.teamchallenge.dto.cart.CartItemRequestDto;
-import io.teamchallenge.dto.order.OrderFilterDto;
-import io.teamchallenge.dto.order.OrderRequestDto;
-import io.teamchallenge.dto.order.OrderResponseDto;
-import io.teamchallenge.dto.order.ShortOrderResponseDto;
+import io.teamchallenge.dto.order.*;
 import io.teamchallenge.dto.pageable.PageableDto;
 import io.teamchallenge.dto.user.UserVO;
 import io.teamchallenge.entity.*;
@@ -14,10 +11,7 @@ import io.teamchallenge.enumerated.DeliveryStatus;
 import io.teamchallenge.exception.ConflictException;
 import io.teamchallenge.exception.ForbiddenException;
 import io.teamchallenge.exception.NotFoundException;
-import io.teamchallenge.repository.CartItemRepository;
-import io.teamchallenge.repository.OrderRepository;
-import io.teamchallenge.repository.ProductRepository;
-import io.teamchallenge.repository.UserRepository;
+import io.teamchallenge.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Pageable;
@@ -39,6 +33,7 @@ public class OrderService {
     private final ProductRepository productRepository;
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
+    private final OrderItemRepository orderItemRepository;
     private final ModelMapper modelMapper;
 
     /**
@@ -118,7 +113,7 @@ public class OrderService {
      * @throws NotFoundException If no order is found with the provided ID.
      */
     @Transactional
-    public void changeOrderDetails(Long orderId, OrderRequestDto orderRequestDto) {
+    public void changeOrderDetails(Long orderId, OrderUpdateRequestDto orderRequestDto) {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new NotFoundException(ORDER_NOT_FOUND_BY_ID.formatted(orderId)));
         order.setContactInfo(ContactInfo.builder()
@@ -128,14 +123,17 @@ public class OrderService {
                 .build());
         order.setAddress(modelMapper.map(orderRequestDto.getAddress(), Address.class));
         order.setDeliveryMethod(orderRequestDto.getDeliveryMethod());
+        order.setDeliveryStatus(orderRequestDto.getDeliveryStatus());
         order.setComment(orderRequestDto.getComment());
 
-        order.getOrderItems().forEach(orderItem -> {
+        List<OrderItem> orderItems = order.getOrderItems();
+        orderItems.forEach(orderItem -> {
             Product product = productRepository.findById(orderItem.getProduct().getId()).orElseThrow();
             product.setQuantity(product.getQuantity() + orderItem.getQuantity());
         });
 
-        order.removeAllOrderItems();
+        order.removeAllItems();
+        orderItemRepository.deleteAll(orderItems);
 
         orderRequestDto.getCartItems().stream()
                 .map(n -> {
@@ -153,15 +151,11 @@ public class OrderService {
      * @param orderId The unique identifier of the order.
      * @param status  The new delivery status to be set for the order.
      * @throws NotFoundException If no order is found with the provided ID.
-     * @throws ConflictException If the current delivery status of the order is {@link DeliveryStatus#COMPLETED}.
      */
     @Transactional
     public void setDeliveryStatus(Long orderId, DeliveryStatus status) {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new NotFoundException(ORDER_NOT_FOUND_BY_ID.formatted(orderId)));
-        if (order.getDeliveryStatus().equals(DeliveryStatus.PAID)) {
-            throw new ConflictException(UPDATE_ORDER_EXCEPTION);
-        }
         order.setDeliveryStatus(status);
     }
 

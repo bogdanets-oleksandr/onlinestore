@@ -13,10 +13,7 @@ import io.teamchallenge.dto.category.CategoryResponseDto;
 import io.teamchallenge.dto.filter.CameraFilter;
 import io.teamchallenge.dto.filter.PriceFilter;
 import io.teamchallenge.dto.filter.ProductFilterDto;
-import io.teamchallenge.dto.order.OrderItemResponseDto;
-import io.teamchallenge.dto.order.OrderRequestDto;
-import io.teamchallenge.dto.order.OrderResponseDto;
-import io.teamchallenge.dto.order.ShortOrderResponseDto;
+import io.teamchallenge.dto.order.*;
 import io.teamchallenge.dto.pageable.AdvancedPageableDto;
 import io.teamchallenge.dto.pageable.PageableDto;
 import io.teamchallenge.dto.product.ProductAttributeResponseDto;
@@ -314,6 +311,7 @@ public class Utils {
                         .from(0)
                         .to(100000)
                         .build())
+                .colors(List.of())
                 .build();
     }
 
@@ -353,17 +351,18 @@ public class Utils {
                 .build();
     }
 
-    public static OrderRequestDto getOrderRequestDtoNova() {
-        return OrderRequestDto.builder()
-                .fullName("FirstName")
-                .address(AddressDto.builder()
-                        .addressLine("address line")
-                        .city("Kyiv")
-                        .build())
-                .deliveryMethod(DeliveryMethod.NOVA)
-                .phoneNumber("1234567890")
-                .email("test@mail.com")
-                .build();
+    public static OrderUpdateRequestDto getOrderUpdateRequestDtoNova() {
+        return OrderUpdateRequestDto.builder()
+            .fullName("FirstName")
+            .address(AddressDto.builder()
+                .addressLine("address line")
+                .city("Kyiv")
+                .build())
+            .deliveryMethod(DeliveryMethod.NOVA)
+            .phoneNumber("1234567890")
+            .email("test@mail.com")
+            .deliveryStatus(DeliveryStatus.ORDER)
+            .build();
     }
 
     public static String getRefreshToken() {

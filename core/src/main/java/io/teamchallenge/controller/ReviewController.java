@@ -2,12 +2,12 @@ package io.teamchallenge.controller;
 
 import io.teamchallenge.annotation.AllowedSortFields;
 import io.teamchallenge.annotation.CurrentUserId;
+import io.teamchallenge.annotation.ValidProductReview;
 import io.teamchallenge.dto.pageable.PageableDto;
 import io.teamchallenge.dto.review.AddReviewRequestDto;
 import io.teamchallenge.dto.review.ReviewResponseDto;
 import io.teamchallenge.entity.reviews.ReviewId;
 import io.teamchallenge.service.impl.ReviewService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -56,7 +56,7 @@ public class ReviewController {
      */
     @PostMapping("/{productId}")
     public ResponseEntity<ReviewResponseDto> create(@CurrentUserId Long userId, @PathVariable Long productId,
-                                                    @RequestBody @Valid AddReviewRequestDto addReviewRequestDto) {
+                                                    @RequestBody @ValidProductReview AddReviewRequestDto addReviewRequestDto) {
         return ResponseEntity.status(HttpStatus.CREATED)
             .body(reviewService.create(ReviewId.builder().userId(userId).productId(productId).build(),
                 addReviewRequestDto));

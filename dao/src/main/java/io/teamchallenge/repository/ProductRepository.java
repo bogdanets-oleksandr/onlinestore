@@ -10,8 +10,11 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
+import io.teamchallenge.enumerated.Color;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Predicate;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -124,6 +127,14 @@ public interface ProductRepository
      */
     Optional<Product> findByNameAndIdNot(String name, Long id);
 
+    @Query("""
+        SELECT p.name from Product p WHERE lower(p.name) like :query%""")
+    List<String> getSuggestions(@Param("query") String query);
+
+    @Query("""
+        SELECT p from Product p WHERE  lower(p.name) like :query%""")
+    Page<Product> getSearchResults(@Param("query") String query, Pageable pageable);
+
     /**
      * Specifications for filtering products based on various criteria.
      */
@@ -195,6 +206,16 @@ public interface ProductRepository
 
                 return builder.and(idPredicate, rangePredicate);
             };
+        }
+
+        static Specification<Product> byColorFilter(List<Color> colors) {
+            return ((root, query, builder) ->
+                root.get(Product_.COLOR).in(colors));
+        }
+
+        static Specification<Product> availableOnly() {
+            return (root, query, builder) ->
+                builder.greaterThan(root.get(Product_.QUANTITY), 0);
         }
     }
 }

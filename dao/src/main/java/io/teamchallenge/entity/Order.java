@@ -52,7 +52,7 @@ public class Order {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @Setter(AccessLevel.PRIVATE)
     private List<OrderItem> orderItems = new ArrayList<>();
 
@@ -85,19 +85,7 @@ public class Order {
         orderItem.setOrder(this);
     }
 
-    /**
-     * Removes an order item from the user's list of order item.
-     *
-     * @param orderItem The order item to be removed.
-     */
-    public void removeOrderItem(OrderItem orderItem) {
-        orderItems.remove(orderItem);
-        orderItem.setOrder(null);
-    }
-
-    public void removeAllOrderItems() {
-        orderItems.forEach(orderItem -> orderItem.setOrder(null));
+    public void removeAllItems() {
         orderItems.clear();
     }
-
 }

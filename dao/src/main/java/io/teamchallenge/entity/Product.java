@@ -3,6 +3,7 @@ package io.teamchallenge.entity;
 import io.teamchallenge.entity.attributes.ProductAttribute;
 import io.teamchallenge.entity.cartitem.CartItem;
 import io.teamchallenge.entity.reviews.Review;
+import io.teamchallenge.enumerated.Color;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -72,6 +73,9 @@ public class Product {
 
     @Column(unique = true, nullable = false)
     private String code;
+
+    @Enumerated(EnumType.STRING)
+    private Color color; //field for filtering products by color
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     @Setter(AccessLevel.PRIVATE)

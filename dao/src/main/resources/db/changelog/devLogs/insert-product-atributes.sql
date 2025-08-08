@@ -23,7 +23,7 @@ values
     -- Samsung Galaxy A24
     (18, 2, 1),  -- Memory ROM: 128 Gb
     (19, 2, 4),  -- Memory RAM: 4 Gb
-    (20, 2, 11), -- Color: Light Green
+    (20, 2, 92), -- Color: Carbon Black
     (21, 2, 21), -- Display diagonal: 6.5 inches
     (22, 2, 27), -- Screen resolution: 1080 x 2340 pixels
     (23, 2, 33), -- Screen type: Super AMOLED
@@ -41,7 +41,7 @@ values
     -- Samsung Galaxy S24 Ultra
     (34, 3, 3),  -- Memory ROM: 512 Gb
     (35, 3, 7),  -- Memory RAM: 12 Gb
-    (36, 3, 15), -- Color: Gold
+    (36, 3, 92), -- Color: carbon Black
     (37, 3, 22), -- Display diagonal: 6.8 inches
     (38, 3, 28), -- Screen resolution: 1440 x 3120 pixels
     (39, 3, 34), -- Screen type: Dynamic AMOLED 2X
@@ -57,8 +57,8 @@ values
     (49, 3, 56), -- Flesh card: Supports microSD
     (50, 3, 58), -- Sensor resolution: 108 MP
 
-    -- Apple iPhone 15 Pro 128 Gb Blue Titanium
-    (51, 4, 1),   -- Memory ROM: 128 Gb
+    -- Apple iPhone 15 Pro 256 Gb Blue Titanium
+    (51, 4, 2),   -- Memory ROM: 256 Gb
     (52, 4, 5),   -- Memory RAM: 6 Gb
     (53, 4, 9),   -- Color: Dark Blue
     (54, 4, 24),  -- Display diagonal: 6.12 inches
@@ -168,7 +168,7 @@ values
     -- Asus TUF Gaming A15
     (147, 10, 3),    -- Memory ROM: 512 Gb
     (148, 10, 7),    -- Memory RAM: 8 Gb
-    (149, 10, 15),   -- Color: Gold
+    (149, 10, 10),   -- Color: Dark Grey
     (150, 10, 64),   -- Display diagonal: 15.6 inches
     (151, 10, 66),   -- Screen resolution: 2560 x 1600 pixels
     (152, 10, 70),   -- Screen type: AMOLED
@@ -203,7 +203,7 @@ values
     (177, 13, 13),   -- Color: Powder Pink
     (178, 13, 56),  -- Supports microSD
 
-    -- Nikon Coolpix P950 Black
+    -- Canon EOS 6D Mark II
     (179, 14, 59),  -- Sensor resolution: 12 MP
     (180, 14, 10),   -- Color: Dark Gray
     (181, 14, 56),  -- Supports microSD

@@ -3,6 +3,7 @@ package io.teamchallenge.service.impl;
 import io.teamchallenge.constant.ExceptionMessage;
 import io.teamchallenge.dto.security.*;
 import io.teamchallenge.entity.User;
+import io.teamchallenge.enumerated.Role;
 import io.teamchallenge.exception.AlreadyExistsException;
 import io.teamchallenge.exception.BadCredentialsException;
 import io.teamchallenge.exception.BadTokenException;
@@ -15,6 +16,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.SecureRandom;
+
 /**
  * Service class for managing security.
  * @author Denys Liubchenko
@@ -23,6 +26,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Transactional(readOnly = true)
 public class SecurityService {
+    //chars for generating passwords
+    private static final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final String LOWER = "abcdefghijklmnopqrstuvwxyz";
+    private static final String DIGITS = "0123456789";
+    private static final String SPECIAL = "!@#&()–[]{}:;',?/*~$^+=<>";
+    private static final String ALL = UPPER + LOWER + DIGITS + SPECIAL;
+    private static final int PASSWORD_LENGTH = 15;
+    private static final SecureRandom random = new SecureRandom();
+
     private final UserRepository userRepository;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
@@ -124,8 +136,20 @@ public class SecurityService {
             .email(dto.getEmail())
             .fullName(dto.getFullName())
             .password(passwordEncoder.encode(dto.getPassword()))
+            .role(Role.ROLE_ADMIN)
             .build();
 
         return modelMapper.map(userRepository.save(admin), NewAdminResponseDto.class);
+    }
+
+    public static String generateNewPassword() {
+        StringBuilder password = new StringBuilder(PASSWORD_LENGTH);
+
+        for (int i = 0; i < PASSWORD_LENGTH; i++) {
+            int index = random.nextInt(ALL.length());
+            password.append(ALL.charAt(index));
+        }
+
+        return password.toString();
     }
 }

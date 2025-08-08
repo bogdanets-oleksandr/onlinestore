@@ -3,6 +3,7 @@ package io.teamchallenge.service.impl;
 import io.teamchallenge.constant.ExceptionMessage;
 import io.teamchallenge.dto.filter.ProductFilterDto;
 import io.teamchallenge.dto.pageable.AdvancedPageableDto;
+import io.teamchallenge.dto.pageable.PageableDto;
 import io.teamchallenge.dto.product.ProductMinMaxPriceDto;
 import io.teamchallenge.dto.product.ProductRequestDto;
 import io.teamchallenge.dto.product.ProductResponseDto;
@@ -85,7 +86,7 @@ public class ProductService {
         Page<Long> retrievedProducts;
         if (areAllVariablesNull(productFilterDto)) {
             retrievedProducts =
-                productRepository.findAllProductIds(null, pageable);
+                productRepository.findAllProductIds(availableOnly(), pageable);
         } else {
             specification = getSpecificationFromFilterDto(productFilterDto);
             retrievedProducts =
@@ -176,6 +177,7 @@ public class ProductService {
             .images(new ArrayList<>())
             .productAttributes(new ArrayList<>())
                 .alternativeProducts(new ArrayList<>())
+            .color(productRequestDto.getColor())
             .build();
         insertExistingAttributes(productRequestDto, product);
         insertNewAttributes(productRequestDto, product);
@@ -217,6 +219,7 @@ public class ProductService {
         product.setQuantity(productRequestDto.getQuantity());
         product.setShortDesc(productRequestDto.getShortDesc());
         product.setPrice(productRequestDto.getPrice());
+        product.setColor(productRequestDto.getColor());
         insertNewAttributes(productRequestDto, product);
 
         List<Long> idsToFetch = updateProductAttributes(productRequestDto, product);
@@ -236,6 +239,25 @@ public class ProductService {
         }
     }
 
+    public List<String> getSuggestions(String query) {
+        return productRepository.getSuggestions(query.toLowerCase());
+    }
+
+    public PageableDto<ShortProductResponseDto> getSearchResults(String query, Pageable pageable) {
+        Page<Product> products = productRepository.getSearchResults(query.toLowerCase(), pageable);
+
+        var content = products.getContent().stream()
+            .map(product -> modelMapper.map(product, ShortProductResponseDto.class))
+            .toList();
+
+        return PageableDto.<ShortProductResponseDto>builder()
+            .page(content)
+            .totalElements(products.getTotalElements())
+            .currentPage(products.getPageable().getPageNumber())
+            .totalPages(products.getTotalPages())
+            .build();
+
+    }
     private void addNewImages(List<MultipartFile> multipartFiles, Product product) {
         for (short i = 0; i < multipartFiles.size(); i++) {
             short j = (short) (i + 1);
@@ -326,6 +348,11 @@ public class ProductService {
         if (!Objects.isNull(cameraFilter.getFrom()) && !Objects.isNull(cameraFilter.getTo())) {
             specifications.add(byCameraFilter(cameraFilter));
         }
+        var colors = productFilterDto.getColors();
+        if (!Objects.isNull(colors) && !colors.isEmpty()) {
+            specifications.add(byColorFilter(colors));
+        }
+        specifications.add(availableOnly());
         return Specification.allOf(specifications);
     }
 

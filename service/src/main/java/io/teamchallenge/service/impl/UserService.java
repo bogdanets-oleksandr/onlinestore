@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 import static io.teamchallenge.constant.ExceptionMessage.USER_NOT_FOUND_BY_EMAIL;
+import static io.teamchallenge.constant.ExceptionMessage.USER_NOT_FOUND_BY_ID;
 
 @Service
 @RequiredArgsConstructor
@@ -35,19 +36,16 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public UserProfile getUserProfile(String email) {
-        System.out.println("getUserProfile");
         return userRepository.findUserByEmail(email)
                 .map(user -> modelMapper.map(user, UserProfile.class))
                 .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND_BY_EMAIL.formatted(email)));
     }
     @Transactional
-    public UserProfile updateUserProfile(String email, UserProfile userProfile) {
+    public UserProfile updateUserProfile(Long id, UserProfile userProfile) {
         // Check if email is already taken by another user
-        if (!userProfile.getEmail().equals(email) && userRepository.existsByEmail(userProfile.getEmail())) {
+        User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException(USER_NOT_FOUND_BY_ID.formatted(id)));
+        if (userRepository.existsOtherUserWithThisEmail(id, userProfile.getEmail()))
             throw new ConflictException("User with email " + userProfile.getEmail() + " already exists");
-        }
-        User user = userRepository.findUserByEmail(email)
-                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND_BY_EMAIL.formatted(email)));
         user.setFullName(userProfile.getFullName());
         user.setPhoneNumber(userProfile.getPhoneNumber());
         user.setSecondaryPhoneNumber(userProfile.getSecondaryPhoneNumber());
@@ -63,7 +61,7 @@ public class UserService {
         user.getAddress().setAddressLine(userProfile.getAddress().getAddressLine());
         user.setSex(userProfile.getSex());
         userRepository.save(user);
-        return getUserProfile(user.getEmail());
+        return getUserProfile(userProfile.getEmail());
     }
     @Transactional
     public UserProfile createUserProfile(String email, UserProfilePOST userProfile) {
@@ -101,9 +99,10 @@ public class UserService {
     public void sendPasswordResetEmail(User user) {
         User savedUser = userRepository.findById(user.getId())
                 .orElseThrow(() -> new NotFoundException("User not found"));
-        savedUser.setResetPasswordToken(jwtService.generateTokenKey());
+        String newPassword = SecurityService.generateNewPassword();
+        savedUser.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(savedUser);
-        mailService.sendResetPasswordEmail(savedUser.getEmail(), savedUser.getResetPasswordToken());
+        mailService.sendResetPasswordEmail(savedUser.getEmail(), newPassword);
     }
 
     @Transactional

@@ -3,6 +3,9 @@ package io.teamchallenge.controller;
 import io.teamchallenge.dto.filter.CameraFilter;
 import io.teamchallenge.dto.filter.PriceFilter;
 import io.teamchallenge.dto.filter.ProductFilterDto;
+import io.teamchallenge.dto.pageable.PageableDto;
+import io.teamchallenge.dto.product.ShortProductResponseDto;
+import io.teamchallenge.entity.Product;
 import io.teamchallenge.service.impl.ProductService;
 import io.teamchallenge.utils.Utils;
 import java.util.List;
@@ -11,13 +14,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
-import static io.teamchallenge.utils.Utils.getAdvancedPageableDto;
-import static io.teamchallenge.utils.Utils.getProductFilterDto;
+import static io.teamchallenge.utils.Utils.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.eq;
@@ -67,6 +70,7 @@ public class ProductControllerTest {
                 filter.getPrice().getTo().toString(),
                 filter.getCameraFilter().getFrom().toString(),
                 filter.getCameraFilter().getTo().toString(),
+                filter.getColors(),
                 pageable);
 
         verify(productService).getAll(eq(pageable), eq(filter));
@@ -136,5 +140,44 @@ public class ProductControllerTest {
         verify(productService).deleteById(eq(id));
         assertEquals(NO_CONTENT, responseEntity.getStatusCode());
         assertNull(responseEntity.getBody());
+    }
+
+    @Test
+    void getSuggestionsTest() {
+        String query = "iph";
+
+        when(productService.getSuggestions(query))
+            .thenReturn(List.of("iPhone 15", "iPhone 16 Pro Max"));
+
+        var responseEntity = productController.getSuggestions(query);
+
+        verify(productService).getSuggestions("iph");
+
+        assertEquals(OK, responseEntity.getStatusCode());
+        assertEquals(2, responseEntity.getBody().size());
+    }
+
+    @Test
+    void getSearchResultsTest() {
+        String query = "Name";
+        PageRequest pageable = PageRequest.of(0, 1);
+
+        PageableDto<ShortProductResponseDto> productPage = PageableDto.<ShortProductResponseDto>builder()
+            .page(List.of(getShortProductResponseDto()))
+            .totalElements(1)
+            .totalPages(1)
+            .currentPage(0)
+            .build();
+
+        when(productService.getSearchResults(query, pageable))
+            .thenReturn(productPage);
+
+        var responseEntity = productController.getSearchResults("Name", pageable);
+        verify(productService).getSearchResults("Name", pageable);
+
+        assertEquals(OK, responseEntity.getStatusCode());
+        assertEquals(1, responseEntity.getBody().getPage().size());
+        assertEquals(List.of(getShortProductResponseDto()), responseEntity.getBody().getPage());
+
     }
 }
