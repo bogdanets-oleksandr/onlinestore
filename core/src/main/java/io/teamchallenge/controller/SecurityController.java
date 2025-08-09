@@ -4,6 +4,7 @@ import io.teamchallenge.dto.security.*;
 import io.teamchallenge.entity.User;
 import io.teamchallenge.service.impl.SecurityService;
 import io.teamchallenge.service.impl.UserService;
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
@@ -62,7 +63,7 @@ public class SecurityController {
     }
 
     @PostMapping("/resetPassword")
-    public ResponseEntity<?> sendLinkForPasswordReset(@RequestParam("email") String email) {
+    public ResponseEntity<?> sendLinkForPasswordReset(@RequestParam("email") String email) throws MessagingException {
         Optional<User> user = userService.getUser(email);
         if (user.isEmpty()) {
             return ResponseEntity.badRequest().body("Unknown user");

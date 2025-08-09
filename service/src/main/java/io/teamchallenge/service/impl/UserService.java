@@ -11,6 +11,7 @@ import io.teamchallenge.exception.ConflictException;
 import io.teamchallenge.exception.NotFoundException;
 import io.teamchallenge.repository.ProductRepository;
 import io.teamchallenge.repository.UserRepository;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -96,7 +97,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void sendPasswordResetEmail(User user) {
+    public void sendPasswordResetEmail(User user) throws MessagingException {
         User savedUser = userRepository.findById(user.getId())
                 .orElseThrow(() -> new NotFoundException("User not found"));
         String newPassword = SecurityService.generateNewPassword();
