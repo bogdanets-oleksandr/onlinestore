@@ -17,7 +17,7 @@ values
     (14, 'Number of processor cores'),
     (15, 'Processor model'),
     (16, 'Flesh card'),
-    (17, 'Sensor resolution'),
+    (17, 'Main camera resolution'),
     (18, 'Video card'),
     (19, 'Bluetooth version'),
     (20, 'Weight'),

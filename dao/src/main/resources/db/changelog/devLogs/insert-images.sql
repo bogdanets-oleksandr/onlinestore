@@ -1,10 +1,10 @@
 -- liquibase formatted sql
 insert into images (id, product_id, link, image_order)
 values
-    (1, 1, 'https://res.cloudinary.com/dpnzbwijt/image/upload/v1736303497/onlinestore/gfe1hm2b0to2zr0ksjtv.avif', 3),
-    (2, 1, 'https://res.cloudinary.com/dpnzbwijt/image/upload/v1736303497/onlinestore/suodhm3fll3uafiutwqb.avif', 4),
-    (3, 1, 'https://res.cloudinary.com/dpnzbwijt/image/upload/v1736303497/onlinestore/xlzic1et5k2dcswp511k.avif', 2),
-    (4, 1, 'https://res.cloudinary.com/dpnzbwijt/image/upload/v1736303496/onlinestore/aalgi4a27q7p1ozp1x5o.avif', 1),
+    (1, 1, 'https://res.cloudinary.com/dpnzbwijt/image/upload/v1736303496/onlinestore/aalgi4a27q7p1ozp1x5o.avif', 1),
+    (2, 1, 'https://res.cloudinary.com/dpnzbwijt/image/upload/v1736303497/onlinestore/xlzic1et5k2dcswp511k.avif', 2),
+    (3, 1, 'https://res.cloudinary.com/dpnzbwijt/image/upload/v1736303497/onlinestore/gfe1hm2b0to2zr0ksjtv.avif', 3),
+    (4, 1, 'https://res.cloudinary.com/dpnzbwijt/image/upload/v1736303497/onlinestore/suodhm3fll3uafiutwqb.avif', 4),
     (5, 2, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1745928383/1_j2dnun.png', 1),
     (6, 2, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1745928382/2_cygppk.png', 2),
     (7, 2, 'https://res.cloudinary.com/dtbnu6abl/image/upload/v1745928382/3_zucpio.png', 3),

@@ -39,6 +39,8 @@ values
     (64, 4, '15.6 inches'),
     (86, 4, '13.6 inches'),
     (103, 4, '17.3 inches'),
+    (117, 4, '6.4 inches'),
+    (127, 4, '15.3 inches'),
     -- Screen resolution
     (26, 5, '2796 x 1290 pixels'),  --15 Pro Max
     (27, 5, '1080 x 2340 pixels'),  --A24
@@ -63,11 +65,14 @@ values
     (35, 7, '120 Hz'),  --15 Pro Max, S24 Ultra, s23
     (36, 7, '60 Hz'),   --15, 13
     (37, 7, '90 Hz'),   --A24
+    (125, 7, '144 Hz'),
     -- Glass protection technology
     (38, 8, 'Gorilla Glass 7'),    --15 Pro Max
     (39, 8, 'Gorilla Glass Victus'),  --S24 Ultra
     (40, 8, 'Gorilla Glass 5'),    --15 Pro, 15
     (41, 8, 'Gorilla Glass 3'),    --13
+    (110, 8, 'Ceramic Shield'),
+    (116, 8, 'Gorilla Glass Armor'),
     -- Communication standards
     (42, 9, '5G'),  --15 Pro Max, A24, S24 Ultra
     (43, 9, '4G LTE'),  --15 Pro, 15, S23, 13
@@ -93,6 +98,8 @@ values
     (94, 13, '4.4 GHz'),
     (98, 13, '2.8 GHz'),
     (101, 13, '4.5 GHz'),
+    (114, 13, '3,3 GHz'),
+    (124, 13, '2.2 GHz'),
     -- Number of processor cores
     (52, 14, 'Octa-core'),
     (53, 14, 'Quad-core'),
@@ -108,12 +115,25 @@ values
     (97, 15, 'Intel Celeron N4500'),
     (102, 15, 'Intel Core i5-12500H'),
     (104, 15, 'Intel Core i5-12450H'),
+    (109, 15, 'A17 Pro'),
+    (112, 15, 'A15 Bionic'),
+    (113, 15, 'Snapdragon 8 Gen 3'),
+    (118, 15, 'Snapdragon 8 Gen 1'),
+    (120, 15, 'A16 Bionic'),
+    (123, 15, 'MediaTek Helio G99'),
     -- Flesh card
     (56, 16, 'Supports microSD'),  --A24, S24 Ultra, S23
     (57, 16, 'No microSD support'), --15 Pro Max, 15, 13
+    (121, 16, 'Supports SD/SDHC/SDXC'),
     -- Sensor resolution
     (58, 17, '108 MP'),    --S24 Ultra
     (59, 17, '12 MP'),     --15 Pro Max, 15, 13, A24, S23
+    (111, 17, '48 MP'),
+    (115, 17, '200 MP'),
+    (119, 17, '50 MP'),
+    (122, 17, '16 MP'),
+    (126, 17, '26.2 Mp'),
+    (128, 17, 'No sensor/Analog camera'),
     -- Video card
     (60, 18, 'AMD Radeon RX 6700 XT'),
     (61, 18, 'NVIDIA RTX 3060'),

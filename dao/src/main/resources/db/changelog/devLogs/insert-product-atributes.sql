@@ -9,16 +9,16 @@ values
     (5, 1, 26), -- Screen resolution: 2796 x 1290 pixels
     (6, 1, 32), -- Screen type: Super Retina XDR OLED
     (7, 1, 35), -- Screen refresh rate: 120 Hz
-    (8, 1, 38), -- Glass protection technology: Gorilla Glass 7
+    (8, 1, 110), -- Glass protection technology: Ceramic Shield
     (9, 1, 42), -- Communication standards: 5G
     (10, 1, 45), -- Number of SIM cards: 1
     (11, 1, 46), -- SIM card size: Nano-SIM
     (12, 1, 48), -- Operating system: iOS
     (13, 1, 50), -- Processor frequency: 3.0 GHz
     (14, 1, 52), -- Number of processor cores: Octa-core
-    (15, 1, 54), -- Processor model: A14 Bionic
+    (15, 1, 109), -- Processor model: A17 Pro
     (16, 1, 57), -- Flesh card: No microSD support
-    (17, 1, 59), -- Sensor resolution: 12 MP
+    (17, 1, 111), -- Camera resolution: 48 MP
 
     -- Samsung Galaxy A24
     (18, 2, 1),  -- Memory ROM: 128 Gb
@@ -30,13 +30,13 @@ values
     (24, 2, 37), -- Screen refresh rate: 90 Hz
     (25, 2, 43), -- Communication standards: 4G LTE
     (26, 2, 45), -- Number of SIM cards: 1
-    (27, 2, 47), -- SIM card size: Micro-SIM
+    (27, 2, 46), -- SIM card size: Nano-SIM
     (28, 2, 49), -- Operating system: Android
-    (29, 2, 51), -- Processor frequency: 2.3 GHz
+    (29, 2, 124), -- Processor frequency: 2.2 GHz
     (30, 2, 52), -- Number of processor cores: Octa-core
-    (31, 2, 55), -- Processor model: Snapdragon 888
+    (31, 2, 123), -- Processor model: MediaTek Helio G99
     (32, 2, 56), -- Flesh card: Supports microSD
-    (33, 2, 59), -- Sensor resolution: 12 MP
+    (33, 2, 59), -- Sensor resolution: 50 MP
 
     -- Samsung Galaxy S24 Ultra
     (34, 3, 3),  -- Memory ROM: 512 Gb
@@ -46,16 +46,16 @@ values
     (38, 3, 28), -- Screen resolution: 1440 x 3120 pixels
     (39, 3, 34), -- Screen type: Dynamic AMOLED 2X
     (40, 3, 35), -- Screen refresh rate: 120 Hz
-    (41, 3, 39), -- Glass protection technology: Gorilla Glass Victus
+    (41, 3, 116), -- Glass protection technology: Gorilla Glass Armor
     (42, 3, 42), -- Communication standards: 5G
     (43, 3, 44), -- Number of SIM cards: 2
-    (44, 3, 47), -- SIM card size: Micro-SIM
+    (44, 3, 46), -- SIM card size: Nano-SIM
     (45, 3, 49), -- Operating system: Android
-    (46, 3, 51), -- Processor frequency: 2.3 GHz
+    (46, 3, 104), -- Processor frequency: 3.3 GHz
     (47, 3, 52), -- Number of processor cores: Octa-core
-    (48, 3, 55), -- Processor model: Snapdragon 888
-    (49, 3, 56), -- Flesh card: Supports microSD
-    (50, 3, 58), -- Sensor resolution: 108 MP
+    (48, 3, 113), -- Processor model: Snapdragon 8 Gen 3
+    (49, 3, 57), -- Flesh card: Doesn't Support microSD
+    (50, 3, 115), -- Main camera resolution: 200 MP
 
     -- Apple iPhone 15 Pro 256 Gb Blue Titanium
     (51, 4, 2),   -- Memory ROM: 256 Gb
@@ -65,34 +65,34 @@ values
     (55, 4, 30),  -- Screen resolution: 2556 x 1179 pixels
     (56, 4, 32),  -- Screen type: Super Retina XDR OLED
     (57, 4, 35),  -- Screen refresh rate: 120 Hz
-    (58, 4, 40),  -- Glass protection technology: Gorilla Glass 5
+    (58, 4, 110),  -- Glass protection technology: Ceramic Shield
     (59, 4, 43),  -- Communication standards: 4G LTE
     (60, 4, 45),  -- Number of SIM cards: 1
     (61, 4, 46),  -- SIM card size: Nano-SIM
     (62, 4, 48),  -- Operating system: iOS
     (63, 4, 50),  -- Processor frequency: 3.0 GHz
     (64, 4, 52),  -- Number of processor cores: Octa-core
-    (65, 4, 54),  -- Processor model: A14 Bionic
+    (65, 4, 109),  -- Processor model: A17 Pro
     (66, 4, 57),  -- Flesh card: No microSD support
-    (67, 4, 59),  -- Sensor resolution: 12 MP
+    (67, 4, 111),  -- Sensor resolution: 48 MP
 
     -- Samsung Galaxy S23 FE 5G 256Gb Mint Global
     (68, 5, 2),   -- Memory ROM: 256 Gb
     (69, 5, 6),   -- Memory RAM: 8 Gb
     (70, 5, 12),  -- Color: Light Blue
-    (71, 5, 23),  -- Display diagonal: 6.1 inches
+    (71, 5, 117),  -- Display diagonal: 6.4 inches
     (72, 5, 29),  -- Screen resolution: 1080 x 2350 pixels
     (73, 5, 34),  -- Screen type: Dynamic AMOLED 2X
     (74, 5, 35),  -- Screen refresh rate: 120 Hz
     (75, 5, 43),  -- Communication standards: 4G LTE
     (76, 5, 44),  -- Number of SIM cards: 2
-    (77, 5, 47),  -- SIM card size: Micro-SIM
+    (77, 5, 46),  -- SIM card size: Nano-SIM
     (78, 5, 49),  -- Operating system: Android
-    (79, 5, 51),  -- Processor frequency: 2.3 GHz
+    (79, 5, 98),  -- Processor frequency: 2.8 GHz
     (80, 5, 52),  -- Number of processor cores: Octa-core
-    (81, 5, 55),  -- Processor model: Snapdragon 888
-    (82, 5, 56),  -- Flesh card: Supports microSD
-    (83, 5, 59),  -- Sensor resolution: 12 MP
+    (81, 5, 118),  -- Processor model: Snapdragon 8 Gen 1
+    (82, 5, 57),  -- Flesh card: No microSD support
+    (83, 5, 119),  -- Sensor resolution: 50 MP
 
     -- Apple iPhone 15 128GB Green
     (84, 6, 1),   -- Memory ROM: 128 Gb
@@ -102,14 +102,14 @@ values
     (88, 6, 30),  -- Screen resolution: 2556 x 1179 pixels
     (89, 6, 32),  -- Screen type: Super Retina XDR OLED
     (90, 6, 36),  -- Screen refresh rate: 60 Hz
-    (91, 6, 40),  -- Glass protection technology: Gorilla Glass 5
+    (91, 6, 110),  -- Glass protection technology: Ceramic Shield
     (92, 6, 43),  -- Communication standards: 4G LTE
     (93, 6, 45),  -- Number of SIM cards: 1
     (94, 6, 46),  -- SIM card size: Nano-SIM
     (95, 6, 48),  -- Operating system: iOS
     (96, 6, 50),  -- Processor frequency: 3.0 GHz
     (97, 6, 52),  -- Number of processor cores: Octa-core
-    (98, 6, 54),  -- Processor model: A14 Bionic
+    (98, 6, 120),  -- Processor model: A16 Bionic
     (99, 6, 57),  -- Flesh card: No microSD support
     (100, 6, 59), -- Sensor resolution: 12 MP
 
@@ -147,7 +147,7 @@ values
     (129, 8, 48),  -- Operating system: iOS
     (130, 8, 50),  -- Processor frequency: 3.0 GHz
     (131, 8, 52),  -- Number of processor cores: Octa-core
-    (132, 8, 54),  -- Processor model: A14 Bionic
+    (132, 8, 112),  -- Processor model: A15 Bionic
     (133, 8, 57),  -- Flesh card: No microSD support
     (134, 8, 59),  -- Sensor resolution: 12 MP
 
@@ -158,7 +158,7 @@ values
     (138, 9, 61),   -- Display diagonal: 15.6 inches
     (139, 9, 67),   -- Screen resolution: 1920 x 1080 pixels
     (140, 9, 68),   -- Screen type: IPS
-    (141, 9, 35),   -- Screen refresh rate: 60 Hz
+    (141, 9, 36),   -- Screen refresh rate: 60 Hz
     (142, 9, 71),   -- Processor model: AMD Ryzen 5 5500U
     (143, 9, 72),   -- Processor frequency: 2.1 GHz
     (144, 9, 73),   -- Number of processor cores: Hexa-core
@@ -171,9 +171,9 @@ values
     (149, 10, 10),   -- Color: Dark Grey
     (150, 10, 64),   -- Display diagonal: 15.6 inches
     (151, 10, 66),   -- Screen resolution: 2560 x 1600 pixels
-    (152, 10, 70),   -- Screen type: AMOLED
-    (153, 10, 37),   -- Screen refresh rate: 90 Hz
-    (154, 10, 77),   -- Processor model: AMD Ryzen 5 5500U
+    (152, 10, 68),   -- Screen type: IPS
+    (153, 10, 125),   -- Screen refresh rate: 144 Hz
+    (154, 10, 102),   -- Processor model: Intel Core i5-12500H
     (155, 10, 78),   -- Processor frequency: 2.1 GHz
     (156, 10, 73),   -- Number of processor cores: Hexa-core
     (157, 10, 74),   -- Operating system: Windows 11
@@ -183,7 +183,7 @@ values
     (161, 11, 2),   -- Memory ROM: 256 Gb
     (162, 11, 6),   -- Memory RAM: 8 Gb
     (163, 11, 14),  -- Color: Medium Gray
-    (164, 11, 62),  -- Display diagonal: 11 inches
+    (164, 11, 127),  -- Display diagonal: 15.3 inches
     (165, 11, 79),  -- Screen resolution: 2880 x 1864 pixels
     (166, 11, 80),  -- Screen type: Liquid Retina
     (167, 11, 35),  -- Screen refresh rate: 120 Hz
@@ -194,19 +194,19 @@ values
     (172, 11, 76),  -- Video card: Integrated
 
     -- Nikon Coolpix P950 Black
-    (173, 12, 59),  -- Sensor resolution: 12 MP
+    (173, 12, 122),  -- Camera resolution: 16 MP
     (174, 12, 8),   -- Color: Gray
-    (175, 12, 56),  -- Supports microSD
+    (175, 12, 121),  -- Supports SD/SDHC/SDXC
 
-    -- Fujifilm Instax Mini 12 Lilac/Violet
-    (176, 13, 59),  -- Sensor resolution: 12 MP
-    (177, 13, 13),   -- Color: Powder Pink
-    (178, 13, 56),  -- Supports microSD
+    -- Fujifilm Instax Mini 12
+    (176, 13, 128),  -- Sensor resolution: No sensor/Analog camera
+    (177, 13, 19),   -- Color: Light Purple
+    (178, 13, 57),  -- Doesn't Support microSD
 
     -- Canon EOS 6D Mark II
-    (179, 14, 59),  -- Sensor resolution: 12 MP
+    (179, 14, 126),  -- Sensor resolution: 26,2 MP
     (180, 14, 10),   -- Color: Dark Gray
-    (181, 14, 56),  -- Supports microSD
+    (181, 14, 121),  -- Supports SD/SDHC/SDXC
 
     --Apple MacBook Air 13" M3 256GB/8GB/8GPU
     (182, 15, 2),   -- Memory ROM: 256 Gb
@@ -282,14 +282,14 @@ values
     (239, 21, 30),  -- Screen resolution: 2556 x 1179 pixels
     (240, 21, 32),  -- Screen type: Super Retina XDR OLED
     (241, 21, 36),  -- Screen refresh rate: 60 Hz
-    (242, 21, 40),  -- Glass protection technology: Gorilla Glass 5
+    (242, 21, 110),  -- Glass protection technology: Ceramic Shield
     (243, 21, 43),  -- Communication standards: 4G LTE
     (244, 21, 45),  -- Number of SIM cards: 1
     (245, 21, 46),  -- SIM card size: Nano-SIM
     (246, 21, 48),  -- Operating system: iOS
     (247, 21, 50),  -- Processor frequency: 3.0 GHz
     (248, 21, 52),  -- Number of processor cores: Octa-core
-    (249, 21, 54),  -- Processor model: A14 Bionic
+    (249, 21, 120),  -- Processor model: A16 Bionic
     (250, 21, 57),  -- Flesh card: No microSD support
     (251, 21, 59), -- Sensor resolution: 12 MP
 
@@ -321,14 +321,14 @@ values
     (272, 23, 24),  -- Display diagonal: 6.12 inches
     (273, 23, 30),  -- Screen resolution: 2556 x 1179 pixels
     (274, 23, 32),  -- Screen type: Super Retina XDR OLED
-    (275, 23, 36),  -- Screen refresh rate: 60 Hz
-    (276, 23, 40),  -- Glass protection technology: Gorilla Glass 5
+    (275, 23, 35),  -- Screen refresh rate: 120 Hz
+    (276, 23, 110),  -- Glass protection technology: Ceramic Shield
     (277, 23, 43),  -- Communication standards: 4G LTE
     (278, 23, 45),  -- Number of SIM cards: 1
     (279, 23, 46),  -- SIM card size: Nano-SIM
     (280, 23, 48),  -- Operating system: iOS
     (281, 23, 50),  -- Processor frequency: 3.0 GHz
     (282, 23, 52),  -- Number of processor cores: Octa-core
-    (283, 23, 54),  -- Processor model: A14 Bionic
+    (283, 23, 109),  -- Processor model: A17 Pro
     (284, 23, 57),  -- Flesh card: No microSD support
-    (285, 23, 59); -- Sensor resolution: 12 MP
+    (285, 23, 111); -- Sensor resolution: 48 MP
