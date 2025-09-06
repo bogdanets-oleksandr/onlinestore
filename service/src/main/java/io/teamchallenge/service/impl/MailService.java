@@ -5,7 +5,6 @@ import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -29,10 +28,10 @@ public class MailService {
     private final SpringTemplateEngine templateEngine;
 
     @Async
-    public void sendResetPasswordEmail(String email, String newPassword) throws MessagingException {
+    public void sendResetPasswordEmail(String email, String recoveryLink) throws MessagingException {
         Context context = new Context();
-        context.setVariable("password", newPassword);
-        String htmlContent = templateEngine.process("new_password_email_template", context);
+        context.setVariable("recoveryLink", recoveryLink);
+        String htmlContent = templateEngine.process("password_recovery_email_template", context);
         mailSender.send(constructEmail(NEW_PASSWORD_SUBJECT, htmlContent, email));
     }
 

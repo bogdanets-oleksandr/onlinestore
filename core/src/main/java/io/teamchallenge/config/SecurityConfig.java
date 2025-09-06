@@ -113,12 +113,13 @@ public class SecurityConfig {
                     API_V1 + "/categories",
                     API_V1 + "/products/{id}",
                     "/hello",
-                    API_V1 + "/reviews/{productId}"
+                    API_V1 + "/reviews/{productId}",
+                    API_V1 + "/change-password"
                 )
                 .permitAll()
                 .requestMatchers(HttpMethod.POST,
-                        API_V1 + "/resetPassword",
-                        API_V1 + "/changePassword"
+                        API_V1 + "/reset-password",
+                        API_V1 + "/change-password"
                 )
                 .permitAll()
                 .requestMatchers(HttpMethod.GET,

@@ -2,12 +2,14 @@ package io.teamchallenge.service.impl;
 
 import io.teamchallenge.constant.ExceptionMessage;
 import io.teamchallenge.dto.security.*;
+import io.teamchallenge.entity.PasswordResetToken;
 import io.teamchallenge.entity.User;
 import io.teamchallenge.enumerated.Role;
 import io.teamchallenge.exception.AlreadyExistsException;
 import io.teamchallenge.exception.BadCredentialsException;
 import io.teamchallenge.exception.BadTokenException;
 import io.teamchallenge.exception.NotFoundException;
+import io.teamchallenge.repository.PasswordResetTokenRepository;
 import io.teamchallenge.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -16,29 +18,25 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.security.SecureRandom;
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 /**
  * Service class for managing security.
+ *
  * @author Denys Liubchenko
  */
 @Service
 @Slf4j
 @Transactional(readOnly = true)
 public class SecurityService {
-    //chars for generating passwords
-    private static final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private static final String LOWER = "abcdefghijklmnopqrstuvwxyz";
-    private static final String DIGITS = "0123456789";
-    private static final String SPECIAL = "!@#&()–[]{}:;',?/*~$^+=<>";
-    private static final String ALL = UPPER + LOWER + DIGITS + SPECIAL;
-    private static final int PASSWORD_LENGTH = 15;
-    private static final SecureRandom random = new SecureRandom();
+    private static final String NEW_PASSWORD_BASE_URL = "https://gadget-house-tc.netlify.app/change-password?token=";
 
     private final UserRepository userRepository;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
+    private final PasswordResetTokenRepository passwordResetTokenRepository;
 
     /**
      * Constructor for SecurityService.
@@ -50,11 +48,12 @@ public class SecurityService {
      */
     @Autowired
     public SecurityService(UserRepository userRepository, JwtService jwtService, PasswordEncoder passwordEncoder,
-                           ModelMapper modelMapper) {
+                           ModelMapper modelMapper, PasswordResetTokenRepository passwordResetTokenRepository) {
         this.userRepository = userRepository;
         this.jwtService = jwtService;
         this.passwordEncoder = passwordEncoder;
         this.modelMapper = modelMapper;
+        this.passwordResetTokenRepository = passwordResetTokenRepository;
     }
 
     /**
@@ -142,14 +141,41 @@ public class SecurityService {
         return modelMapper.map(userRepository.save(admin), NewAdminResponseDto.class);
     }
 
-    public static String generateNewPassword() {
-        StringBuilder password = new StringBuilder(PASSWORD_LENGTH);
+    @Transactional
+    public String generateRecoveryLink(User user) {
+        String token = jwtService.generateTokenKey();
+        PasswordResetToken passwordResetToken = PasswordResetToken.builder()
+            .user(user)
+            .token(token)
+            .expiresAt(LocalDateTime.now().plusDays(1))
+            .build();
+        passwordResetTokenRepository.save(passwordResetToken);
+        return NEW_PASSWORD_BASE_URL + token;
+    }
 
-        for (int i = 0; i < PASSWORD_LENGTH; i++) {
-            int index = random.nextInt(ALL.length());
-            password.append(ALL.charAt(index));
-        }
+    public boolean isValidPasswordResetToken(String token) {
+        Optional<PasswordResetToken> tokenOptional = passwordResetTokenRepository.findByToken(token);
+        return (tokenOptional.isPresent() &&
+            !tokenOptional.get().isUsed() &&
+            tokenOptional.get().getExpiresAt().isAfter(LocalDateTime.now()));
+    }
 
-        return password.toString();
+    @Transactional
+    public User getUserFromPasswordResetToken(String token) {
+        //TODO Make specific exception
+        PasswordResetToken passwordResetToken = passwordResetTokenRepository.findByToken(token).orElseThrow();
+        if (passwordResetToken.isUsed()) throw new BadTokenException("Token has already been used");
+        passwordResetToken.setUsed(true);
+        passwordResetTokenRepository.save(passwordResetToken);
+        return passwordResetToken.getUser();
+    }
+
+    public SignInResponseDto buildSignInResponseFromUser(User user) {
+        String accessToken = jwtService.generateAccessToken(user.getId(), user.getEmail(), user.getRole());
+        String newRefreshToken = jwtService.generateRefreshToken(user);
+        return SignInResponseDto.builder()
+            .accessToken(accessToken)
+            .refreshToken(newRefreshToken)
+            .build();
     }
 }

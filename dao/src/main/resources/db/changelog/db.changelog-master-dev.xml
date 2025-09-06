@@ -52,6 +52,7 @@
     <include file="db/changelog/logs/add-columns-to-address.xml" relativeToChangelogFile="false" />
     <include file="db/changelog/logs/add-column-color-to-products.xml" relativeToChangelogFile="false" />
     <include file="db/changelog/logs/change-table-reviews-make-text-nullable.xml" relativeToChangelogFile="false" />
+    <include file="db/changelog/logs/add-table-password-reset-token.xml" relativeToChangelogFile="false"/>
 
     <changeSet id="1" author="serhii.babanov">
         <sqlFile

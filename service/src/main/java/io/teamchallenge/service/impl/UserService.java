@@ -2,9 +2,11 @@ package io.teamchallenge.service.impl;
 
 import io.teamchallenge.dto.address.AddressDto;
 import io.teamchallenge.dto.security.ResetPasswordDto;
+import io.teamchallenge.dto.security.SignInResponseDto;
 import io.teamchallenge.dto.user.UserProfile;
 import io.teamchallenge.dto.user.UserProfilePOST;
 import io.teamchallenge.entity.Address;
+import io.teamchallenge.entity.PasswordResetToken;
 import io.teamchallenge.entity.User;
 import io.teamchallenge.exception.BadCredentialsException;
 import io.teamchallenge.exception.ConflictException;
@@ -34,6 +36,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final MailService mailService;
+    private final SecurityService securityService;
 
     @Transactional(readOnly = true)
     public UserProfile getUserProfile(String email) {
@@ -100,22 +103,18 @@ public class UserService {
     public void sendPasswordResetEmail(User user) throws MessagingException {
         User savedUser = userRepository.findById(user.getId())
                 .orElseThrow(() -> new NotFoundException("User not found"));
-        String newPassword = SecurityService.generateNewPassword();
-        savedUser.setPassword(passwordEncoder.encode(newPassword));
-        userRepository.save(savedUser);
-        mailService.sendResetPasswordEmail(savedUser.getEmail(), newPassword);
+        String recoveryLink = securityService.generateRecoveryLink(user);
+        mailService.sendResetPasswordEmail(savedUser.getEmail(), recoveryLink);
     }
 
     @Transactional
-    public void resetPassword(ResetPasswordDto dto) {
-        if (!dto.getPassword().equals(dto.getConfirmPassword())) {
-            throw new BadCredentialsException("Passwords do not match");
-        }
-        User user = userRepository.findByResetPasswordToken(dto.getToken())
-                .orElseThrow(() -> new NotFoundException("Token not found"));
+    public SignInResponseDto resetPassword(ResetPasswordDto dto) {
+        User user = securityService.getUserFromPasswordResetToken(dto.getToken());
 
         String encodedPassword = passwordEncoder.encode(dto.getPassword());
         user.setPassword(encodedPassword);
         userRepository.save(user);
+
+        return securityService.buildSignInResponseFromUser(user);
     }
 }

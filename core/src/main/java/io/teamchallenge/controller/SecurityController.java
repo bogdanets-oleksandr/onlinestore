@@ -62,7 +62,7 @@ public class SecurityController {
         return ResponseEntity.ok().body(securityService.updateAccessToken(refreshToken));
     }
 
-    @PostMapping("/resetPassword")
+    @PostMapping("/reset-password")
     public ResponseEntity<?> sendLinkForPasswordReset(@RequestParam("email") String email) throws MessagingException {
         Optional<User> user = userService.getUser(email);
         if (user.isEmpty()) {
@@ -73,9 +73,17 @@ public class SecurityController {
         }
     }
 
-    @PostMapping("/changePassword")
-    public void setPasswordWithRestoringToken(@RequestBody @Valid ResetPasswordDto dto) {
-        userService.resetPassword(dto);
+    @GetMapping("/change-password")
+    public ResponseEntity<?> validatePasswordResetToken(@RequestParam("token") String passwordResetToken) {
+        if (securityService.isValidPasswordResetToken(passwordResetToken)) {
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/change-password")
+    public ResponseEntity<SignInResponseDto> setPasswordWithRestoringToken(@RequestBody @Valid ResetPasswordDto dto) {
+        return ResponseEntity.ok().body(userService.resetPassword(dto));
     }
 
     @PostMapping("/create-new-admin")
